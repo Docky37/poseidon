@@ -13,11 +13,12 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Required;
 
 /**
  * 
- * @author docky
+ * @author Thierry Schreiner
  */
 @Entity
 @Table(name = "bid_list")
