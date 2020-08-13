@@ -2,10 +2,20 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
-import com.nnk.springboot.domain.BidList;
+import javax.validation.Valid;
+
+import com.nnk.springboot.domain.BidListDTO;
 
 public interface BidListService {
 
-	List<BidList> findAll();
+	List<BidListDTO> findAll();
+
+	void add(@Valid BidListDTO bidListDTO);
+
+	void update(@Valid BidListDTO bidListDTO);
+
+	void delete(Integer id);
+
+	BidListDTO getById(Integer id);
 
 }

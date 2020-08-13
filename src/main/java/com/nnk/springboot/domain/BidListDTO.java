@@ -3,11 +3,6 @@ package com.nnk.springboot.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,42 +11,42 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.springframework.stereotype.Component;
 
 /**
  * 
  * @author Thierry Schreiner
  */
-@Entity
-@Table(name = "bid_list")
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
-public class BidList {
+@ToString
+public class BidListDTO {
 
 	/**
-	 * Id of the entity mapped to primary key field.
+	 * Id of the DTO.
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
 	Integer bidListId;
 
-	@NotBlank
-	@Column(nullable = false, length = 30)
 	@Getter
 	@Setter
+	@NotBlank(message = "Account is mandatory")
 	String account;
 
-	@NotBlank
-	@Column(nullable = false, length = 30)
 	@Getter
 	@Setter
+	@NotBlank(message = "Type is mandatory")
 	String type;
 
-	@NotNull
-	@Digits(fraction = 4, integer = 6, message="Must be a number, 999999 max with 4 fractional digits max")
+	@NotNull(message = "Bid quantity is mandatory")
+	@Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
 	@Getter
 	@Setter
+	@Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
 	Double bidQuantity;
 
 	@Getter
@@ -66,7 +61,6 @@ public class BidList {
 	@Setter
 	Double ask;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String benchmark;
@@ -75,32 +69,26 @@ public class BidList {
 	@Setter
 	LocalDateTime bidListDate;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String commentary;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String security;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String status;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String trader;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String book;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String creationName;
@@ -109,7 +97,6 @@ public class BidList {
 	@Setter
 	LocalDateTime creationDate;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String revisionName;
@@ -123,17 +110,14 @@ public class BidList {
 	@Setter
 	String dealName;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String dealType;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String sourceListId;
 
-	@Column(length = 125)
 	@Getter
 	@Setter
 	String side;
