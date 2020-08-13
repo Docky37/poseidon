@@ -3,75 +3,82 @@ package com.nnk.springboot.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.domain.mapping.BidListMapping;
 import com.nnk.springboot.repositories.BidListRepository;
 
+/**
+ * Implementation class of the BidListService interface, this class answer to
+ * BidListController request using BidListRepository and bidListMapping classes.
+ *
+ * @author Thierry Schreiner
+ */
 @Service
 public class BidListServiceImpl implements BidListService {
 
-	@Autowired
-	BidListRepository bidListRepository;
+    /**
+     * BidListRepository bean injected by Spring when service is created.
+     */
+    @Autowired
+    private BidListRepository bidListRepository;
 
-	@Override
-	public List<BidListDTO> findAll() {
-		List<BidList> listBidList = new ArrayList<>();
-		listBidList = bidListRepository.findAll();
+    /**
+     * BidListMapping bean injected by Spring when service is created.
+     */
+    @Autowired
+    private BidListMapping bidListMapping;
 
-		List<BidListDTO> listBidListDTO = new ArrayList<>();
-		for (BidList bidList : listBidList) {
-			BidListDTO bidListDTO = mapEntityToDTO(bidList);
-			listBidListDTO.add(bidListDTO);
-		}
-		return listBidListDTO;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<BidListDTO> findAll() {
+        List<BidList> listBidList = new ArrayList<>();
+        listBidList = bidListRepository.findAll();
 
-	@Override
-	public void add(@Valid final BidListDTO bidListDTO) {
-		BidList bidList = mapDTOToEntity(bidListDTO);
-		bidListRepository.save(bidList);
-	}
+        List<BidListDTO> listBidListDTO =
+                bidListMapping.mapAListOfBidList(listBidList);
 
-	@Override
-	public void update(@Valid BidListDTO bidListDTO) {
-		BidList bidList = mapDTOToEntity(bidListDTO);
-		bidListRepository.save(bidList);
+        return listBidListDTO;
+    }
 
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BidListDTO save(final BidListDTO bidListDTO) {
+        BidList bidList = bidListMapping.mapDTOToEntity(bidListDTO);
+        BidList savedBidList = bidListRepository.save(bidList);
+        BidListDTO savedBidListDTO =
+                bidListMapping.mapEntityToDTO(savedBidList);
+        return savedBidListDTO;
 
-	@Override
-	public void delete(Integer id) {
-		bidListRepository.deleteById(id);
-	}
+    }
 
-	@Override
-	public BidListDTO getById(final Integer id) {
-		BidList bidList = bidListRepository.findByBidListId(id);
-		BidListDTO bidListDTO = mapEntityToDTO(bidList);
-		return bidListDTO;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BidListDTO delete(final Integer id) {
+        BidListDTO bidListDTO = getById(id);
+        if (bidListDTO != null) {
+            bidListRepository.deleteById(id);
+        }
+        return bidListDTO;
+    }
 
-	public BidListDTO mapEntityToDTO(BidList bidList) {
-		BidListDTO bidListDTO = new BidListDTO();
-		bidListDTO.setBidListId(bidList.getBidListId());
-		bidListDTO.setAccount(bidList.getAccount());
-		bidListDTO.setType(bidList.getType());
-		bidListDTO.setBidQuantity(bidList.getBidQuantity());
-		return bidListDTO;
-	}
-
-	public BidList mapDTOToEntity(BidListDTO bidListDTO) {
-		BidList bidList = new BidList();
-		bidList.setBidListId(bidListDTO.getBidListId());
-		bidList.setAccount(bidListDTO.getAccount());
-		bidList.setType(bidListDTO.getType());
-		bidList.setBidQuantity(bidListDTO.getBidQuantity());
-		return bidList;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BidListDTO getById(final Integer id) {
+        BidList bidList = bidListRepository.findByBidListId(id);
+        BidListDTO bidListDTO = bidListMapping.mapEntityToDTO(bidList);
+        return bidListDTO;
+    }
 
 }
