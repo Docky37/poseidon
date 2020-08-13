@@ -50,7 +50,8 @@ public class BidListController {
 			LOGGER.error("ERROR(S): {}", result);
 			return "bidList/add";
 		}
-		bidListService.add(bidListDTO);
+		BidListDTO savedBidListDTO = bidListService.save(bidListDTO);
+		LOGGER.info(" => New bidList saved in DB: {}", savedBidListDTO.toString());
 		return "redirect:/bidList/list";
 	}
 
@@ -65,20 +66,27 @@ public class BidListController {
 	@PostMapping("/bidList/update/{id}")
 	public String updateBid(@PathVariable("id") Integer id, @Valid BidListDTO bidListDTO, BindingResult result,
 			Model model) {
+		bidListDTO.setBidListId(id);
 		LOGGER.info("NEW HTML POST REQUEST on /bidList/update/{}", id);
-		LOGGER.info("   => {}",bidListDTO.toString());
+		LOGGER.info("   => {}", bidListDTO.toString());
 		if (result.hasErrors()) {
+			LOGGER.error("ERROR(S): {}", result);
 			return "bidList/update";
 		}
-//System.out.println(bidListDTO.toString());
-		bidListService.update(bidListDTO);
+		BidListDTO savedBidListDTO = bidListService.save(bidListDTO);
+		LOGGER.info(" => Updated bidList saved in DB: {}", savedBidListDTO.toString());
 		return "redirect:/bidList/list";
 	}
 
 	@GetMapping("/bidList/delete/{id}")
 	public String deleteBid(@PathVariable("id") Integer id, Model model) {
 		LOGGER.info("NEW HTML DELETE REQUEST on /bidList/delete/{}", id);
-		bidListService.delete(id);
+		BidListDTO deletedBidListDTO = bidListService.delete(id);
+		if (deletedBidListDTO != null) {
+			LOGGER.info(" => BidList deleted: {}", deletedBidListDTO.toString());
+		} else {
+			LOGGER.error(" => BidList with id={} not found!", id);
+		}
 
 		return "redirect:/bidList/list";
 	}
