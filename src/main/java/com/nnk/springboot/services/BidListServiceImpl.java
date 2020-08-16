@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.BidListDTO;
 import com.nnk.springboot.domain.mapping.BidListMapping;
+import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.repositories.BidListRepository;
 
 /**
@@ -40,8 +41,8 @@ public class BidListServiceImpl implements BidListService {
         List<BidList> listBidList = new ArrayList<>();
         listBidList = bidListRepository.findAll();
 
-        List<BidListDTO> listBidListDTO =
-                bidListMapping.mapAListOfBidList(listBidList);
+        List<BidListDTO> listBidListDTO = bidListMapping
+                .mapAListOfBidList(listBidList);
 
         return listBidListDTO;
     }
@@ -53,17 +54,18 @@ public class BidListServiceImpl implements BidListService {
     public BidListDTO save(final BidListDTO bidListDTO) {
         BidList bidList = bidListMapping.mapDTOToEntity(bidListDTO);
         BidList savedBidList = bidListRepository.save(bidList);
-        BidListDTO savedBidListDTO =
-                bidListMapping.mapEntityToDTO(savedBidList);
+        BidListDTO savedBidListDTO = bidListMapping
+                .mapEntityToDTO(savedBidList);
         return savedBidListDTO;
 
     }
 
     /**
      * {@inheritDoc}
+     * @throws BidListNotFoundException 
      */
     @Override
-    public BidListDTO delete(final Integer id) {
+    public BidListDTO delete(final Integer id) throws BidListNotFoundException {
         BidListDTO bidListDTO = getById(id);
         if (bidListDTO != null) {
             bidListRepository.deleteById(id);
@@ -75,9 +77,17 @@ public class BidListServiceImpl implements BidListService {
      * {@inheritDoc}
      */
     @Override
-    public BidListDTO getById(final Integer id) {
+    public BidListDTO getById(final Integer id)
+            throws BidListNotFoundException {
         BidList bidList = bidListRepository.findByBidListId(id);
-        BidListDTO bidListDTO = bidListMapping.mapEntityToDTO(bidList);
+        BidListDTO bidListDTO;
+        if (bidList != null) {
+            bidListDTO = bidListMapping.mapEntityToDTO(bidList);
+        } else {
+            throw new BidListNotFoundException(
+                    "No BidList record exist for given id");
+        }
+
         return bidListDTO;
     }
 

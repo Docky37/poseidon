@@ -3,6 +3,7 @@ package com.nnk.springboot.services;
 import java.util.List;
 
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.exceptions.BidListNotFoundException;
 
 /**
  * This BidListService interface defines five methods in charge of driving the
@@ -33,15 +34,17 @@ public interface BidListService {
      *
      * @param id
      * @return a BidListDTO
+     * @throws BidListNotFoundException 
      */
-    BidListDTO delete(Integer id);
+    BidListDTO delete(Integer id) throws BidListNotFoundException;
 
     /**
      * Use to get the Poseidon bidList identified by the given id.
      *
      * @param id
      * @return a BidListDTO
+     * @throws BidListNotFoundException 
      */
-    BidListDTO getById(Integer id);
+    BidListDTO getById(Integer id) throws BidListNotFoundException;
 
 }
