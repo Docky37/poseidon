@@ -124,7 +124,7 @@ public class BidListControllerTest {
         verify(bidListService, never()).save(any(BidListDTO.class));
     }
 
-    @Test // GET ADD
+    @Test // GET UPDATE
     public void whenGetUpdatePage_thenDisplayUpdatePage()
             throws Exception, BidListNotFoundException {
         // GIVEN
@@ -137,6 +137,21 @@ public class BidListControllerTest {
                         .attributeExists("bidListDTO"))
                 .andExpect(MockMvcResultMatchers.view().name("bidList/update"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        // THEN
+    }
+
+    @Test // GET UPDATE WITH EXCEPTION
+    public void givenAnUnknownId_whenGetUpdatePage_thenRedirectToListPage()
+            throws Exception, BidListNotFoundException {
+        // GIVEN
+        given(bidListService.getById(7))
+                .willThrow(BidListNotFoundException.class);
+        // WHEN
+        mvc.perform(MockMvcRequestBuilders.get("/bidList/update/7"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.view()
+                        .name("redirect:/bidList/list"))
+                .andExpect(MockMvcResultMatchers.status().is(302)).andReturn();
         // THEN
     }
 
@@ -211,19 +226,35 @@ public class BidListControllerTest {
     }
 
     @Test // DELETE
-    public void whenGetDeletePage_thenDisplayDeletePage()
+    public void givenAValidId_whenDelete_thenDeleteAndRedirectToListPage()
             throws Exception, BidListNotFoundException {
         // GIVEN
         BidListDTO bidListDTO = new BidListDTO(7, "account1", "type1", 1D);
         given(bidListService.getById(1)).willReturn(bidListDTO);
         given(bidListService.delete(1)).willReturn(bidListDTO);
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.get("/bidList/delete/7"))
+        mvc.perform(MockMvcRequestBuilders.get("/bidList/delete/1"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/bidList/list"))
                 .andReturn();
         // THEN
+        verify(bidListService).delete(1);
+    }
+
+    @Test // DELETE WITH EXCEPTION
+    public void givenUnknownId_whenDelete_thenRedirectToListPage()
+            throws Exception, BidListNotFoundException {
+        // GIVEN
+        given(bidListService.delete(7))
+        .willThrow(BidListNotFoundException.class);
+        // WHEN
+        mvc.perform(MockMvcRequestBuilders.get("/bidList/delete/7"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.view()
+                        .name("redirect:/bidList/list"))
+                .andExpect(MockMvcResultMatchers.status().is(302)).andReturn();
+        // THEN
         verify(bidListService).delete(7);
     }
-    
+
 }

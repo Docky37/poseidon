@@ -89,7 +89,7 @@ public class BidListController {
         LOGGER.info(" => New bidList saved in DB: {}",
                 savedBidListDTO.toString());
         return "redirect:/bidList/list";
-   }
+    }
 
     /**
      * Get HTML request used to display the update.html front page that provides
@@ -98,7 +98,7 @@ public class BidListController {
      * @param id
      * @param model
      * @return a String(the address of update.html page)
-     * @throws BidListNotFoundException 
+     * @throws BidListNotFoundException
      */
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
@@ -148,19 +148,22 @@ public class BidListController {
      * @param id
      * @param model
      * @return a String(the address of update.html page)
-     * @throws BidListNotFoundException 
+     * @throws BidListNotFoundException
      */
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML DELETE REQUEST on /bidList/delete/{}", id);
-        
-        try{
+
+        try {
             BidListDTO deletedBidListDTO = bidListService.delete(id);
-        }catch (BidListNotFoundException e) {
+            LOGGER.info(" => BidList removed from DB: {}",
+                    deletedBidListDTO.toString());
+        } catch (BidListNotFoundException e) {
             LOGGER.error(" => No BidList record exist for id={}!", id);
+            List<BidListDTO> bidLists = bidListService.findAll();
+            model.addAttribute("bidLists", bidLists);
         }
-        
 
         return "redirect:/bidList/list";
     }
