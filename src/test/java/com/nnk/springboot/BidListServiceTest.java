@@ -1,6 +1,7 @@
 package com.nnk.springboot;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -100,6 +101,18 @@ public class BidListServiceTest {
         // THEN
         assertThat(result.toString())
                 .isEqualTo(listOfBidListDTO.get(1).toString());
+    }
+
+    @Test
+    public void givenAnUnknownId_whenGetById_thenBidListNotFoundException()
+            throws BidListNotFoundException {
+        // GIVEN
+        given(bidListRepository.findByBidListId(3)).willReturn(null);
+        // WHEN
+        // THEN
+        assertThrows(BidListNotFoundException.class, () -> {
+            bidListService.getById(3);
+        });
     }
 
     @Test
