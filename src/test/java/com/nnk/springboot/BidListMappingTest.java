@@ -1,15 +1,13 @@
 package com.nnk.springboot;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.BidList;
@@ -29,23 +27,23 @@ public class BidListMappingTest {
         listOfBidList.get(0).setBidListId(1);
         listOfBidList.get(0).setAccount("Account1");
         listOfBidList.get(0).setAccount("Type1");
-        listOfBidList.get(0).setBidQuantity(1D);
+        listOfBidList.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidList.add(new BidList());
         listOfBidList.get(1).setBidListId(2);
         listOfBidList.get(1).setAccount("Account2");
         listOfBidList.get(1).setAccount("Type2");
-        listOfBidList.get(1).setBidQuantity(2D);
+        listOfBidList.get(1).setBidQuantity(new BigDecimal("2"));
 
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(0).setBidListId(1);
         listOfBidListDTO.get(0).setAccount("Account1");
         listOfBidListDTO.get(0).setAccount("Type1");
-        listOfBidListDTO.get(0).setBidQuantity(1D);
+        listOfBidListDTO.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(1).setBidListId(2);
         listOfBidListDTO.get(1).setAccount("Account2");
         listOfBidListDTO.get(1).setAccount("Type2");
-        listOfBidListDTO.get(1).setBidQuantity(2D);
+        listOfBidListDTO.get(1).setBidQuantity(new BigDecimal("2"));
     }
 
     @Test

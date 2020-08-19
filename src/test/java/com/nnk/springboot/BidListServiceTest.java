@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,23 +41,23 @@ public class BidListServiceTest {
         listOfBidList.get(0).setBidListId(1);
         listOfBidList.get(0).setAccount("Account1");
         listOfBidList.get(0).setAccount("Type1");
-        listOfBidList.get(0).setBidQuantity(1D);
+        listOfBidList.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidList.add(new BidList());
         listOfBidList.get(1).setBidListId(2);
         listOfBidList.get(1).setAccount("Account2");
         listOfBidList.get(1).setAccount("Type2");
-        listOfBidList.get(1).setBidQuantity(2D);
+        listOfBidList.get(1).setBidQuantity(new BigDecimal("2"));
 
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(0).setBidListId(1);
         listOfBidListDTO.get(0).setAccount("Account1");
         listOfBidListDTO.get(0).setAccount("Type1");
-        listOfBidListDTO.get(0).setBidQuantity(1D);
+        listOfBidListDTO.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(1).setBidListId(2);
         listOfBidListDTO.get(1).setAccount("Account2");
         listOfBidListDTO.get(1).setAccount("Type2");
-        listOfBidListDTO.get(1).setBidQuantity(2D);
+        listOfBidListDTO.get(1).setBidQuantity(new BigDecimal("2"));
     }
 
     @Test
@@ -123,12 +124,12 @@ public class BidListServiceTest {
         listOfBidListDTO.get(2).setBidListId(3);
         listOfBidListDTO.get(2).setAccount("Account3");
         listOfBidListDTO.get(2).setAccount("Type3");
-        listOfBidListDTO.get(2).setBidQuantity(3D);
+        listOfBidListDTO.get(2).setBidQuantity(new BigDecimal("3"));
         listOfBidList.add(new BidList());
         listOfBidList.get(2).setBidListId(3);
         listOfBidList.get(2).setAccount("Account3");
         listOfBidList.get(2).setAccount("Type3");
-        listOfBidList.get(2).setBidQuantity(3D);
+        listOfBidList.get(2).setBidQuantity(new BigDecimal("3"));
         given(bidListRepository.findByBidListId(3))
                 .willReturn(listOfBidList.get(2));
         given(bidListMapping.mapEntityToDTO(any(BidList.class)))

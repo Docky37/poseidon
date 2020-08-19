@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -19,7 +20,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 
+ * This class is the entity in relation with the table of BidList.
+ *
  * @author Thierry Schreiner
  */
 @Entity
@@ -29,115 +31,133 @@ import lombok.ToString;
 @ToString
 public class BidList {
 
-	/**
-	 * Id of the entity mapped to primary key field.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	@Setter
-	Integer bidListId;
+    /**
+     * Id of the entity mapped to primary key field.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
+    private Integer bidListId;
 
-	@NotBlank
-	@Column(nullable = false, length = 30)
-	@Getter
-	@Setter
-	String account;
+    /**
+     * The BidList account name.
+     */
+    @NotBlank
+    @Column(nullable = false, length = 30)
+    @Getter
+    @Setter
+    private String account;
 
-	@NotBlank
-	@Column(nullable = false, length = 30)
-	@Getter
-	@Setter
-	String type;
+    /**
+     * The BidList type.
+     */
+    @NotBlank
+    @Column(nullable = false, length = 30)
+    @Getter
+    @Setter
+    private String type;
 
-	@NotNull
-	@Digits(fraction = 4, integer = 6, message="Must be a number, 999999 max with 4 fractional digits max")
-	@Getter
-	@Setter
-	Double bidQuantity;
+    /**
+     * The number of bid for sale.
+     */
+    @NotNull
+    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Getter
+    @Setter
+    private BigDecimal bidQuantity;
 
-	@Getter
-	@Setter
-	Double askQuantity;
+    /**
+     * The number of bid to buy.
+     */
+    @Getter
+    @Setter
+    private BigDecimal askQuantity;
 
-	@Getter
-	@Setter
-	Double bid;
+    /**
+     * The bid sell price.
+     */
+    @Getter
+    @Setter
+    private BigDecimal bid;
 
-	@Getter
-	@Setter
-	Double ask;
+    /**
+     * Ask price, that is bid price
+     */
+    @Getter
+    @Setter
+    private BigDecimal ask;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String benchmark;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String benchmark;
 
-	@Getter
-	@Setter
-	LocalDateTime bidListDate;
+    @Getter
+    @Setter
+    private LocalDateTime bidListDate;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String commentary;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String commentary;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String security;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String security;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String status;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String status;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String trader;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String trader;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String book;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String book;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String creationName;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String creationName;
 
-	@Getter
-	@Setter
-	LocalDateTime creationDate;
+    @Getter
+    @Setter
+    private LocalDateTime creationDate;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String revisionName;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String revisionName;
 
-	@Getter
-	@Setter
-	LocalDateTime revisionDate;
+    @Getter
+    @Setter
+    private LocalDateTime revisionDate;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String dealName;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String dealName;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String dealType;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String dealType;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String sourceListId;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String sourceListId;
 
-	@Column(length = 125)
-	@Getter
-	@Setter
-	String side;
+    @Column(length = 125)
+    @Getter
+    @Setter
+    private String side;
 
 }

@@ -6,6 +6,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +50,12 @@ public class BidListControllerTest {
     @MockBean
     private BidListService bidListService;
 
+    BidListDTO bidListDTO;
+
     @BeforeEach
     public void setup() {
+        bidListDTO = new BidListDTO(1, "account1", "type1",
+                new BigDecimal("1"));
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
@@ -58,7 +63,7 @@ public class BidListControllerTest {
     public void whenGetListPage_thenDisplayListPage() throws Exception {
         // GIVEN
         List<BidListDTO> list = new ArrayList<BidListDTO>();
-        list.add(new BidListDTO(1, "account1", "type1", 1D));
+        list.add(new BidListDTO(1, "account1", "type1", new BigDecimal("1")));
         given(bidListService.findAll()).willReturn(list);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/bidList/list")).andDo(print())
@@ -84,7 +89,6 @@ public class BidListControllerTest {
     @Test // POST VALIDATE
     public void givenAValidNewBidListDTO_whenPost_thenSaved() throws Exception {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, "account1", "type1", 1D);
         given(bidListService.save(any(BidListDTO.class)))
                 .willReturn(bidListDTO);
         // WHEN
@@ -107,7 +111,7 @@ public class BidListControllerTest {
     public void givenANonValidNewBidListDTO_whenPost_thenTryAgain()
             throws Exception {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, null, "type1", 1D);
+        bidListDTO.setAccount("");
         // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/bidList/validate")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -128,7 +132,6 @@ public class BidListControllerTest {
     public void whenGetUpdatePage_thenDisplayUpdatePage()
             throws Exception, BidListNotFoundException {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, "account1", "type1", 1D);
         given(bidListService.getById(1)).willReturn(bidListDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/bidList/update/1"))
@@ -159,7 +162,6 @@ public class BidListControllerTest {
     public void givenAValidBidListDTOToUpdate_whenPost_thenSaved()
             throws Exception {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, "account1", "type1", 1D);
         given(bidListService.save(any(BidListDTO.class)))
                 .willReturn(bidListDTO);
         // WHEN
@@ -182,9 +184,7 @@ public class BidListControllerTest {
     public void givenANonValidBidListDTOToUpdate_whenPost_thenTryAgain()
             throws Exception {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, "account1", "", 1D);
-        given(bidListService.save(any(BidListDTO.class)))
-                .willReturn(bidListDTO);
+        bidListDTO.setType(null);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/bidList/update/1")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -205,18 +205,16 @@ public class BidListControllerTest {
     public void givenANonValidBidQuantityToUpdate_whenPost_thenTryAgain()
             throws Exception {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(1, "account1", "type1",
-                0.12345D);
-        given(bidListService.save(any(BidListDTO.class)))
-                .willReturn(bidListDTO);
+        BidListDTO bidList2DTO = new BidListDTO(2, "account1", "type1",
+                new BigDecimal("127.1234567"));
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/bidList/update/1")
+        mvc.perform(MockMvcRequestBuilders.post("/bidList/update/2")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .sessionAttr("bidListDTO", bidListDTO)
-                .param("bidListId", bidListDTO.getBidListId().toString())
-                .param("account", bidListDTO.getAccount())
-                .param("type", bidListDTO.getType())
-                .param("bidQuantity", bidListDTO.getBidQuantity().toString()))
+                .param("bidListId", bidList2DTO.getBidListId().toString())
+                .param("account", bidList2DTO.getAccount())
+                .param("type", bidList2DTO.getType())
+                .param("bidQuantity", bidList2DTO.getBidQuantity().toString()))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.model().hasErrors())
                 .andExpect(MockMvcResultMatchers.view().name("bidList/update"))
@@ -229,7 +227,6 @@ public class BidListControllerTest {
     public void givenAValidId_whenDelete_thenDeleteAndRedirectToListPage()
             throws Exception, BidListNotFoundException {
         // GIVEN
-        BidListDTO bidListDTO = new BidListDTO(7, "account1", "type1", 1D);
         given(bidListService.getById(1)).willReturn(bidListDTO);
         given(bidListService.delete(1)).willReturn(bidListDTO);
         // WHEN
@@ -246,7 +243,7 @@ public class BidListControllerTest {
             throws Exception, BidListNotFoundException {
         // GIVEN
         given(bidListService.delete(7))
-        .willThrow(BidListNotFoundException.class);
+                .willThrow(BidListNotFoundException.class);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/bidList/delete/7"))
                 .andDo(print())

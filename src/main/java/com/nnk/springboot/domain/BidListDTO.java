@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -13,7 +15,8 @@ import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 /**
- * 
+ * Data transfer object that contains only 4 attributes of a BidList.
+ *
  * @author Thierry Schreiner
  */
 @Component
@@ -22,27 +25,37 @@ import org.springframework.stereotype.Component;
 @ToString
 public class BidListDTO {
 
-	/**
-	 * Id of the DTO.
-	 */
-	@Getter
-	@Setter
-	Integer bidListId;
+    /**
+     * Id of the DTO.
+     */
+    @Getter
+    @Setter
+    private Integer bidListId;
 
-	@Getter
-	@Setter
-	@NotBlank(message = "Account is mandatory")
-	String account;
+    /**
+     * The BidListDTO account name.
+     */
+    @Getter
+    @Setter
+    @NotBlank(message = "Account is mandatory")
+    private String account;
 
-	@Getter
-	@Setter
-	@NotBlank(message = "Type is mandatory")
-	String type;
+    /**
+     * The BidListDTO type.
+     */
+    @Getter
+    @Setter
+    @NotBlank(message = "Type is mandatory")
+    private String type;
 
-	@NotNull(message = "Bid quantity is mandatory")
-	@Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
-	@Getter
-	@Setter
-	@Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
-	Double bidQuantity;
+    /**
+     * The number of bid for sale.
+     */
+    @NotNull(message = "Bid quantity is mandatory")
+    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Getter
+    @Setter
+    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    private BigDecimal bidQuantity;
+
 }
