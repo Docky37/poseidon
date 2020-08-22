@@ -14,34 +14,76 @@
 
 		<div class="row">
 			<form action="#"
-				th:action="@{/bidList/update/{id}(id=${bidListDTO.bidListId})}"
-				th:object="${bidListDTO}" method="post" class="form-horizontal"
+				th:action="@{/bidList/update/{id}(id=${bidListFullDTO.bidListId})}"
+				th:object="${bidListFullDTO}" method="post" class="form-horizontal"
 				style="width: 100%">
-				<!--
-			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
-			 -->
-				<p>
-					Account:<br /> <input type="text" th:field="*{account}" /><br />
-					<span style="color: red;" th:if="${#fields.hasErrors('account')}"
-						th:errors="*{account}">Account is mandatory!</span>
-				</p>
-				<p>
-					Type:<br /> <input type="text" th:field="*{type}" /><br /> <span
-						style="color: red;" th:if="${#fields.hasErrors('type')}"
-						th:errors="*{type}">Type is mandatory! </span>
-				</p>
-				<p>
-					Bid quantity: <br /> <input type="text" th:field="*{bidQuantity}" /><br />
-					<span style="color: red;"
-						th:if="${#fields.hasErrors('bidQuantity')}"
-						th:errors="*{bidQuantity}">Invalid number, 999999 max with
-						4 fractional digits max</span>
-				</p>
-				<p>
-					<a href="/bidList/list" class="btn btn-danger btn-sm">Cancel</a>
-					<button type="submit" class="btn btn-primary btn-sm">Update
-						BidList</button>
-				</p>
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Account:<br /> <input type="text"
+									th:field="*{account}" /><br /> <span style="color: red;"
+									th:if="${#fields.hasErrors('account')}" th:errors="*{account}">Account
+										is mandatory!</span><br /> 
+									Bid quantity: <br /> <input type="text"
+									th:field="*{bidQuantity}" /><br /> <span style="color: red;"
+									th:if="${#fields.hasErrors('bidQuantity')}"
+									th:errors="*{bidQuantity}">Invalid number, 999999 max
+										with 4 fractional digits max</span><br /> 
+									Ask quantity: <br /> <input
+									type="text" th:field="*{askQuantity}" /><br /> <span
+									style="color: red;" th:if="${#fields.hasErrors('askQuantity')}"
+									th:errors="*{askQuantity}">Invalid number, 999999 max
+										with 4 fractional digits max</span><br /> 
+									Benchmark:<br /> <input type="text" th:field="*{benchmark}" /><br /><br />
+									Commentary:<br /> <input type="text" th:field="*{commentary}" /><br /><br />
+									Trader:<br /> <input type="text" th:field="*{trader}" /><br /><br />
+									Deal name:<br /> <input type="text" th:field="*{dealName}" /><br /><br />
+									SourceList Id:<br /> <input type="text" th:field="*{sourceListId}" /><br />	<br />								
+								</td>
+								<td>Type:<br /> <input type="text"
+									th:field="*{type}" /><br /> <span style="color: red;"
+									th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type
+										is mandatory! </span><br /> 
+									Bid price: <br /> <input
+									type="text" th:field="*{bid}" /><br /> <span
+									style="color: red;" th:if="${#fields.hasErrors('bid')}"
+									th:errors="*{bid}">Invalid number, 999999 max with 4
+										fractional digits max</span><br /> 
+									Ask price: <br /> <input type="text"
+									th:field="*{ask}" /><br /> 
+									<span style="color: red;" th:if="${#fields.hasErrors('ask')}"
+									th:errors="*{ask}">Invalid number, 999999 max with 4
+										fractional digits max</span><br />
+									BidList date:<br /> <input type="datetime-local" th:field="*{bidListDate}" /><br /><br />
+									Security:<br /> <input type="text" th:field="*{security}" /><br /><br />
+									Book:<br /> <input type="text" th:field="*{book}" /><br /><br />
+									Deal type:<br /> <input type="text" th:field="*{dealType}" /><br /><br />
+									Side:<br /> <input type="text" th:field="*{side}" /><br /><br />
+									 
+								</td>
+								<td>Creation Date: <br /> <input
+									type="datetime-local" th:field="*{creationDate}" /><br /><br /> 
+									Creation Name: <br /> <input
+									type="text" th:field="*{creationName}" /><br /><br /> 
+									Revision Date: <br /> <input type="datetime-local" th:field="*{revisionDate}" /><br /><br />
+									Revision Name: <br /> <input type="text" th:field="*{revisionName}" /><br /><br />
+									Status:<br /> <input type="text" th:field="*{status}" /><br />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>
+									<a href="/bidList/list" class="btn btn-danger btn-sm">Cancel</a>
+									<button type="submit" class="btn btn-primary btn-sm">Update BidList</button>
+				
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p></p>
 			</form>
 		</div>
 

@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.services.BidListService;
 
@@ -20,7 +21,7 @@ import javax.validation.Valid;
 
 /**
  * Controller class use to manage BidList entity CRUD methods.
- * 
+ *
  * @author Thierry Schreiner
  */
 @Controller
@@ -104,10 +105,10 @@ public class BidListController {
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /bidList/update/{}", id);
-        BidListDTO bidListDTO;
+        BidListFullDTO bidListFullDTO;
         try {
-            bidListDTO = bidListService.getById(id);
-            model.addAttribute("bidListDTO", bidListDTO);
+            bidListFullDTO = bidListService.getById(id);
+            model.addAttribute("bidListFullDTO", bidListFullDTO);
             return "bidList/update";
         } catch (BidListNotFoundException e) {
             LOGGER.error(" => No BidList record exist for id={}!", id);
@@ -127,7 +128,7 @@ public class BidListController {
      */
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") final Integer id,
-            @Valid final BidListDTO bidListDTO, final BindingResult result,
+            @Valid final BidListFullDTO bidListDTO, final BindingResult result,
             final Model model) {
         bidListDTO.setBidListId(id);
         LOGGER.info("NEW HTML POST REQUEST on /bidList/update/{}", id);
@@ -136,7 +137,7 @@ public class BidListController {
             LOGGER.error("ERROR(S): {}", result);
             return "bidList/update";
         }
-        BidListDTO savedBidListDTO = bidListService.save(bidListDTO);
+        BidListFullDTO savedBidListDTO = bidListService.saveFullDTO(bidListDTO);
         LOGGER.info(" => Updated bidList saved in DB: {}",
                 savedBidListDTO.toString());
         return "redirect:/bidList/list";

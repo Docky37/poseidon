@@ -2,7 +2,10 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 
 /**
@@ -25,9 +28,17 @@ public interface BidListService {
      * Used to persist a Poseidon BidList in DataBase.
      *
      * @param bidListDTO
-     * @return a List<BidListDTO>
+     * @return a BidListDTO
      */
     BidListDTO save(BidListDTO bidListDTO);
+
+    /**
+     * Used to persist a Poseidon BidList in DataBase.
+     *
+     * @param bidListFullDTO
+     * @return a BidListFullDTO
+     */
+    BidListFullDTO saveFullDTO(@Valid BidListFullDTO bidListDTO);
 
     /**
      * Allows user to delete a Poseidon BidList of the DataBase.
@@ -45,6 +56,6 @@ public interface BidListService {
      * @return a BidListDTO
      * @throws BidListNotFoundException 
      */
-    BidListDTO getById(Integer id) throws BidListNotFoundException;
+    BidListFullDTO getById(Integer id) throws BidListNotFoundException;
 
 }
