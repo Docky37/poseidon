@@ -62,7 +62,8 @@ public class BidList {
      * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = 12, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Digits(fraction = 12, integer = 6, message = "Must be a number,"
+            + " less than 1,000,000,000,000 with 4 fractional digits max")
     @Column(columnDefinition = "DECIMAL(16,4)")
     @Getter
     @Setter
@@ -94,73 +95,118 @@ public class BidList {
     @Setter
     private BigDecimal ask;
 
+    /**
+     * Benchmark String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String benchmark;
 
+    /**
+     * Date of the Bidlist.
+     */
     @Getter
     @Setter
     private LocalDateTime bidListDate;
 
+    /**
+     * Commentary String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String commentary;
 
+    /**
+     * Security String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String security;
 
+    /**
+     * Status String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String status;
 
+    /**
+     * Trader String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String trader;
 
+    /**
+     * Book String variable.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String book;
 
+    /**
+     * The name of the user who has created the BidList record.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String creationName;
 
+    /**
+     * The date & time when user has created the BidList record.
+     */
     @Getter
     @Setter
     private LocalDateTime creationDate;
 
+    /**
+     * The name of the user who has modified the BidList record.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String revisionName;
 
+    /**
+     * The date & time when user has modified the BidList record.
+     */
     @Getter
     @Setter
     private LocalDateTime revisionDate;
 
+    /**
+     * The name of the deal.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String dealName;
 
+    /**
+     * The type of the deal.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String dealType;
 
+    /**
+     * The id of the source list.
+     */
     @Column(length = 125)
     @Getter
     @Setter
     private String sourceListId;
 
+    /**
+     * The side of the bidList.
+     */
     @Column(length = 125)
     @Getter
     @Setter

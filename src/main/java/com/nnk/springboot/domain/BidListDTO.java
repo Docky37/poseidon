@@ -52,7 +52,8 @@ public class BidListDTO {
      * The number of bid for sale.
      */
     @NotNull(message = "Bid quantity is mandatory")
-    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
+            + "less than 1,000,000,000,000 max with 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal bidQuantity;

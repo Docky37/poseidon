@@ -21,9 +21,12 @@ import com.nnk.springboot.util.UserRetrieve;
 @Component
 public class BidListMapping {
 
+    /**
+     * Spring autowired UserRetrieve instance declaration.
+     */
     @Autowired
     public UserRetrieve userRetrieve;
-    
+
     /**
      * This method is in charge of the mapping of a list of BidList entities to
      * a list of BidListDTO. Use the mapEntityToDTO(BidList bidList)as a sub
@@ -100,7 +103,7 @@ public class BidListMapping {
      * @return a BidList
      */
     public BidList mapDTOToEntity(final BidListDTO bidListDTO) {
-        String connectedUser = userRetrieve.getConnectedUser();
+        String connectedUser = userRetrieve.getLoggedUser();
         BidList bidList = new BidList();
         bidList.setBidListId(bidListDTO.getBidListId());
         bidList.setAccount(bidListDTO.getAccount());
@@ -117,11 +120,11 @@ public class BidListMapping {
      * This method is in charge of the mapping of a BidList entity to a
      * BidListFullDTO.
      *
-     * @param bidList
-     * @return a BidListFullDTO
+     * @param bidListDTO
+     * @return a BidList
      */
     public BidList mapFullDTOToEntity(final BidListFullDTO bidListDTO) {
-        String connectedUser = userRetrieve.getConnectedUser();
+        String connectedUser = userRetrieve.getLoggedUser();
         BidList bidList = new BidList();
         bidList.setBidListId(bidListDTO.getBidListId());
         bidList.setAccount(bidListDTO.getAccount());

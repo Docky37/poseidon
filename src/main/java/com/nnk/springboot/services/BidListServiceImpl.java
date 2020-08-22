@@ -63,8 +63,11 @@ public class BidListServiceImpl implements BidListService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public BidListFullDTO saveFullDTO(@Valid BidListFullDTO bidListDTO) {
+    public BidListFullDTO saveFullDTO(@Valid final BidListFullDTO bidListDTO) {
         BidList bidList = bidListMapping.mapFullDTOToEntity(bidListDTO);
         BidList savedBidList = bidListRepository.save(bidList);
         BidListFullDTO savedBidListDTO = bidListMapping

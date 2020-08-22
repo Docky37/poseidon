@@ -33,10 +33,10 @@ public interface BidListService {
     BidListDTO save(BidListDTO bidListDTO);
 
     /**
-     * Used to persist a Poseidon BidList in DataBase.
+     * Used to persist a Poseidon BidList after update in DataBase.
      *
-     * @param bidListFullDTO
-     * @return a BidListFullDTO
+     * @param bidListDTO
+     * @return a BidListFullDTO object
      */
     BidListFullDTO saveFullDTO(@Valid BidListFullDTO bidListDTO);
 
@@ -45,7 +45,7 @@ public interface BidListService {
      *
      * @param id
      * @return a BidListDTO
-     * @throws BidListNotFoundException 
+     * @throws BidListNotFoundException
      */
     BidListDTO delete(Integer id) throws BidListNotFoundException;
 
@@ -54,7 +54,7 @@ public interface BidListService {
      *
      * @param id
      * @return a BidListDTO
-     * @throws BidListNotFoundException 
+     * @throws BidListNotFoundException
      */
     BidListFullDTO getById(Integer id) throws BidListNotFoundException;
 

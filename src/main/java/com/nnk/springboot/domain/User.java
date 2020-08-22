@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotBlank(message = "Username is mandatory")
     private String username;
@@ -30,7 +30,7 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(final String username) {
         this.username = username;
     }
 
@@ -38,7 +38,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -46,7 +46,7 @@ public class User {
         return fullname;
     }
 
-    public void setFullname(String fullname) {
+    public void setFullname(final String fullname) {
         this.fullname = fullname;
     }
 
@@ -54,7 +54,7 @@ public class User {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(final String role) {
         this.role = role;
     }
 }

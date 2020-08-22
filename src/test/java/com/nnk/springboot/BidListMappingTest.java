@@ -91,7 +91,7 @@ public class BidListMappingTest {
     @Test
     public void givenABidListDTO_whenMapToEntity_thenReturnsBidList() {
         // GIVEN
-        given(userRetrieve.getConnectedUser()).willReturn("Testeur");
+        given(userRetrieve.getLoggedUser()).willReturn("Testeur");
         // WHEN
         BidList result = bidListMapping.mapDTOToEntity(listOfBidListDTO.get(0));
         // THEN

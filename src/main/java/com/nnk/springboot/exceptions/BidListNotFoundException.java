@@ -8,8 +8,11 @@ package com.nnk.springboot.exceptions;
  */
 public class BidListNotFoundException extends Throwable {
 
+    /**
+     * Class constructor.
+     * @param message
+     */
     public BidListNotFoundException(String message) {
-        // TODO Auto-generated constructor stub
     }
 
     /**

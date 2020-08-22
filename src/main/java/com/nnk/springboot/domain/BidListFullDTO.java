@@ -3,9 +3,9 @@ package com.nnk.springboot.domain;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,93 +24,144 @@ import org.springframework.stereotype.Component;
 public class BidListFullDTO extends BidListDTO {
 
     /**
-     * The number of bid to buy.
+     * The number of ask auctions.
      */
     @Getter
     @Setter
     private BigDecimal askQuantity;
 
     /**
-     * The bid sell price.
+     * The bid price represents the highest price an investor is willing to pay
+     * for a share.
      */
+    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
+            + "less than 1,000,000,000,000 max with 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal bid;
 
     /**
-     * Ask price, that is bid price
+     * The ask price (offer) represents the lowest price at which a shareholder
+     * is willing to sell at.
      */
+    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
+            + "less than 1,000,000,000,000 max with 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal ask;
 
+    /**
+     * Benchmark String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String benchmark;
 
+    /**
+     * Date of the Bidlist.
+     */
     @Getter
     @Setter
     private LocalDateTime bidListDate;
 
+    /**
+     * Commentary String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String commentary;
 
+    /**
+     * Security String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String security;
 
+    /**
+     * Status String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String status;
 
+    /**
+     * Trader String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String trader;
 
+    /**
+     * Book String variable.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String book;
 
+    /**
+     * The name of the user who has created the BidList record.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String creationName;
 
+    /**
+     * The date & time when user has created the BidList record.
+     */
     @Getter
     @Setter
     private LocalDateTime creationDate;
 
+    /**
+     * The name of the user who has modified the BidList record.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String revisionName;
 
+    /**
+     * The date & time when user has modified the BidList record.
+     */
     @Getter
     @Setter
     private LocalDateTime revisionDate;
 
+    /**
+     * The name of the deal.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String dealName;
 
+    /**
+     * The type of the deal.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String dealType;
 
+    /**
+     * The id of the source list.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
     private String sourceListId;
 
+    /**
+     * The side of the bidList.
+     */
     @Size(max = 125, message = "Max length = 125!")
     @Getter
     @Setter
@@ -138,23 +189,34 @@ public class BidListFullDTO extends BidListDTO {
      * @param sourceListId
      * @param side
      */
-    public BidListFullDTO(BigDecimal askQuantity, BigDecimal bid,
-            BigDecimal ask,
-            @Size(max = 125, message = "Max length = 125!") String benchmark,
-            LocalDateTime bidListDate,
-            @Size(max = 125, message = "Max length = 125!") String commentary,
-            @Size(max = 125, message = "Max length = 125!") String security,
-            @Size(max = 125, message = "Max length = 125!") String status,
-            @Size(max = 125, message = "Max length = 125!") String trader,
-            @Size(max = 125, message = "Max length = 125!") String book,
-            @Size(max = 125, message = "Max length = 125!") String creationName,
+    public BidListFullDTO(final BigDecimal askQuantity, final BigDecimal bid,
+            final BigDecimal ask,
+            @Size(max = 125, message = "Max length = 125!")
+                final String benchmark, LocalDateTime bidListDate,
+            @Size(max = 125, message = "Max length = 125!")
+                final String commentary,
+            @Size(max = 125, message = "Max length = 125!")
+                final String security,
+            @Size(max = 125, message = "Max length = 125!")
+                final String status,
+            @Size(max = 125, message = "Max length = 125!")
+                final String trader,
+            @Size(max = 125, message = "Max length = 125!")
+                final String book,
+            @Size(max = 125, message = "Max length = 125!")
+                final String creationName,
             LocalDateTime creationDate,
-            @Size(max = 125, message = "Max length = 125!") String revisionName,
+            @Size(max = 125, message = "Max length = 125!")
+                final String revisionName,
             LocalDateTime revisionDate,
-            @Size(max = 125, message = "Max length = 125!") String dealName,
-            @Size(max = 125, message = "Max length = 125!") String dealType,
-            @Size(max = 125, message = "Max length = 125!") String sourceListId,
-            @Size(max = 125, message = "Max length = 125!") String side) {
+            @Size(max = 125, message = "Max length = 125!")
+                final String dealName,
+            @Size(max = 125, message = "Max length = 125!")
+                final String dealType,
+            @Size(max = 125, message = "Max length = 125!")
+                final String sourceListId,
+            @Size(max = 125, message = "Max length = 125!")
+                final String side) {
         super();
         this.askQuantity = askQuantity;
         this.bid = bid;
