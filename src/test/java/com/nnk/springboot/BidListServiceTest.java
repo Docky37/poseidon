@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.domain.mapping.BidListMapping;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.repositories.BidListRepository;
@@ -36,6 +37,7 @@ public class BidListServiceTest {
 
     static List<BidList> listOfBidList = new ArrayList<>();
     static List<BidListDTO> listOfBidListDTO = new ArrayList<>();
+    static BidListFullDTO bidListFullDTO = new BidListFullDTO();
     static {
         listOfBidList.add(new BidList());
         listOfBidList.get(0).setBidListId(1);
@@ -58,6 +60,12 @@ public class BidListServiceTest {
         listOfBidListDTO.get(1).setAccount("Account2");
         listOfBidListDTO.get(1).setAccount("Type2");
         listOfBidListDTO.get(1).setBidQuantity(new BigDecimal("2"));
+
+        bidListFullDTO.setBidListId(2);
+        bidListFullDTO.setAccount("Account2");
+        bidListFullDTO.setAccount("Type2");
+        bidListFullDTO.setBidQuantity(new BigDecimal("2"));
+
     }
 
     @Test
@@ -95,13 +103,14 @@ public class BidListServiceTest {
         // GIVEN
         given(bidListRepository.findByBidListId(2))
                 .willReturn(listOfBidList.get(1));
-        given(bidListMapping.mapEntityToDTO(any(BidList.class)))
-                .willReturn(listOfBidListDTO.get(1));
+        given(bidListMapping.mapEntityToFullDTO(any(BidList.class)))
+                .willReturn(bidListFullDTO);
         // WHEN
         BidListDTO result = bidListService.getById(2);
         // THEN
+        System.out.println(result);
         assertThat(result.toString())
-                .isEqualTo(listOfBidListDTO.get(1).toString());
+                .isEqualTo(bidListFullDTO.toString());
     }
 
     @Test

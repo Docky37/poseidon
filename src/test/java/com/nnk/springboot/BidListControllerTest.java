@@ -28,6 +28,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.View;
 
 import com.nnk.springboot.domain.BidListDTO;
+import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.services.BidListService;
 
@@ -51,11 +52,20 @@ public class BidListControllerTest {
     private BidListService bidListService;
 
     BidListDTO bidListDTO;
+    BidListFullDTO bidListFullDTO;
 
     @BeforeEach
     public void setup() {
         bidListDTO = new BidListDTO(1, "account1", "type1",
                 new BigDecimal("1"));
+        bidListFullDTO = new BidListFullDTO();
+        bidListFullDTO.setBidListId(1);
+        bidListFullDTO.setAccount("account1");
+        bidListFullDTO.setType("type1");
+        bidListFullDTO.setBidQuantity(new BigDecimal("1"));
+        bidListFullDTO.setRevisionName("user");
+
+        
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
@@ -132,12 +142,12 @@ public class BidListControllerTest {
     public void whenGetUpdatePage_thenDisplayUpdatePage()
             throws Exception, BidListNotFoundException {
         // GIVEN
-        given(bidListService.getById(1)).willReturn(bidListDTO);
+        given(bidListService.getById(1)).willReturn(bidListFullDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/bidList/update/1"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.model()
-                        .attributeExists("bidListDTO"))
+                        .attributeExists("bidListFullDTO"))
                 .andExpect(MockMvcResultMatchers.view().name("bidList/update"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
         // THEN
@@ -162,8 +172,8 @@ public class BidListControllerTest {
     public void givenAValidBidListDTOToUpdate_whenPost_thenSaved()
             throws Exception {
         // GIVEN
-        given(bidListService.save(any(BidListDTO.class)))
-                .willReturn(bidListDTO);
+        given(bidListService.saveFullDTO(any(BidListFullDTO.class)))
+                .willReturn(bidListFullDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/bidList/update/1")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -177,7 +187,7 @@ public class BidListControllerTest {
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/bidList/list"))
                 .andReturn();
         // THEN
-        verify(bidListService).save(any(BidListDTO.class));
+        verify(bidListService).saveFullDTO(any(BidListFullDTO.class));
     }
 
     @Test // POST UPDATE WITH ERROR
@@ -227,7 +237,6 @@ public class BidListControllerTest {
     public void givenAValidId_whenDelete_thenDeleteAndRedirectToListPage()
             throws Exception, BidListNotFoundException {
         // GIVEN
-        given(bidListService.getById(1)).willReturn(bidListDTO);
         given(bidListService.delete(1)).willReturn(bidListDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/bidList/delete/1"))

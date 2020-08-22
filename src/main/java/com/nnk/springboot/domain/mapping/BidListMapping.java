@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.BidListDTO;
 import com.nnk.springboot.domain.BidListFullDTO;
+import com.nnk.springboot.util.UserRetrieve;
 
 /**
  * This class is used to perform bidirectional mapping betwenn a BidList entity
@@ -21,6 +21,9 @@ import com.nnk.springboot.domain.BidListFullDTO;
 @Component
 public class BidListMapping {
 
+    @Autowired
+    public UserRetrieve userRetrieve;
+    
     /**
      * This method is in charge of the mapping of a list of BidList entities to
      * a list of BidListDTO. Use the mapEntityToDTO(BidList bidList)as a sub
@@ -97,14 +100,15 @@ public class BidListMapping {
      * @return a BidList
      */
     public BidList mapDTOToEntity(final BidListDTO bidListDTO) {
+        String connectedUser = userRetrieve.getConnectedUser();
         BidList bidList = new BidList();
         bidList.setBidListId(bidListDTO.getBidListId());
         bidList.setAccount(bidListDTO.getAccount());
         bidList.setType(bidListDTO.getType());
         bidList.setBidQuantity(bidListDTO.getBidQuantity());
-        bidList.setCreationName(getConnectedUser());
+        bidList.setCreationName(connectedUser);
         bidList.setCreationDate(LocalDateTime.now());
-        bidList.setRevisionName(getConnectedUser());
+        bidList.setRevisionName(connectedUser);
         bidList.setRevisionDate(LocalDateTime.now());
         return bidList;
     }
@@ -117,6 +121,7 @@ public class BidListMapping {
      * @return a BidListFullDTO
      */
     public BidList mapFullDTOToEntity(final BidListFullDTO bidListDTO) {
+        String connectedUser = userRetrieve.getConnectedUser();
         BidList bidList = new BidList();
         bidList.setBidListId(bidListDTO.getBidListId());
         bidList.setAccount(bidListDTO.getAccount());
@@ -133,7 +138,8 @@ public class BidListMapping {
         bidList.setTrader(bidListDTO.getTrader());
         bidList.setBook(bidListDTO.getBook());
         bidList.setCreationDate(bidListDTO.getCreationDate());
-        bidList.setRevisionName(getConnectedUser());
+        bidList.setCreationName(bidListDTO.getCreationName());
+        bidList.setRevisionName(connectedUser);
         bidList.setRevisionDate(LocalDateTime.now());
         bidList.setDealName(bidListDTO.getDealName());
         bidList.setDealType(bidListDTO.getDealType());
@@ -142,11 +148,5 @@ public class BidListMapping {
 
         return bidList;
     }
-
-   public String getConnectedUser() {
-       Object principal = SecurityContextHolder.getContext()
-               .getAuthentication().getPrincipal();
-       return ((UserDetails) principal).getUsername();
-   }
 
 }

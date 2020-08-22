@@ -59,31 +59,37 @@ public class BidList {
     private String type;
 
     /**
-     * The number of bid for sale.
+     * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Digits(fraction = 12, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
+    @Column(columnDefinition = "DECIMAL(16,4)")
     @Getter
     @Setter
     private BigDecimal bidQuantity;
 
     /**
-     * The number of bid to buy.
+     * The number of ask auctions.
      */
+    @Column(columnDefinition = "DECIMAL(16,4)")
     @Getter
     @Setter
     private BigDecimal askQuantity;
 
     /**
-     * The bid sell price.
+     * The bid price represents the highest price an investor is willing to pay
+     * for a share.
      */
+    @Column(columnDefinition = "DECIMAL(16,4)")
     @Getter
     @Setter
     private BigDecimal bid;
 
     /**
-     * Ask price, that is bid price
+     * The ask price (offer) represents the lowest price at which a shareholder
+     * is willing to sell at.
      */
+    @Column(columnDefinition = "DECIMAL(16,4)")
     @Getter
     @Setter
     private BigDecimal ask;

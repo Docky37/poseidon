@@ -80,7 +80,7 @@ public class BidListServiceImpl implements BidListService {
     @Override
     public BidListDTO delete(final Integer id) throws BidListNotFoundException {
         BidList bidList = bidListRepository.findByBidListId(id);
-        if (bidList!= null) {
+        if (bidList != null) {
             bidListRepository.deleteById(id);
             return bidListMapping.mapEntityToDTO(bidList);
         }

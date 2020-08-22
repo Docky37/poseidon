@@ -55,7 +55,6 @@ public class BidListDTO {
     @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
     @Getter
     @Setter
-    @Digits(fraction = 4, integer = 6, message = "Must be a number, 999999 max with 4 fractional digits max")
     private BigDecimal bidQuantity;
 
 }
