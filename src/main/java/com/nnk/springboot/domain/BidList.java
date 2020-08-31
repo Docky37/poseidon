@@ -13,6 +13,8 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.nnk.springboot.constants.Constants;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,7 +46,7 @@ public class BidList {
      * The BidList account name.
      */
     @NotBlank
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = Constants.LENGTH_30)
     @Getter
     @Setter
     private String account;
@@ -53,7 +55,7 @@ public class BidList {
      * The BidList type.
      */
     @NotBlank
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = Constants.LENGTH_30)
     @Getter
     @Setter
     private String type;
@@ -62,9 +64,10 @@ public class BidList {
      * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = 12, integer = 6, message = "Must be a number,"
-            + " less than 1,000,000,000,000 with 4 fractional digits max")
-    @Column(columnDefinition = "DECIMAL(16,4)")
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
+                    + " 4 fractional digits max")
+    @Column(columnDefinition = "DECIMAL(N16_DIGITS, N4_DIGITS)")
     @Getter
     @Setter
     private BigDecimal bidQuantity;
@@ -72,7 +75,8 @@ public class BidList {
     /**
      * The number of ask auctions.
      */
-    @Column(columnDefinition = "DECIMAL(16,4)")
+    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
+            + " Constants.N4_DIGITS)")
     @Getter
     @Setter
     private BigDecimal askQuantity;
@@ -81,7 +85,8 @@ public class BidList {
      * The bid price represents the highest price an investor is willing to pay
      * for a share.
      */
-    @Column(columnDefinition = "DECIMAL(16,4)")
+    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
+            + " Constants.N4_DIGITS)")
     @Getter
     @Setter
     private BigDecimal bid;
@@ -90,7 +95,8 @@ public class BidList {
      * The ask price (offer) represents the lowest price at which a shareholder
      * is willing to sell at.
      */
-    @Column(columnDefinition = "DECIMAL(16,4)")
+    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
+            + " Constants.N4_DIGITS)")
     @Getter
     @Setter
     private BigDecimal ask;
@@ -98,7 +104,7 @@ public class BidList {
     /**
      * Benchmark String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String benchmark;
@@ -113,7 +119,7 @@ public class BidList {
     /**
      * Commentary String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String commentary;
@@ -121,7 +127,7 @@ public class BidList {
     /**
      * Security String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String security;
@@ -129,7 +135,7 @@ public class BidList {
     /**
      * Status String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String status;
@@ -137,7 +143,7 @@ public class BidList {
     /**
      * Trader String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String trader;
@@ -145,7 +151,7 @@ public class BidList {
     /**
      * Book String variable.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String book;
@@ -153,7 +159,7 @@ public class BidList {
     /**
      * The name of the user who has created the BidList record.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String creationName;
@@ -168,7 +174,7 @@ public class BidList {
     /**
      * The name of the user who has modified the BidList record.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String revisionName;
@@ -183,7 +189,7 @@ public class BidList {
     /**
      * The name of the deal.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String dealName;
@@ -191,7 +197,7 @@ public class BidList {
     /**
      * The type of the deal.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String dealType;
@@ -199,7 +205,7 @@ public class BidList {
     /**
      * The id of the source list.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String sourceListId;
@@ -207,7 +213,7 @@ public class BidList {
     /**
      * The side of the bidList.
      */
-    @Column(length = 125)
+    @Column(length = Constants.LENGTH_125)
     @Getter
     @Setter
     private String side;

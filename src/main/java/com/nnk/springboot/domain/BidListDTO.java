@@ -14,6 +14,8 @@ import lombok.ToString;
 
 import org.springframework.stereotype.Component;
 
+import com.nnk.springboot.constants.Constants;
+
 /**
  * Data transfer object that contains only 4 attributes of a BidList.
  *
@@ -52,8 +54,9 @@ public class BidListDTO {
      * The number of bid for sale.
      */
     @NotNull(message = "Bid quantity is mandatory")
-    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
-            + "less than 1,000,000,000,000 max with 4 fractional digits max")
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+    message = "Must be a number < 1,000,000,000,000 with"
+            + " 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal bidQuantity;

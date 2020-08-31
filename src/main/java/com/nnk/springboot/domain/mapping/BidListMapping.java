@@ -25,7 +25,7 @@ public class BidListMapping {
      * Spring autowired UserRetrieve instance declaration.
      */
     @Autowired
-    public UserRetrieve userRetrieve;
+    private UserRetrieve userRetrieve;
 
     /**
      * This method is in charge of the mapping of a list of BidList entities to

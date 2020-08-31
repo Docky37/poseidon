@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

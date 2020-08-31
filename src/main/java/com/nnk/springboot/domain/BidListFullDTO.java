@@ -13,6 +13,8 @@ import lombok.ToString;
 
 import org.springframework.stereotype.Component;
 
+import com.nnk.springboot.constants.Constants;
+
 /**
  * Data transfer object that contains only 4 attributes of a BidList.
  *
@@ -34,8 +36,9 @@ public class BidListFullDTO extends BidListDTO {
      * The bid price represents the highest price an investor is willing to pay
      * for a share.
      */
-    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
-            + "less than 1,000,000,000,000 max with 4 fractional digits max")
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
+                    + " 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal bid;
@@ -44,8 +47,9 @@ public class BidListFullDTO extends BidListDTO {
      * The ask price (offer) represents the lowest price at which a shareholder
      * is willing to sell at.
      */
-    @Digits(fraction = 4, integer = 12, message = "Must be a number, "
-            + "less than 1,000,000,000,000 max with 4 fractional digits max")
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
+                    + " 4 fractional digits max")
     @Getter
     @Setter
     private BigDecimal ask;
@@ -53,7 +57,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Benchmark String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String benchmark;
@@ -68,7 +72,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Commentary String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String commentary;
@@ -76,7 +80,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Security String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String security;
@@ -84,7 +88,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Status String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String status;
@@ -92,7 +96,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Trader String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String trader;
@@ -100,7 +104,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * Book String variable.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String book;
@@ -108,7 +112,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The name of the user who has created the BidList record.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String creationName;
@@ -123,7 +127,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The name of the user who has modified the BidList record.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String revisionName;
@@ -138,7 +142,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The name of the deal.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String dealName;
@@ -146,7 +150,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The type of the deal.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String dealType;
@@ -154,7 +158,7 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The id of the source list.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String sourceListId;
@@ -162,80 +166,80 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The side of the bidList.
      */
-    @Size(max = 125, message = "Max length = 125!")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String side;
 
     /**
-     * All Args Constructor of the DTO.
+     * All Arguments Constructor of the DTO.
      *
-     * @param askQuantity
-     * @param bid
-     * @param ask
-     * @param benchmark
-     * @param bidListDate
-     * @param commentary
-     * @param security
-     * @param status
-     * @param trader
-     * @param book
-     * @param creationName
-     * @param creationDate
-     * @param revisionName
-     * @param revisionDate
-     * @param dealName
-     * @param dealType
-     * @param sourceListId
-     * @param side
+     * @param pAskQuantity
+     * @param pBid
+     * @param pAsk
+     * @param pBenchmark
+     * @param pBidListDate
+     * @param pCommentary
+     * @param pSecurity
+     * @param pStatus
+     * @param pTrader
+     * @param pBook
+     * @param pCreationName
+     * @param pCreationDate
+     * @param pRevisionName
+     * @param pRevisionDate
+     * @param pDealName
+     * @param pDealType
+     * @param pSourceListId
+     * @param pSide
      */
-    public BidListFullDTO(final BigDecimal askQuantity, final BigDecimal bid,
-            final BigDecimal ask,
-            @Size(max = 125, message = "Max length = 125!")
-                final String benchmark, LocalDateTime bidListDate,
-            @Size(max = 125, message = "Max length = 125!")
-                final String commentary,
-            @Size(max = 125, message = "Max length = 125!")
-                final String security,
-            @Size(max = 125, message = "Max length = 125!")
-                final String status,
-            @Size(max = 125, message = "Max length = 125!")
-                final String trader,
-            @Size(max = 125, message = "Max length = 125!")
-                final String book,
-            @Size(max = 125, message = "Max length = 125!")
-                final String creationName,
-            LocalDateTime creationDate,
-            @Size(max = 125, message = "Max length = 125!")
-                final String revisionName,
-            LocalDateTime revisionDate,
-            @Size(max = 125, message = "Max length = 125!")
-                final String dealName,
-            @Size(max = 125, message = "Max length = 125!")
-                final String dealType,
-            @Size(max = 125, message = "Max length = 125!")
-                final String sourceListId,
-            @Size(max = 125, message = "Max length = 125!")
-                final String side) {
+    public BidListFullDTO(final BigDecimal pAskQuantity, final BigDecimal pBid,
+            final BigDecimal pAsk,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pBenchmark, final LocalDateTime pBidListDate,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pCommentary,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pSecurity,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pStatus,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pTrader,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pBook,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pCreationName,
+            final LocalDateTime pCreationDate,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pRevisionName,
+            final LocalDateTime pRevisionDate,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pDealName,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pDealType,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pSourceListId,
+            @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
+                final String pSide) {
         super();
-        this.askQuantity = askQuantity;
-        this.bid = bid;
-        this.ask = ask;
-        this.benchmark = benchmark;
-        this.bidListDate = bidListDate;
-        this.commentary = commentary;
-        this.security = security;
-        this.status = status;
-        this.trader = trader;
-        this.book = book;
-        this.creationName = creationName;
-        this.creationDate = creationDate;
-        this.revisionName = revisionName;
-        this.revisionDate = revisionDate;
-        this.dealName = dealName;
-        this.dealType = dealType;
-        this.sourceListId = sourceListId;
-        this.side = side;
+        askQuantity = pAskQuantity;
+        bid = pBid;
+        ask = pAsk;
+        benchmark = pBenchmark;
+        bidListDate = pBidListDate;
+        commentary = pCommentary;
+        security = pSecurity;
+        status = pStatus;
+        trader = pTrader;
+        book = pBook;
+        creationName = pCreationName;
+        creationDate = pCreationDate;
+        revisionName = pRevisionName;
+        revisionDate = pRevisionDate;
+        dealName = pDealName;
+        dealType = pDealType;
+        sourceListId = pSourceListId;
+        side = pSide;
     }
 
 }

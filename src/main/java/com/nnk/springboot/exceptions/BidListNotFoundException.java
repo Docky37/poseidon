@@ -12,7 +12,7 @@ public class BidListNotFoundException extends Throwable {
      * Class constructor.
      * @param message
      */
-    public BidListNotFoundException(String message) {
+    public BidListNotFoundException(final String message) {
     }
 
     /**
