@@ -2,8 +2,6 @@ package com.nnk.springboot.repositories;
 
 import com.nnk.springboot.domain.CurvePoint;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -20,6 +18,6 @@ public interface CurvePointRepository
      * @param id
      * @return a CurvePoint
      */
-    Optional<CurvePoint> findById(Integer id);
+   CurvePoint findByCurvePointId(Integer id);
 
 }

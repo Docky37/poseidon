@@ -30,7 +30,7 @@ public class CurvePoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private Integer id;
+    private Integer curvePointId;
 
     /**
      * Id of the curve that contains this curvePoint (Foreign Key).

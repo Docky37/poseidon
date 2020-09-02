@@ -20,7 +20,7 @@ public class CurvePointDTO {
      */
     @Getter
     @Setter
-    private Integer id;
+    private Integer curvePointId;
 
     /**
      * Id of the curve that contains this curvePoint(Foreign Key).
