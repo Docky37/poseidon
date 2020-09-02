@@ -107,7 +107,8 @@ public class CurvePointServiceTest {
         CurvePointDTO result = curvePointService.getById(2);
         // THEN
         System.out.println(result);
-        assertThat(result.toString()).isEqualTo(listOfCurvePointDTO.toString());
+        assertThat(result.toString())
+                .isEqualTo(listOfCurvePointDTO.get(1).toString());
     }
 
     @Test

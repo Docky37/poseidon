@@ -2,10 +2,7 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import com.nnk.springboot.domain.CurvePointDTO;
-import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 
 /**
@@ -31,14 +28,6 @@ public interface CurvePointService {
      * @return a CurvePoint
      */
     CurvePointDTO save(CurvePointDTO curvePointDTO );
-
-    /**
-     * Used to persist a Poseidon CurvePoint after update in DataBase.
-     *
-     * @param bidListDTO
-     * @return a BidListFullDTO object
-     */
-    CurvePointDTO saveFullDTO(@Valid CurvePointDTO curvePointDTO);
 
     /**
      * Allows user to delete a Poseidon CurvePoint of the DataBase.
