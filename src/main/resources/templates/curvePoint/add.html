@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<h2>Add New Curve Point</h2>
+	</div>
+
+	<div class="row">
+		<form action="#" 
+			th:action="@{/curvePoint/validate}" 
+			th:object="${curvePointDTO}" method="post" class="form-horizontal" style="width: 100%">
+			<p>
+				Curve id:<br /> <input type="text" th:field="*{curveId}" /><br />
+				<span style="color: red;" th:if="${#fields.hasErrors('curveId')}"
+					th:errors="*{curveId}">Curve id mandatory to avoid orphan curve point!</span>
+			</p>
+
+			<p>
+				As of date:<br /> <input type="datetime-local" th:field="*{asOfDate}" /><br />
+			</p>
+
+			<p>
+				Term:<br /> <input type="text" th:field="*{term}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('term')}"
+					th:errors="*{term}">Invalid number, 999999 max with 4 fractional digits max</span>
+			</p>
+
+			<p>
+				Value:<br /> <input type="text" th:field="*{value}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('value')}"
+					th:errors="*{value}">Invalid number, 999999 max with 4 fractional digits max</span>
+			</p>
+
+			<p>
+				<a href="/curvePoint/list" class="btn btn-danger btn-sm">Cancel</a>
+				<button type="submit" class="btn btn-primary btn-sm">Add
+					curvePoint</button>
+			</p>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>
