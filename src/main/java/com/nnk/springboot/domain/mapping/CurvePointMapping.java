@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.CurvePointDTO;
 
+@Component
 public class CurvePointMapping {
 
     public List<CurvePointDTO> mapAListOfCurvePoint(
