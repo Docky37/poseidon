@@ -94,7 +94,7 @@ public class BidListController {
 
     /**
      * Get HTML request used to display the update.html front page that provides
-     * a form to update an existing BidList by its address.
+     * a form to update an existing BidList.
      *
      * @param id
      * @param model

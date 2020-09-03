@@ -64,10 +64,10 @@ public class BidList {
      * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
-            message = "Must be a number < 1,000,000,000,000 with"
-                    + " 4 fractional digits max")
-    @Column(columnDefinition = "DECIMAL(N16_DIGITS, N4_DIGITS)")
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS, message = "Must be a number < 1,000,000,000,000 with"
+            + " 4 fractional digits max")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal bidQuantity;
@@ -75,8 +75,8 @@ public class BidList {
     /**
      * The number of ask auctions.
      */
-    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
-            + " Constants.N4_DIGITS)")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal askQuantity;
@@ -85,8 +85,8 @@ public class BidList {
      * The bid price represents the highest price an investor is willing to pay
      * for a share.
      */
-    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
-            + " Constants.N4_DIGITS)")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal bid;
@@ -95,8 +95,8 @@ public class BidList {
      * The ask price (offer) represents the lowest price at which a shareholder
      * is willing to sell at.
      */
-    @Column(columnDefinition = "DECIMAL(Constants.N16_DIGITS,"
-            + " Constants.N4_DIGITS)")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal ask;
