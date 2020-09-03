@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.constants.Constants;
@@ -67,6 +68,7 @@ public class BidListFullDTO extends BidListDTO {
      */
     @Getter
     @Setter
+    @DateTimeFormat(pattern = "yyyy/MM/dd' 'HH:mm")
     private LocalDateTime bidListDate;
 
     /**
