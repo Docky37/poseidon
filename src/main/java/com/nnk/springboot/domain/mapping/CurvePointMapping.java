@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain.mapping;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nnk.springboot.domain.CurvePoint;
@@ -7,19 +9,37 @@ import com.nnk.springboot.domain.CurvePointDTO;
 
 public class CurvePointMapping {
 
-    public List<CurvePointDTO> mapAListOfCurvePoint(List<CurvePoint> listOfCurvePoint) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<CurvePointDTO> mapAListOfCurvePoint(
+            List<CurvePoint> listOfCurvePoint) {
+        List<CurvePointDTO> listCurvePointDTO = new ArrayList<>();
+        for (CurvePoint curvePoint : listOfCurvePoint) {
+            CurvePointDTO curvePointDTO = mapEntityToDTO(curvePoint);
+            listCurvePointDTO.add(curvePointDTO);
+        }
+        return listCurvePointDTO;
     }
 
     public CurvePoint mapDTOToEntity(CurvePointDTO curvePointDTO) {
-        // TODO Auto-generated method stub
-        return null;
+        CurvePoint curvePoint = new CurvePoint();
+        curvePoint.setCurvePointId(curvePointDTO.getCurvePointId());
+        curvePoint.setCurveId(curvePointDTO.getCurveId());
+        curvePoint.setAsOfDate(curvePointDTO.getAsOfDate());
+        curvePoint.setTerm(curvePointDTO.getTerm());
+        curvePoint.setValue(curvePointDTO.getValue());
+        curvePoint.setCreationDate(LocalDateTime.now());
+
+        return curvePoint;
     }
 
     public CurvePointDTO mapEntityToDTO(CurvePoint curvePoint) {
-        // TODO Auto-generated method stub
-        return null;
+        CurvePointDTO curvePointDTO = new CurvePointDTO();
+        curvePointDTO.setCurvePointId(curvePoint.getCurvePointId());
+        curvePointDTO.setCurveId(curvePoint.getCurveId());
+        curvePointDTO.setAsOfDate(curvePoint.getAsOfDate());
+        curvePointDTO.setTerm(curvePoint.getTerm());
+        curvePointDTO.setValue(curvePoint.getValue());
+        curvePointDTO.setCreationDate(curvePoint.getCreationDate());
+        return curvePointDTO;
     }
 
 }
