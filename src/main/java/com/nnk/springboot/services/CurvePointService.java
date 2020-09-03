@@ -27,7 +27,7 @@ public interface CurvePointService {
      * @param curvePointDTO
      * @return a CurvePoint
      */
-    CurvePointDTO save(CurvePointDTO curvePointDTO );
+    CurvePointDTO save(CurvePointDTO curvePointDTO);
 
     /**
      * Allows user to delete a Poseidon CurvePoint of the DataBase.

@@ -13,7 +13,7 @@ import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.util.UserRetrieve;
 
 /**
- * This class is used to perform bidirectional mapping betwenn a BidList entity
+ * This class is used to perform bidirectional mapping between a BidList entity
  * and a BidListDTO.
  *
  * @author Thierry Schreiner

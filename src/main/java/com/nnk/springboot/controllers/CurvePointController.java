@@ -24,7 +24,8 @@ public class CurvePointController {
     /**
      * Create a SLF4J/LOG4J LOGGER instance.
      */
-    static final Logger LOGGER = LoggerFactory.getLogger(CurvePointController.class);
+    static final Logger LOGGER = LoggerFactory
+            .getLogger(CurvePointController.class);
 
     /**
      * ListService bean injected by Spring when controller is created.
@@ -40,7 +41,7 @@ public class CurvePointController {
      * @return a String(the address of list.html page)
      */
     @GetMapping("/curvePoint/list")
-    public String home(Model model) {
+    public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /curvePoint/list");
         List<CurvePointDTO> curvePoints = curvePointService.findAll();
         model.addAttribute("curvePoints", curvePoints);
@@ -138,6 +139,13 @@ public class CurvePointController {
         return "redirect:/curvePoint/list";
     }
 
+    /**
+     * Get HTML request used to delete a CurvePoint by its id.
+     *
+     * @param id
+     * @param model
+     * @return a String(list.html redirection address)
+     */
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteCurvePoint(@PathVariable("id") final Integer id,
             final Model model) {

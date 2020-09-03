@@ -27,7 +27,7 @@ public class CurvePointDTO {
     /**
      * Id of the curve that contains this curvePoint(Foreign Key).
      */
-    @NotNull(message="Curve id mandatory to avoid orphan curve point!")
+    @NotNull(message = "Curve id mandatory to avoid orphan curve point!")
     @Getter
     @Setter
     private Integer curveId;

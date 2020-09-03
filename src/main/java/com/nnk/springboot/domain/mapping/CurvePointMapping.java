@@ -9,11 +9,25 @@ import org.springframework.stereotype.Component;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.CurvePointDTO;
 
+/**
+ * This class is used to perform bidirectional mapping between a CurvePoint
+ * entity and a CurvePointDTO.
+ *
+ * @author Thierry Schreiner
+ */
 @Component
 public class CurvePointMapping {
 
+    /**
+     * This method is in charge of the mapping of a list of CurvePoint entities
+     * to a list of CurvePointDTO. Use the mapEntityToDTO(CurvePoint
+     * curvePoint)as a sub method.
+     *
+     * @param listOfCurvePoint
+     * @return a List<CurvePointDTO>
+     */
     public List<CurvePointDTO> mapAListOfCurvePoint(
-            List<CurvePoint> listOfCurvePoint) {
+            final List<CurvePoint> listOfCurvePoint) {
         List<CurvePointDTO> listCurvePointDTO = new ArrayList<>();
         for (CurvePoint curvePoint : listOfCurvePoint) {
             CurvePointDTO curvePointDTO = mapEntityToDTO(curvePoint);
@@ -22,8 +36,15 @@ public class CurvePointMapping {
         return listCurvePointDTO;
     }
 
-    public CurvePoint mapDTOToEntity(CurvePointDTO curvePointDTO) {
-        CurvePoint curvePoint = new CurvePoint();
+    /**
+     * This method is in charge of the mapping of a CurvePointDTO to a
+     * CurvePoint entity.
+     *
+     * @param curvePointDTO
+     * @return a CurvePoint object
+     */
+    public CurvePoint mapDTOToEntity(final CurvePointDTO curvePointDTO) {
+        final CurvePoint curvePoint = new CurvePoint();
         curvePoint.setCurvePointId(curvePointDTO.getCurvePointId());
         curvePoint.setCurveId(curvePointDTO.getCurveId());
         curvePoint.setAsOfDate(curvePointDTO.getAsOfDate());
@@ -38,7 +59,14 @@ public class CurvePointMapping {
         return curvePoint;
     }
 
-    public CurvePointDTO mapEntityToDTO(CurvePoint curvePoint) {
+    /**
+     * This method is in charge of the mapping of a CurvePoint entity to a
+     * CurvePointDTO.
+     *
+     * @param curvePoint
+     * @return a CurvePointDTO
+     */
+    public CurvePointDTO mapEntityToDTO(final CurvePoint curvePoint) {
         CurvePointDTO curvePointDTO = new CurvePointDTO();
         curvePointDTO.setCurvePointId(curvePoint.getCurvePointId());
         curvePointDTO.setCurveId(curvePoint.getCurveId());

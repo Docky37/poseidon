@@ -64,7 +64,8 @@ public class BidList {
      * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS, message = "Must be a number < 1,000,000,000,000 with"
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
             + " 4 fractional digits max")
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")

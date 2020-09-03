@@ -6,7 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -35,7 +39,7 @@ public class CurvePoint {
     /**
      * Id of the curve that contains this curvePoint (Foreign Key).
      */
-    @NotNull(message="Curve id mandatory to avoid orphan curve point!")
+    @NotNull(message = "Curve id mandatory to avoid orphan curve point!")
     @Getter
     @Setter
     private Integer curveId;

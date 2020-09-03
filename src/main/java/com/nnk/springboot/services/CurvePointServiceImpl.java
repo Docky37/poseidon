@@ -27,13 +27,13 @@ public class CurvePointServiceImpl implements CurvePointService {
      */
     @Autowired
     private CurvePointRepository curvePointRepository;
-    
+
     /**
      * CurvePointMapping bean injected by Spring when service is created.
      */
     @Autowired
     private CurvePointMapping curvePointMapping;
-    
+
     /**
      * {@inheritDoc}
      */
@@ -52,37 +52,38 @@ public class CurvePointServiceImpl implements CurvePointService {
      * {@inheritDoc}
      */
     @Override
-    public CurvePointDTO save(CurvePointDTO curvePointDTO) {
+    public CurvePointDTO save(final CurvePointDTO curvePointDTO) {
         CurvePoint curvePoint = curvePointMapping.mapDTOToEntity(curvePointDTO);
- System.out.println(curvePoint.toString());
+        System.out.println(curvePoint.toString());
         CurvePoint savedCurvePoint = curvePointRepository.save(curvePoint);
- System.out.println(savedCurvePoint.toString());
+        System.out.println(savedCurvePoint.toString());
         CurvePointDTO savedBidListDTO = curvePointMapping
                 .mapEntityToDTO(savedCurvePoint);
- System.out.println(savedBidListDTO.toString());
+        System.out.println(savedBidListDTO.toString());
         return savedBidListDTO;
 
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @throws CurvePointNotFoundException
      */
     @Override
-    public CurvePointDTO delete(Integer id) throws CurvePointNotFoundException {
+    public CurvePointDTO delete(final Integer id) throws CurvePointNotFoundException {
         CurvePoint curvePoint = curvePointRepository.findByCurvePointId(id);
-System.out.println(id);
+        System.out.println(id);
         if (curvePoint != null) {
-System.out.println("OK  not null !");
+            System.out.println("OK  not null !");
             curvePointRepository.deleteById(id);
             return curvePointMapping.mapEntityToDTO(curvePoint);
         }
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public CurvePointDTO getById(Integer id)
+    public CurvePointDTO getById(final Integer id)
             throws CurvePointNotFoundException {
         CurvePoint curvePoint = curvePointRepository.findByCurvePointId(id);
         CurvePointDTO curvePointDTO;
