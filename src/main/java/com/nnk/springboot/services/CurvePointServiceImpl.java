@@ -54,9 +54,12 @@ public class CurvePointServiceImpl implements CurvePointService {
     @Override
     public CurvePointDTO save(CurvePointDTO curvePointDTO) {
         CurvePoint curvePoint = curvePointMapping.mapDTOToEntity(curvePointDTO);
+ System.out.println(curvePoint.toString());
         CurvePoint savedCurvePoint = curvePointRepository.save(curvePoint);
+ System.out.println(savedCurvePoint.toString());
         CurvePointDTO savedBidListDTO = curvePointMapping
                 .mapEntityToDTO(savedCurvePoint);
+ System.out.println(savedBidListDTO.toString());
         return savedBidListDTO;
 
     }

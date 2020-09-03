@@ -29,7 +29,11 @@ public class CurvePointMapping {
         curvePoint.setAsOfDate(curvePointDTO.getAsOfDate());
         curvePoint.setTerm(curvePointDTO.getTerm());
         curvePoint.setValue(curvePointDTO.getValue());
-        curvePoint.setCreationDate(LocalDateTime.now());
+        if (curvePointDTO.getCreationDate() == null) {
+            curvePoint.setCreationDate(LocalDateTime.now());
+        } else {
+            curvePoint.setCreationDate(curvePointDTO.getCreationDate());
+        }
 
         return curvePoint;
     }

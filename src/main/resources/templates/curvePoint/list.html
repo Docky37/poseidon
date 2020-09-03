@@ -30,20 +30,18 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>CurvePointId</th>
+					<th>Curve Id</th>
 					<th>Term</th>
 					<th>Value</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each ="curvePoint : ${curvePoint}">
+				<tr th:each ="curvePoint : ${curvePoints}">
 				    <td th:utext="${curvePoint.curvePointId}">...</td>
                		<td th:utext="${curvePoint.curveId}">...</td>
-				    <td th:utext="${curvePoint.asOfDate}">...</td>
                		<td th:utext="${curvePoint.term}">...</td>
                		<td th:utext="${curvePoint.value}">...</td>
-               		<td th:utext="${curvePoint.creation date}">...</td>
                		<td><a href="update.html" th:href="@{/curvePoint/update/{id}(id=${curvePoint.curvePointId})}">Edit </a>| 
                			<a href="delete.html" th:href="@{/curvePoint/delete/{id}(id=${curvePoint.curvePointId})}">Delete </a></td>
                	</tr>

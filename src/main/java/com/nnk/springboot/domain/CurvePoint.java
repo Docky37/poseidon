@@ -35,7 +35,7 @@ public class CurvePoint {
     /**
      * Id of the curve that contains this curvePoint (Foreign Key).
      */
-    @NotNull
+    @NotNull(message="Curve id mandatory to avoid orphan curve point!")
     @Getter
     @Setter
     private Integer curveId;

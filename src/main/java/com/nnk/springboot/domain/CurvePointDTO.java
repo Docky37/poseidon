@@ -8,6 +8,8 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -25,7 +27,7 @@ public class CurvePointDTO {
     /**
      * Id of the curve that contains this curvePoint(Foreign Key).
      */
-    @NotNull
+    @NotNull(message="Curve id mandatory to avoid orphan curve point!")
     @Getter
     @Setter
     private Integer curveId;
@@ -35,6 +37,7 @@ public class CurvePointDTO {
      */
     @Getter
     @Setter
+    @DateTimeFormat(pattern = "dd/MM/yyyy' 'HH:mm")
     private LocalDateTime asOfDate;
 
     /**
