@@ -31,21 +31,29 @@ public class RatingDTO {
     /**
      * Rating of Moodys' Credit rating agency.
      */
+    @Getter
+    @Setter
     private String moodys_rating;
 
     /**
      * Rating of Standard & Poor's Credit rating agency.
      */
+    @Getter
+    @Setter
     private String sand_p_rating;
 
     /**
      * Rating of Fitch rating agency.
      */
+    @Getter
+    @Setter
     private String fitch_rating;
 
     /**
      * Rating of Moodys' Credit rating agency
      */
+    @Getter
+    @Setter
     private Integer order_number;
 
 }

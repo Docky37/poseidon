@@ -36,29 +36,37 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private Integer ratingId;
+    private Integer id;
 
     /**
      * Rating of Moodys' Credit rating agency.
      */
     @Column(length = Constants.LENGTH_125)
+    @Getter
+    @Setter
     private String moodys_rating;
 
     /**
      * Rating of Standard & Poor's Credit rating agency.
      */
     @Column(length = Constants.LENGTH_125)
+    @Getter
+    @Setter
     private String sand_p_rating;
 
     /**
      * Rating of Fitch rating agency.
      */
+    @Getter
+    @Setter
     @Column(length = Constants.LENGTH_125)
     private String fitch_rating;
 
     /**
      * Rating of Moodys' Credit rating agency
      */
+    @Getter
+    @Setter
     private Integer order_number;
 
 }
