@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,8 +100,8 @@ public class CurvePointServiceTest {
     public void whenGetById_thenReturnsExpectedCurvePoint()
             throws CurvePointNotFoundException {
         // GIVEN
-        given(curvePointRepository.findByCurvePointId(2))
-                .willReturn(listOfCurvePoint.get(1));
+        given(curvePointRepository.findById(2))
+                .willReturn(Optional.of(listOfCurvePoint.get(1)));
         given(curvePointMapping.mapEntityToDTO(any(CurvePoint.class)))
                 .willReturn(listOfCurvePointDTO.get(1));
         // WHEN
@@ -115,9 +116,7 @@ public class CurvePointServiceTest {
     public void givenAnUnknownId_whenGetById_thenCurvePointNotFoundException()
             throws CurvePointNotFoundException {
         // GIVEN
-        given(curvePointRepository.findByCurvePointId(3)).willReturn(null);
-        // WHEN
-        // THEN
+        // WHEN - THEN
         assertThrows(CurvePointNotFoundException.class, () -> {
             curvePointService.getById(3);
         });
@@ -139,8 +138,8 @@ public class CurvePointServiceTest {
         listOfCurvePoint.get(2).setTerm(new BigDecimal("150"));
         listOfCurvePoint.get(2).setValue(new BigDecimal("140"));
         listOfCurvePoint.get(2).setAsOfDate(LocalDateTime.now());
-        given(curvePointRepository.findByCurvePointId(3))
-                .willReturn(listOfCurvePoint.get(2));
+        given(curvePointRepository.findById(3))
+                .willReturn(Optional.of(listOfCurvePoint.get(2)));
         given(curvePointMapping.mapEntityToDTO(any(CurvePoint.class)))
                 .willReturn(listOfCurvePointDTO.get(2));
         // WHEN

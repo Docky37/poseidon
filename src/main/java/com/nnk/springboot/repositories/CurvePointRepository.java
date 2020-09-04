@@ -12,12 +12,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CurvePointRepository
         extends JpaRepository<CurvePoint, Integer> {
 
-    /**
-     * This method is used to get the CurvePoint that has the given id.
-     *
-     * @param id
-     * @return a CurvePoint
-     */
-   CurvePoint findByCurvePointId(Integer id);
-
 }

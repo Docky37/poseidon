@@ -2,6 +2,7 @@ package com.nnk.springboot.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,15 +69,16 @@ public class CurvePointServiceImpl implements CurvePointService {
      * {@inheritDoc}
      */
     @Override
-    public CurvePointDTO delete(final Integer id) throws CurvePointNotFoundException {
-        CurvePoint curvePoint = curvePointRepository.findByCurvePointId(id);
-        System.out.println(id);
-        if (curvePoint != null) {
-            System.out.println("OK  not null !");
+    public CurvePointDTO delete(final Integer id)
+            throws CurvePointNotFoundException {
+        Optional<CurvePoint> curvePoint = curvePointRepository.findById(id);
+        if (curvePoint.isPresent()) {
             curvePointRepository.deleteById(id);
-            return curvePointMapping.mapEntityToDTO(curvePoint);
-        }
-        return null;
+            return curvePointMapping.mapEntityToDTO(curvePoint.get());
+        } else {
+            throw (new CurvePointNotFoundException("No CurvePoint record exist for given id"));
+        }        
+        
     }
 
     /**
@@ -85,16 +87,11 @@ public class CurvePointServiceImpl implements CurvePointService {
     @Override
     public CurvePointDTO getById(final Integer id)
             throws CurvePointNotFoundException {
-        CurvePoint curvePoint = curvePointRepository.findByCurvePointId(id);
-        CurvePointDTO curvePointDTO;
-        if (curvePoint != null) {
-            curvePointDTO = curvePointMapping.mapEntityToDTO(curvePoint);
-        } else {
-            throw new CurvePointNotFoundException(
-                    "No CurvePoint record exist for given id");
-        }
+        CurvePoint curvePoint = curvePointRepository.findById(id)
+                .orElseThrow(() -> new CurvePointNotFoundException(
+                        "No CurvePoint record exist for given id"));
 
-        return curvePointDTO;
+        return curvePointMapping.mapEntityToDTO(curvePoint);
     }
 
 }
