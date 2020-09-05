@@ -1,7 +1,8 @@
 package com.nnk.springboot.domain;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.nnk.springboot.constants.Constants;
 
@@ -31,6 +32,7 @@ public class RatingDTO {
     /**
      * Rating of Moodys' Credit rating agency.
      */
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String moodysRating;
@@ -38,6 +40,7 @@ public class RatingDTO {
     /**
      * Rating of Standard & Poor's Credit rating agency.
      */
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String standPoorsRating;
@@ -45,6 +48,7 @@ public class RatingDTO {
     /**
      * Rating of Fitch rating agency.
      */
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     @Getter
     @Setter
     private String fitchRating;
@@ -52,6 +56,8 @@ public class RatingDTO {
     /**
      * Rating of Moodys' Credit rating agency
      */
+    
+    @Positive(message = "Order number must be positive!")
     @Getter
     @Setter
     private Integer orderNumber;
