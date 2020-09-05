@@ -33,27 +33,27 @@ public class RatingDTO {
      */
     @Getter
     @Setter
-    private String moodys_rating;
+    private String moodysRating;
 
     /**
      * Rating of Standard & Poor's Credit rating agency.
      */
     @Getter
     @Setter
-    private String sand_p_rating;
+    private String standPoorsRating;
 
     /**
      * Rating of Fitch rating agency.
      */
     @Getter
     @Setter
-    private String fitch_rating;
+    private String fitchRating;
 
     /**
      * Rating of Moodys' Credit rating agency
      */
     @Getter
     @Setter
-    private Integer order_number;
+    private Integer orderNumber;
 
 }

@@ -39,29 +39,29 @@ public class RatingServiceTest {
     static {
         listOfRating.add(new Rating());
         listOfRating.get(0).setId(1);
-        listOfRating.get(0).setMoodys_rating("Aa1");
-        listOfRating.get(0).setSand_p_rating("AA+");
-        listOfRating.get(0).setFitch_rating("AA");
-        listOfRating.get(0).setOrder_number(3);
+        listOfRating.get(0).setMoodysRating("Aa1");
+        listOfRating.get(0).setStandPoorsRating("AA+");
+        listOfRating.get(0).setFitchRating("AA");
+        listOfRating.get(0).setOrderNumber(3);
         listOfRating.add(new Rating());
         listOfRating.get(1).setId(2);
-        listOfRating.get(1).setMoodys_rating("Baa1");
-        listOfRating.get(1).setSand_p_rating("BBB+");
-        listOfRating.get(1).setFitch_rating("BBB+");
-        listOfRating.get(1).setOrder_number(5);
+        listOfRating.get(1).setMoodysRating("Baa1");
+        listOfRating.get(1).setStandPoorsRating("BBB+");
+        listOfRating.get(1).setFitchRating("BBB+");
+        listOfRating.get(1).setOrderNumber(5);
 
         listOfRatingDTO.add(new RatingDTO());
         listOfRatingDTO.get(0).setId(1);
-        listOfRatingDTO.get(0).setMoodys_rating("Aa1");
-        listOfRatingDTO.get(0).setSand_p_rating("AA+");
-        listOfRatingDTO.get(0).setFitch_rating("AA");
-        listOfRatingDTO.get(0).setOrder_number(3);
+        listOfRatingDTO.get(0).setMoodysRating("Aa1");
+        listOfRatingDTO.get(0).setStandPoorsRating("AA+");
+        listOfRatingDTO.get(0).setFitchRating("AA");
+        listOfRatingDTO.get(0).setOrderNumber(3);
         listOfRatingDTO.add(new RatingDTO());
         listOfRatingDTO.get(1).setId(2);
-        listOfRatingDTO.get(1).setMoodys_rating("Baa1");
-        listOfRatingDTO.get(1).setSand_p_rating("BBB+");
-        listOfRatingDTO.get(1).setFitch_rating("BBB+");
-        listOfRatingDTO.get(1).setOrder_number(5);
+        listOfRatingDTO.get(1).setMoodysRating("Baa1");
+        listOfRatingDTO.get(1).setStandPoorsRating("BBB+");
+        listOfRatingDTO.get(1).setFitchRating("BBB+");
+        listOfRatingDTO.get(1).setOrderNumber(5);
     }
 
     @Test
@@ -126,16 +126,16 @@ public class RatingServiceTest {
         // GIVEN
         listOfRatingDTO.add(new RatingDTO());
         listOfRatingDTO.get(2).setId(3);
-        listOfRatingDTO.get(2).setMoodys_rating("Aa1");
-        listOfRatingDTO.get(2).setSand_p_rating("AA+");
-        listOfRatingDTO.get(2).setFitch_rating("AA");
-        listOfRatingDTO.get(2).setOrder_number(7);
+        listOfRatingDTO.get(2).setMoodysRating("Aa1");
+        listOfRatingDTO.get(2).setStandPoorsRating("AA+");
+        listOfRatingDTO.get(2).setFitchRating("AA");
+        listOfRatingDTO.get(2).setOrderNumber(7);
         listOfRating.add(new Rating());
         listOfRating.get(2).setId(1);
-        listOfRating.get(2).setMoodys_rating("Aa1");
-        listOfRating.get(2).setSand_p_rating("AA+");
-        listOfRating.get(2).setFitch_rating("AA");
-        listOfRating.get(2).setOrder_number(7);
+        listOfRating.get(2).setMoodysRating("Aa1");
+        listOfRating.get(2).setStandPoorsRating("AA+");
+        listOfRating.get(2).setFitchRating("AA");
+        listOfRating.get(2).setOrderNumber(7);
         given(ratingRepository.findById(3))
         .willReturn(Optional.of(listOfRating.get(2)));
         given(ratingMapping.mapEntityToDTO(any(Rating.class)))

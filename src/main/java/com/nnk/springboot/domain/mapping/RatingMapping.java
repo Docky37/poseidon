@@ -44,10 +44,10 @@ public class RatingMapping {
     public Rating mapDTOToEntity(RatingDTO ratingDTO) {
         final Rating rating = new Rating();
         rating.setId(ratingDTO.getId());
-        rating.setMoodys_rating(ratingDTO.getMoodys_rating());
-        rating.setSand_p_rating(ratingDTO.getSand_p_rating());
-        rating.setFitch_rating(ratingDTO.getFitch_rating());
-        rating.setOrder_number(ratingDTO.getOrder_number());
+        rating.setMoodysRating(ratingDTO.getMoodysRating());
+        rating.setStandPoorsRating(ratingDTO.getStandPoorsRating());
+        rating.setFitchRating(ratingDTO.getFitchRating());
+        rating.setOrderNumber(ratingDTO.getOrderNumber());
 
         return rating;
     }
@@ -62,10 +62,10 @@ public class RatingMapping {
     public RatingDTO mapEntityToDTO(final Rating rating) {
         RatingDTO ratingDTO = new RatingDTO();
         ratingDTO.setId(rating.getId());
-        ratingDTO.setMoodys_rating(rating.getMoodys_rating());
-        ratingDTO.setSand_p_rating(rating.getSand_p_rating());
-        ratingDTO.setFitch_rating(rating.getFitch_rating());
-        ratingDTO.setOrder_number(rating.getOrder_number());
+        ratingDTO.setMoodysRating(rating.getMoodysRating());
+        ratingDTO.setStandPoorsRating(rating.getStandPoorsRating());
+        ratingDTO.setFitchRating(rating.getFitchRating());
+        ratingDTO.setOrderNumber(rating.getOrderNumber());
 
         return ratingDTO;
     }
