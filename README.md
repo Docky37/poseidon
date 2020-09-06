@@ -1,4 +1,4 @@
-# Poseidon v0.3
+# Poseidon v0.4 - 02/09/2020
 
 ## Technical:
 
@@ -10,8 +10,11 @@
 
 
 ## Content:
-- Version 0.3 adds the CRUD functionalities of the CurvePoint class.
+- Version 0.4 adds the CRUD functionalities of the Rating class and improve
+fields validation for the 3 entities.
+
 
 Previously:
 - The first version only contains the CRUD functionalities of the BidList class.
 - Version v0.2 adds integration test and fix Checktyle issues in BidList classes.
+- Version 0.3 adds the CRUD functionalities of the CurvePoint class.
