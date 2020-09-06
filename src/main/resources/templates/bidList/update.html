@@ -21,60 +21,75 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>Account:<br /> <input type="text"
-									th:field="*{account}" /><br /> <span style="color: red;"
-									th:if="${#fields.hasErrors('account')}" th:errors="*{account}">Account
-										is mandatory!</span><br /> Bid quantity: <br /> <input type="text"
-									th:field="*{bidQuantity}" /><br /> <span style="color: red;"
-									th:if="${#fields.hasErrors('bidQuantity')}"
-									th:errors="*{bidQuantity}">Invalid number, 999999 max
-										with 4 fractional digits max</span><br /> Ask quantity: <br /> <input
-									type="text" th:field="*{askQuantity}" /><br /> <span
-									style="color: red;" th:if="${#fields.hasErrors('askQuantity')}"
-									th:errors="*{askQuantity}">Invalid number, 999999 max
-										with 4 fractional digits max</span><br /> Benchmark:<br /> <input
-									type="text" th:field="*{benchmark}" /><br />
-								<br /> Commentary:<br /> <input type="text"
-									th:field="*{commentary}" /><br />
-								<br /> Trader:<br /> <input type="text" th:field="*{trader}" /><br />
-								<br /> Deal name:<br /> <input type="text"
-									th:field="*{dealName}" /><br />
-								<br /> SourceList Id:<br /> <input type="text"
-									th:field="*{sourceListId}" /><br /> <br />
+								<td>
+									Account:<br /> <input type="text" th:field="*{account}" /><br />
+										<span style="color: red;"th:if="${#fields.hasErrors('account')}" 
+										th:errors="*{account}">Account is mandatory!</span><br /> 
+									Bid quantity: <br /> <input type="text" th:field="*{bidQuantity}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('bidQuantity')}"
+										th:errors="*{bidQuantity}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br /> 
+									Ask quantity: <br /> <input type="text" th:field="*{askQuantity}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('askQuantity')}"
+										th:errors="*{askQuantity}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br />
+									Benchmark:<br /> <input type="text" th:field="*{benchmark}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('benchmark')}"
+										th:errors="*{benchmark}">Max length = 125!</span><br />
+									Commentary:<br /> <input type="text" th:field="*{commentary}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('commentary')}"
+										th:errors="*{commentary}">Max length = 125!</span><br />
+									Trader:<br /> <input type="text" th:field="*{trader}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('trader')}"
+										th:errors="*{trader}">Max length = 125!</span><br />
+									Deal name:<br /> <input type="text" th:field="*{dealName}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('dealName')}"
+										th:errors="*{dealName}">Max length = 125!</span><br />
+									SourceList Id:<br /> <input type="text" th:field="*{sourceListId}" /><br /> <br />
 								</td>
-								<td>Type:<br /> <input type="text" th:field="*{type}" /><br />
-									<span style="color: red;" th:if="${#fields.hasErrors('type')}"
-									th:errors="*{type}">Type is mandatory! </span><br /> 
+								<td>
+									Type:<br /> <input type="text" th:field="*{type}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('type')}"
+										th:errors="*{type}">Type is mandatory! </span><br /> 
 									Bid price: <br /> <input type="text" th:field="*{bid}" /><br />
-									<span style="color: red;" th:if="${#fields.hasErrors('bid')}"
-									th:errors="*{bid}">Invalid number, 999999 max with 4
+										<span style="color: red;" th:if="${#fields.hasErrors('bid')}"
+										th:errors="*{bid}">Invalid number, 999999 max with 4
 										fractional digits max</span><br /> 
 									Ask price: <br /> <input type="text" th:field="*{ask}" /><br />
-									<span style="color: red;" th:if="${#fields.hasErrors('ask')}"
-									th:errors="*{ask}">Invalid number, 999999 max with 4
-										fractional digits max</span><br /> 
+										<span style="color: red;" th:if="${#fields.hasErrors('ask')}"
+										th:errors="*{ask}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br /> 
 									BidList date:<br /> <input type="datetime-local" th:field="*{bidListDate}" /><br />
-									<span style="color: red;" th:if="${#fields.hasErrors('bidListDate')}"
-									th:errors="*{bidListDate}">Invalid number, 999999 max with 4
-										fractional digits max</span><br /> 
-								<br /> Security:<br /> <input type="text"
-									th:field="*{security}" /><br />
-								<br /> Book:<br /> <input type="text" th:field="*{book}" /><br />
-								<br /> Deal type:<br /> <input type="text"
-									th:field="*{dealType}" /><br />
-								<br /> Side:<br /> <input type="text" th:field="*{side}" /><br />
-								<br />
-
+										<span style="color: red;" th:if="${#fields.hasErrors('bidListDate')}"
+										th:errors="*{bidListDate}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br /> 
+									Security:<br /> <input type="text" th:field="*{security}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('security')}"
+										th:errors="*{security}">Max length = 125!</span><br />
+									Book:<br /> <input type="text" th:field="*{book}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('book')}"
+										th:errors="*{book}">Max length = 125!</span><br />
+									Deal type:<br /> <input type="text" th:field="*{dealType}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('dealType')}"
+										th:errors="*{dealType}">Max length = 125!</span><br />
+									Side:<br /> <input type="text" th:field="*{side}" /><br />
+										<span style="color: red;" th:if="${#fields.hasErrors('side')}"
+										th:errors="*{side}">Max length = 125!</span><br />
 								</td>
-								<td>Creation Date: <br /> <input type="datetime-local"
-									th:field="*{creationDate}" disabled="disabled" /><br />
-								<br /> Creation Name: <br /> <input type="text"
-									th:field="*{creationName}" disabled="disabled" /><br />
-								<br /> Revision Date: <br /> <input type="datetime-local"
-									th:field="*{revisionDate}" disabled="disabled" /><br />
-								<br /> Revision Name: <br /> <input type="text"
-									th:field="*{revisionName}" disabled="disabled" /><br />
-								<br /> Status:<br /> <input type="text" th:field="*{status}" /><br />
+								<td>
+									Creation Date: <br /> 
+										<input type="datetime-local" th:field="*{creationDate}" hidden="hidden" />
+										<input type="datetime-local" th:field="*{creationDate}" disabled="disabled" /><br />
+										<br />
+									Creation Name: <br /> 
+										<input type="text" th:field="*{creationName}" hidden="hidden" />
+										<input type="text" th:field="*{creationName}" disabled="disabled" /><br />
+										<br /> 
+									Revision Date: <br /> 
+										<input type="datetime-local" th:field="*{revisionDate}" hidden="hidden" />
+										<input type="datetime-local" th:field="*{revisionDate}" disabled="disabled" /><br />
+										<br /> 
+									Revision Name: <br /> 
+										<input type="text" th:field="*{revisionName}" hidden="hidden" />
+										<input type="text" th:field="*{revisionName}" disabled="disabled" /><br />
+										<br /> 
+									Status:<br /> <input type="text" th:field="*{status}" /><br />
 								</td>
 							</tr>
 							<tr>

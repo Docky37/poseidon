@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -22,6 +23,8 @@ import com.nnk.springboot.constants.Constants;
  * @author Thierry Schreiner
  */
 @Component
+@Getter
+@Setter
 @NoArgsConstructor
 @ToString
 public class BidListFullDTO extends BidListDTO {
@@ -29,8 +32,6 @@ public class BidListFullDTO extends BidListDTO {
     /**
      * The number of ask auctions.
      */
-    @Getter
-    @Setter
     private BigDecimal askQuantity;
 
     /**
@@ -40,8 +41,6 @@ public class BidListFullDTO extends BidListDTO {
     @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
             message = "Must be a number < 1,000,000,000,000 with"
                     + " 4 fractional digits max")
-    @Getter
-    @Setter
     private BigDecimal bid;
 
     /**
@@ -51,126 +50,95 @@ public class BidListFullDTO extends BidListDTO {
     @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
             message = "Must be a number < 1,000,000,000,000 with"
                     + " 4 fractional digits max")
-    @Getter
-    @Setter
     private BigDecimal ask;
 
     /**
      * Benchmark String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String benchmark;
 
     /**
      * Date of the Bidlist.
      */
-    @Getter
-    @Setter
-    @DateTimeFormat(pattern = "yyyy/MM/dd' 'HH:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy' 'HH:mm")
+    @Past(message = "Must be past!")
     private LocalDateTime bidListDate;
 
     /**
      * Commentary String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String commentary;
 
     /**
      * Security String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String security;
 
     /**
      * Status String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String status;
 
     /**
      * Trader String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String trader;
 
     /**
      * Book String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String book;
 
     /**
      * The name of the user who has created the BidList record.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String creationName;
 
     /**
      * The date & time when user has created the BidList record.
      */
-    @Getter
-    @Setter
     private LocalDateTime creationDate;
 
     /**
      * The name of the user who has modified the BidList record.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String revisionName;
 
     /**
      * The date & time when user has modified the BidList record.
      */
-    @Getter
-    @Setter
     private LocalDateTime revisionDate;
 
     /**
      * The name of the deal.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String dealName;
 
     /**
      * The type of the deal.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String dealType;
 
     /**
      * The id of the source list.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String sourceListId;
 
     /**
      * The side of the bidList.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
-    @Getter
-    @Setter
     private String side;
 
     /**

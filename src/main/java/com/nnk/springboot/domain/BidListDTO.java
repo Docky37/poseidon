@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,8 @@ import com.nnk.springboot.constants.Constants;
  * @author Thierry Schreiner
  */
 @Component
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -30,24 +33,20 @@ public class BidListDTO {
     /**
      * Id of the DTO.
      */
-    @Getter
-    @Setter
     private Integer bidListId;
 
     /**
      * The BidListDTO account name.
      */
-    @Getter
-    @Setter
     @NotBlank(message = "Account is mandatory")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     private String account;
 
     /**
      * The BidListDTO type.
      */
-    @Getter
-    @Setter
     @NotBlank(message = "Type is mandatory")
+    @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     private String type;
 
     /**
@@ -57,8 +56,6 @@ public class BidListDTO {
     @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
     message = "Must be a number < 1,000,000,000,000 with"
             + " 4 fractional digits max")
-    @Getter
-    @Setter
     private BigDecimal bidQuantity;
 
 }

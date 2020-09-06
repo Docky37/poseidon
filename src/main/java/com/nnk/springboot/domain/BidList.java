@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +27,8 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "bid_list")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -38,8 +39,6 @@ public class BidList {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Integer bidListId;
 
     /**
@@ -47,8 +46,6 @@ public class BidList {
      */
     @NotBlank
     @Column(nullable = false, length = Constants.LENGTH_30)
-    @Getter
-    @Setter
     private String account;
 
     /**
@@ -56,21 +53,14 @@ public class BidList {
      */
     @NotBlank
     @Column(nullable = false, length = Constants.LENGTH_30)
-    @Getter
-    @Setter
     private String type;
 
     /**
      * The number of bid auctions.
      */
     @NotNull
-    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
-            message = "Must be a number < 1,000,000,000,000 with"
-            + " 4 fractional digits max")
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
-    @Getter
-    @Setter
     private BigDecimal bidQuantity;
 
     /**
@@ -78,8 +68,6 @@ public class BidList {
      */
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
-    @Getter
-    @Setter
     private BigDecimal askQuantity;
 
     /**
@@ -88,8 +76,6 @@ public class BidList {
      */
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
-    @Getter
-    @Setter
     private BigDecimal bid;
 
     /**
@@ -98,23 +84,17 @@ public class BidList {
      */
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
-    @Getter
-    @Setter
     private BigDecimal ask;
 
     /**
      * Benchmark String variable.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String benchmark;
 
     /**
      * Date of the Bidlist.
      */
-    @Getter
-    @Setter
     private LocalDateTime bidListDate;
 
     /**
@@ -129,8 +109,6 @@ public class BidList {
      * Security String variable.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String security;
 
     /**
@@ -145,8 +123,6 @@ public class BidList {
      * Trader String variable.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String trader;
 
     /**
@@ -161,62 +137,46 @@ public class BidList {
      * The name of the user who has created the BidList record.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String creationName;
 
     /**
      * The date & time when user has created the BidList record.
      */
-    @Getter
-    @Setter
     private LocalDateTime creationDate;
 
     /**
      * The name of the user who has modified the BidList record.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String revisionName;
 
     /**
      * The date & time when user has modified the BidList record.
      */
-    @Getter
-    @Setter
     private LocalDateTime revisionDate;
 
     /**
      * The name of the deal.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String dealName;
 
     /**
      * The type of the deal.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String dealType;
 
     /**
      * The id of the source list.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String sourceListId;
 
     /**
      * The side of the bidList.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String side;
 
 }
