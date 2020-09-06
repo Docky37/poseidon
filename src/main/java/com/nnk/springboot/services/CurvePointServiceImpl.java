@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.CurvePointDTO;
 import com.nnk.springboot.domain.mapping.CurvePointMapping;
+import com.nnk.springboot.dto.CurvePointDTO;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 import com.nnk.springboot.repositories.CurvePointRepository;
 

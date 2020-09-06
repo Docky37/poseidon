@@ -15,8 +15,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.domain.RatingDTO;
 import com.nnk.springboot.domain.mapping.RatingMapping;
+import com.nnk.springboot.dto.RatingDTO;
 import com.nnk.springboot.exceptions.RatingNotFoundException;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.RatingService;

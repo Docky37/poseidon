@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.domain.BidListDTO;
-import com.nnk.springboot.domain.BidListFullDTO;
 import com.nnk.springboot.domain.mapping.BidListMapping;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.repositories.BidListRepository;
 

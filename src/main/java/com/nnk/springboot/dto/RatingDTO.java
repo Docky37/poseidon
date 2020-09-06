@@ -1,4 +1,4 @@
-package com.nnk.springboot.domain;
+package com.nnk.springboot.dto;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;

@@ -2,7 +2,7 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
-import com.nnk.springboot.domain.CurvePointDTO;
+import com.nnk.springboot.dto.CurvePointDTO;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 
 /**

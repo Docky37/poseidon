@@ -1,7 +1,7 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.BidListDTO;
-import com.nnk.springboot.domain.BidListFullDTO;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.services.BidListService;
 

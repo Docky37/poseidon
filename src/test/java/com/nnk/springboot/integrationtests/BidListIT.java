@@ -33,8 +33,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.View;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.domain.BidListDTO;
-import com.nnk.springboot.domain.BidListFullDTO;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.services.BidListService;

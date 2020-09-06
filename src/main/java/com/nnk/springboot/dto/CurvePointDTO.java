@@ -1,4 +1,4 @@
-package com.nnk.springboot.domain;
+package com.nnk.springboot.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

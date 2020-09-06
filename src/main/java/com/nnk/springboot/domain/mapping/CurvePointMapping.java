@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.CurvePointDTO;
+import com.nnk.springboot.dto.CurvePointDTO;
 
 /**
  * This class is used to perform bidirectional mapping between a CurvePoint

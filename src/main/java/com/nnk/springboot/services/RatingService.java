@@ -2,7 +2,7 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
-import com.nnk.springboot.domain.RatingDTO;
+import com.nnk.springboot.dto.RatingDTO;
 import com.nnk.springboot.exceptions.RatingNotFoundException;
 
 /**

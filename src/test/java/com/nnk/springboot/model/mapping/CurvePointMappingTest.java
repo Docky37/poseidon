@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.domain.CurvePointDTO;
 import com.nnk.springboot.domain.mapping.CurvePointMapping;
+import com.nnk.springboot.dto.CurvePointDTO;
 
 @SpringJUnitConfig(value = CurvePointMapping.class)
 public class CurvePointMappingTest {

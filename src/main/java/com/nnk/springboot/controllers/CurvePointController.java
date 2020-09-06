@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.CurvePointDTO;
+import com.nnk.springboot.dto.CurvePointDTO;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 import com.nnk.springboot.services.CurvePointService;
 

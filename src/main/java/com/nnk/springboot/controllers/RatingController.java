@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.RatingDTO;
+import com.nnk.springboot.dto.RatingDTO;
 import com.nnk.springboot.exceptions.RatingNotFoundException;
 import com.nnk.springboot.services.RatingService;
 

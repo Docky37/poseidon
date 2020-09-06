@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.nnk.springboot.domain.BidListDTO;
-import com.nnk.springboot.domain.BidListFullDTO;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 
 /**

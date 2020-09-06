@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.domain.RatingDTO;
+import com.nnk.springboot.dto.RatingDTO;
 
 /**
  * This class is used to perform bidirectional mapping between a Rating entity

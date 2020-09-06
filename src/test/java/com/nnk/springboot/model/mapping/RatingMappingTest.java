@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.Rating;
-import com.nnk.springboot.domain.RatingDTO;
 import com.nnk.springboot.domain.mapping.RatingMapping;
+import com.nnk.springboot.dto.RatingDTO;
 
 @SpringJUnitConfig(value = RatingMapping.class)
 public class RatingMappingTest {

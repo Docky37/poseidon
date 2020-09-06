@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.domain.BidListDTO;
-import com.nnk.springboot.domain.BidListFullDTO;
+import com.nnk.springboot.dto.BidListDTO;
+import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.util.UserRetrieve;
 
 /**
