@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"/>
+	<title>Home</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+
+	<div class="row">
+		<h2>Update Rating</h2>
+	</div>
+
+	<div class="row">
+		<form action="#" 
+			th:action="@{/rating/update/{id}(id=${ratingDTO.id})}" 
+			th:object="${ratingDTO}" method="post" class="form-horizontal" style="width: 100%">
+			<p>
+				Moodys' Rating:<br /> <input type="text" th:field="*{moodysRating}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('moodysRating')}"
+					th:errors="*{moodysRating}">125 characters max!</span>
+			</p>
+
+			<p>
+				Standard and Poors' Rating:<br /> <input type="text" th:field="*{standPoorsRating}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('standPoorsRating')}"
+					th:errors="*{standPoorsRating}">125 characters max!</span>
+			</p>
+
+			<p>
+				Fitch' Rating:<br /> <input type="text" th:field="*{fitchRating}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('fitchRating')}"
+					th:errors="*{fitchRating}">125 characters max!</span>
+			</p>
+
+			<p>
+				Order Number:<br /> <input type="text" th:field="*{orderNumber}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('orderNumber')}"
+					th:errors="*{orderNumber}">Integer, 12 digits max!</span>
+			</p>
+
+			<p>
+				<a href="/rating/list" class="btn btn-danger btn-sm">Cancel</a>
+				<button type="submit" class="btn btn-primary btn-sm">Update
+					rating</button>
+			</p>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>
