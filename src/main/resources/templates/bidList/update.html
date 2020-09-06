@@ -44,16 +44,19 @@
 								</td>
 								<td>Type:<br /> <input type="text" th:field="*{type}" /><br />
 									<span style="color: red;" th:if="${#fields.hasErrors('type')}"
-									th:errors="*{type}">Type is mandatory! </span><br /> Bid
-									price: <br /> <input type="text" th:field="*{bid}" /><br />
+									th:errors="*{type}">Type is mandatory! </span><br /> 
+									Bid price: <br /> <input type="text" th:field="*{bid}" /><br />
 									<span style="color: red;" th:if="${#fields.hasErrors('bid')}"
 									th:errors="*{bid}">Invalid number, 999999 max with 4
-										fractional digits max</span><br /> Ask price: <br /> <input
-									type="text" th:field="*{ask}" /><br /> <span
-									style="color: red;" th:if="${#fields.hasErrors('ask')}"
+										fractional digits max</span><br /> 
+									Ask price: <br /> <input type="text" th:field="*{ask}" /><br />
+									<span style="color: red;" th:if="${#fields.hasErrors('ask')}"
 									th:errors="*{ask}">Invalid number, 999999 max with 4
-										fractional digits max</span><br /> BidList date:<br /> <input
-									type="datetime-local" th:field="*{bidListDate}" /><br />
+										fractional digits max</span><br /> 
+									BidList date:<br /> <input type="datetime-local" th:field="*{bidListDate}" /><br />
+									<span style="color: red;" th:if="${#fields.hasErrors('bidListDate')}"
+									th:errors="*{bidListDate}">Invalid number, 999999 max with 4
+										fractional digits max</span><br /> 
 								<br /> Security:<br /> <input type="text"
 									th:field="*{security}" /><br />
 								<br /> Book:<br /> <input type="text" th:field="*{book}" /><br />

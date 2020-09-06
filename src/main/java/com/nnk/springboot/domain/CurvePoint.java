@@ -6,12 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+
+import com.nnk.springboot.constants.Constants;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -54,6 +58,11 @@ public class CurvePoint {
     /**
      * Term BigDecimal field.
      */
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
+            + " 4 fractional digits max")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal term;
@@ -61,6 +70,11 @@ public class CurvePoint {
     /**
      * Value BigDecimal field.
      */
+    @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
+            message = "Must be a number < 1,000,000,000,000 with"
+            + " 4 fractional digits max")
+    @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
+            + Constants.N4_DIGITS + ")")
     @Getter
     @Setter
     private BigDecimal value;
