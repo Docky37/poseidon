@@ -34,7 +34,7 @@ public class CurvePointDTO {
      * Id of the curve that contains this curvePoint(Foreign Key).
      */
     @NotNull(message = "Curve id mandatory to avoid orphan curve point!")
-    @Max(value = 2147483647)
+    @Max(value = Constants.MAX_POSITIVE_INTEGER)
     @Getter
     @Setter
     private Integer curveId;

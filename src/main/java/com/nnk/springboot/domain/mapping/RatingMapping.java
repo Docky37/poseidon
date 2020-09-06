@@ -21,10 +21,10 @@ public class RatingMapping {
      * This method is in charge of the mapping of a list of Rating entities to a
      * list of RatingDTO. Use the mapEntityToDTO(Rating rating)as a sub method.
      *
-     * @param listRating
+     * @param listOfRating
      * @return a List<RatingDTO> object
      */
-    public List<RatingDTO> mapAListOfRating(List<Rating> listOfRating) {
+    public List<RatingDTO> mapAListOfRating(final List<Rating> listOfRating) {
         List<RatingDTO> listRatingDTO = new ArrayList<>();
         for (Rating rating : listOfRating) {
             RatingDTO ratingDTO = mapEntityToDTO(rating);
@@ -37,11 +37,11 @@ public class RatingMapping {
     /**
      * This method is in charge of the mapping of a RatingDTO to a Rating
      * entity.
-     * 
+     *
      * @param ratingDTO
-     * @return
+     * @return a Rating object
      */
-    public Rating mapDTOToEntity(RatingDTO ratingDTO) {
+    public Rating mapDTOToEntity(final RatingDTO ratingDTO) {
         final Rating rating = new Rating();
         rating.setId(ratingDTO.getId());
         rating.setMoodysRating(ratingDTO.getMoodysRating());
@@ -57,7 +57,7 @@ public class RatingMapping {
      * RatingDTO.
      *
      * @param rating
-     * @return
+     * @return a RatingDTO object
      */
     public RatingDTO mapEntityToDTO(final Rating rating) {
         RatingDTO ratingDTO = new RatingDTO();

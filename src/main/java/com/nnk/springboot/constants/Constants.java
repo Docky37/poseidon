@@ -28,6 +28,11 @@ public class Constants {
     public static final int N16_DIGITS = 16;
 
     /**
+     * The max positive value of an integer.
+     */
+    public static final int MAX_POSITIVE_INTEGER = 2147483647;
+
+    /**
      * Empty constructor.
      */
     protected Constants() {

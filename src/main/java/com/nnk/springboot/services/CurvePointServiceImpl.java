@@ -76,9 +76,10 @@ public class CurvePointServiceImpl implements CurvePointService {
             curvePointRepository.deleteById(id);
             return curvePointMapping.mapEntityToDTO(curvePoint.get());
         } else {
-            throw (new CurvePointNotFoundException("No CurvePoint record exist for given id"));
-        }        
-        
+            throw (new CurvePointNotFoundException(
+                    "No CurvePoint record exist for given id"));
+        }
+
     }
 
     /**

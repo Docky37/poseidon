@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import com.nnk.springboot.constants.Constants;
 
@@ -24,6 +22,8 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "rating")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -34,39 +34,29 @@ public class Rating {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Integer id;
 
     /**
      * Rating of Moodys' Credit rating agency.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String moodysRating;
 
     /**
      * Rating of Standard & Poor's Credit rating agency.
      */
     @Column(length = Constants.LENGTH_125)
-    @Getter
-    @Setter
     private String standPoorsRating;
 
     /**
      * Rating of Fitch rating agency.
      */
-    @Getter
-    @Setter
     @Column(length = Constants.LENGTH_125)
     private String fitchRating;
 
     /**
-     * Rating of Moodys' Credit rating agency
+     * Order number.
      */
-    @Getter
-    @Setter
     private Integer orderNumber;
 
 }

@@ -11,7 +11,7 @@ public class RatingNotFoundException extends Exception {
      * Class constructor.
      * @param message
      */
-    public RatingNotFoundException(String message) {
+    public RatingNotFoundException(final String message) {
     }
 
 }
