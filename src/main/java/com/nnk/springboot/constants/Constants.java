@@ -13,6 +13,11 @@ public class Constants {
     public static final int LENGTH_125 = 125;
 
     /**
+     * A String length of five hundred and twelve characters.
+     */
+    public static final int LENGTH_512 = 512;
+
+    /**
      * A number of four digits .
      */
     public static final int N4_DIGITS = 4;
