@@ -19,12 +19,17 @@ import com.nnk.springboot.constants.Constants;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Data transfer object for CurvePoint.
+ *
+ * @author Thierry Schreiner
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class CurvePointDTO {
     /**
-     * Id of the entity mapped to primary key field.
+     * Id of the CurvePointDTO.
      */
     @Getter
     @Setter

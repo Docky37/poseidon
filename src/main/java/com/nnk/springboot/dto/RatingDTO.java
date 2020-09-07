@@ -12,7 +12,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * This class is the entity in relation with the table of rating.
+ * Data transfer object for Rating.
  *
  * @author Thierry Schreiner
  */
@@ -24,7 +24,7 @@ import lombok.ToString;
 public class RatingDTO {
 
     /**
-     * Id of the entity mapped to primary key field.
+     * Id of the RatingDTO.
      */
     private Integer id;
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import com.nnk.springboot.constants.Constants;
 
 /**
- * Data transfer object that contains only 4 attributes of a BidList.
+ * Data transfer object for BidList.
  *
  * @author Thierry Schreiner
  */

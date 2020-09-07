@@ -31,7 +31,7 @@ import com.nnk.springboot.constants.Constants;
 public class BidListDTO {
 
     /**
-     * Id of the DTO.
+     * Id of the BidListDTO.
      */
     private Integer bidListId;
 
