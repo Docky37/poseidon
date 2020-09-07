@@ -14,8 +14,8 @@ import com.nnk.springboot.exceptions.RatingNotFoundException;
 public interface RatingService {
 
     /**
-     * Used to get a list of all Poseidon Rating stored in the curve_point
-     * table of the Database.
+     * Used to get a list of all Poseidon Rating stored in the rating table of
+     * the Database.
      *
      * @return a List<Rating>
      */
@@ -25,7 +25,7 @@ public interface RatingService {
      * Used to persist a Poseidon Rating in DataBase.
      *
      * @param ratingDTO
-     * @return a Rating
+     * @return a RatingDTO
      */
     RatingDTO save(RatingDTO ratingDTO);
 
