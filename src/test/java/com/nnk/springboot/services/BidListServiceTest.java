@@ -42,28 +42,28 @@ public class BidListServiceTest {
         listOfBidList.add(new BidList());
         listOfBidList.get(0).setBidListId(1);
         listOfBidList.get(0).setAccount("Account1");
-        listOfBidList.get(0).setAccount("Type1");
+        listOfBidList.get(0).setType("Type1");
         listOfBidList.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidList.add(new BidList());
         listOfBidList.get(1).setBidListId(2);
         listOfBidList.get(1).setAccount("Account2");
-        listOfBidList.get(1).setAccount("Type2");
+        listOfBidList.get(1).setType("Type2");
         listOfBidList.get(1).setBidQuantity(new BigDecimal("2"));
 
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(0).setBidListId(1);
         listOfBidListDTO.get(0).setAccount("Account1");
-        listOfBidListDTO.get(0).setAccount("Type1");
+        listOfBidListDTO.get(0).setType("Type1");
         listOfBidListDTO.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(1).setBidListId(2);
         listOfBidListDTO.get(1).setAccount("Account2");
-        listOfBidListDTO.get(1).setAccount("Type2");
+        listOfBidListDTO.get(1).setType("Type2");
         listOfBidListDTO.get(1).setBidQuantity(new BigDecimal("2"));
 
         bidListFullDTO.setBidListId(2);
         bidListFullDTO.setAccount("Account2");
-        bidListFullDTO.setAccount("Type2");
+        bidListFullDTO.setType("Type2");
         bidListFullDTO.setBidQuantity(new BigDecimal("2"));
 
     }
@@ -132,12 +132,12 @@ public class BidListServiceTest {
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(2).setBidListId(3);
         listOfBidListDTO.get(2).setAccount("Account3");
-        listOfBidListDTO.get(2).setAccount("Type3");
+        listOfBidListDTO.get(2).setType("Type3");
         listOfBidListDTO.get(2).setBidQuantity(new BigDecimal("3"));
         listOfBidList.add(new BidList());
         listOfBidList.get(2).setBidListId(3);
         listOfBidList.get(2).setAccount("Account3");
-        listOfBidList.get(2).setAccount("Type3");
+        listOfBidList.get(2).setType("Type3");
         listOfBidList.get(2).setBidQuantity(new BigDecimal("3"));
         given(bidListRepository.findByBidListId(3))
                 .willReturn(listOfBidList.get(2));

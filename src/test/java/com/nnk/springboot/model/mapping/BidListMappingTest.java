@@ -34,14 +34,14 @@ public class BidListMappingTest {
         listOfBidList.add(new BidList());
         listOfBidList.get(0).setBidListId(1);
         listOfBidList.get(0).setAccount("Account1");
-        listOfBidList.get(0).setAccount("Type1");
+        listOfBidList.get(0).setType("Type1");
         listOfBidList.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidList.get(0).setCreationName("Testeur");
         listOfBidList.get(0).setRevisionName("Testeur");
         listOfBidList.add(new BidList());
         listOfBidList.get(1).setBidListId(2);
         listOfBidList.get(1).setAccount("Account2");
-        listOfBidList.get(1).setAccount("Type2");
+        listOfBidList.get(1).setType("Type2");
         listOfBidList.get(1).setBidQuantity(new BigDecimal("2"));
         listOfBidList.get(1).setCreationName("Testeur");
         listOfBidList.get(1).setRevisionName("Testeur");
@@ -49,17 +49,17 @@ public class BidListMappingTest {
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(0).setBidListId(1);
         listOfBidListDTO.get(0).setAccount("Account1");
-        listOfBidListDTO.get(0).setAccount("Type1");
+        listOfBidListDTO.get(0).setType("Type1");
         listOfBidListDTO.get(0).setBidQuantity(new BigDecimal("1"));
         listOfBidListDTO.add(new BidListDTO());
         listOfBidListDTO.get(1).setBidListId(2);
         listOfBidListDTO.get(1).setAccount("Account2");
-        listOfBidListDTO.get(1).setAccount("Type2");
+        listOfBidListDTO.get(1).setType("Type2");
         listOfBidListDTO.get(1).setBidQuantity(new BigDecimal("2"));
 
         bidListDTO.setBidListId(2);
         bidListDTO.setAccount("Account2");
-        bidListDTO.setAccount("Type2");
+        bidListDTO.setType("Type2");
         bidListDTO.setBidQuantity(new BigDecimal("2"));
         bidListDTO.setCreationName("Testeur");
         bidListDTO.setRevisionName("Testeur");
