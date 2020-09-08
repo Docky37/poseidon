@@ -3,6 +3,11 @@ package com.nnk.springboot.constants;
 public class Constants {
 
     /**
+     * A String length of ten characters.
+     */
+    public static final int LENGTH_10 = 10;
+
+    /**
      * A String length of thirty characters.
      */
     public static final int LENGTH_30 = 30;
