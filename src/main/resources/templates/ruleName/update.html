@@ -16,10 +16,48 @@
 	<div class="row">
 		<form action="#" th:action="@{/ruleName/update/{id}(id=${ruleNameDTO.id})}" 
 			th:object="${ruleNameDTO}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of RuleName, there are 2 buttons: Update data and Cancel to the RuleName
-			 -->
+			<p>
+				Rule name:<br /> <input type="text" th:field="*{name}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}">125 characters max!</span>
+			</p>
+			<p>
+				Rule description:<br /> <input type="text" th:field="*{description}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('description')}"
+					th:errors="*{description}">125 characters max!</span>
+			</p>
+			<p>
+				json:<br /> <input type="text" th:field="*{json}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('json')}"
+					th:errors="*{json}">125 characters max!</span>
+			</p>
+			<p>
+				template:<br /> <input type="text" th:field="*{template}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('template')}"
+					th:errors="*{template}">512 characters max!</span>
+			</p>
+			<p>
+				SQL String:<br /> <input type="text" th:field="*{sqlStr}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('sqlStr')}"
+					th:errors="*{sqlStr}">125 characters max!</span>
+			</p>
+			<p>
+				SQL Part:<br /> <input type="text" th:field="*{sqlPart}" /><br />
+				<span style="color: red;"
+					th:if="${#fields.hasErrors('sqlPart')}"
+					th:errors="*{sqlPart}">1252 characters max!</span>
+			</p>
 
+			<p>
+				<a href="/ruleName/list" class="btn btn-danger btn-sm">Cancel</a>
+				<button type="submit" class="btn btn-primary btn-sm">Update
+					ruleName</button>
+			</p>
 		</form>
 	</div>
 
