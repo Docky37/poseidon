@@ -25,7 +25,8 @@ public class RuleNameMapping {
      * @param listOfRuleName
      * @return a List<RuleNameDTO> object
      */
-    public List<RuleNameDTO> mapAListOfRuleName(List<RuleName> listOfRuleName) {
+    public List<RuleNameDTO> mapAListOfRuleName(
+            final List<RuleName> listOfRuleName) {
         List<RuleNameDTO> listRuleNameDTO = new ArrayList<>();
         for (RuleName ruleName : listOfRuleName) {
             RuleNameDTO ruleNameDTO = mapEntityToDTO(ruleName);
@@ -43,7 +44,7 @@ public class RuleNameMapping {
      * @param ruleNameDTO
      * @return a RuleName object
      */
-    public RuleName mapDTOToEntity(RuleNameDTO ruleNameDTO) {
+    public RuleName mapDTOToEntity(final RuleNameDTO ruleNameDTO) {
         final RuleName ruleName = new RuleName();
         ruleName.setId(ruleNameDTO.getId());
         ruleName.setName(ruleNameDTO.getName());
@@ -63,7 +64,7 @@ public class RuleNameMapping {
      * @param ruleName
      * @return a RuleNameDTO object
      */
-    public RuleNameDTO mapEntityToDTO(RuleName ruleName) {
+    public RuleNameDTO mapEntityToDTO(final RuleName ruleName) {
         final RuleNameDTO ruleNameDTO = new RuleNameDTO();
         ruleNameDTO.setId(ruleName.getId());
         ruleNameDTO.setName(ruleName.getName());

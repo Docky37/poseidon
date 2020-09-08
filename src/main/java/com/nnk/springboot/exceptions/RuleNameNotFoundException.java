@@ -9,7 +9,7 @@ public class RuleNameNotFoundException extends Exception {
 
     /**
      * Class constructor.
-     * 
+     *
      * @param message
      */
     public RuleNameNotFoundException(final String message) {

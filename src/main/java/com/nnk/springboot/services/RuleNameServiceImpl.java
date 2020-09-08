@@ -37,37 +37,39 @@ public class RuleNameServiceImpl implements RuleNameService {
     /**
      * {@inheritDoc}
      */
-     @Override
+    @Override
     public List<RuleNameDTO> findAll() {
-         List<RuleName> listRuleName = new ArrayList<>();
-         listRuleName = ruleNameRepository.findAll();
+        List<RuleName> listRuleName = new ArrayList<>();
+        listRuleName = ruleNameRepository.findAll();
 
-         List<RuleNameDTO> listRuleNameDTO = ruleNameMapping
-                 .mapAListOfRuleName(listRuleName);
+        List<RuleNameDTO> listRuleNameDTO = ruleNameMapping
+                .mapAListOfRuleName(listRuleName);
 
-         return listRuleNameDTO;
-      }
+        return listRuleNameDTO;
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public RuleNameDTO save(RuleNameDTO ruleNameDTO) {
+    public RuleNameDTO save(final RuleNameDTO ruleNameDTO) {
         RuleName ruleName = ruleNameMapping.mapDTOToEntity(ruleNameDTO);
         System.out.println(ruleName.toString());
         RuleName savedRuleName = ruleNameRepository.save(ruleName);
         System.out.println(savedRuleName.toString());
-        RuleNameDTO savedBidListDTO = ruleNameMapping.mapEntityToDTO(savedRuleName);
+        RuleNameDTO savedBidListDTO = ruleNameMapping
+                .mapEntityToDTO(savedRuleName);
         System.out.println(savedBidListDTO.toString());
         return savedBidListDTO;
     }
 
     /**
      * {@inheritDoc}
-     * @throws RuleNameNotFoundException 
+     *
+     * @throws RuleNameNotFoundException
      */
     @Override
-    public RuleNameDTO getById(int id) throws RuleNameNotFoundException {
+    public RuleNameDTO getById(final int id) throws RuleNameNotFoundException {
         RuleName ruleName = ruleNameRepository.findById(id)
                 .orElseThrow(() -> new RuleNameNotFoundException(
                         "No RuleName record exist for given id"));
@@ -77,10 +79,11 @@ public class RuleNameServiceImpl implements RuleNameService {
 
     /**
      * {@inheritDoc}
-     * @throws RuleNameNotFoundException 
+     *
+     * @throws RuleNameNotFoundException
      */
     @Override
-    public RuleNameDTO delete(int id) throws RuleNameNotFoundException {
+    public RuleNameDTO delete(final int id) throws RuleNameNotFoundException {
         RuleName ruleName = ruleNameRepository.findById(id)
                 .orElseThrow(() -> new RuleNameNotFoundException(
                         "No RuleName record exist for given id"));
