@@ -46,7 +46,7 @@ public class TradeController {
      * @return a String(the address of list.html page)
      */
     @GetMapping("/trade/list")
-    public String home(Model model) {
+    public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /trade/list");
         List<TradeDTO> trades = tradeService.findAll();
         model.addAttribute("trades", trades);
@@ -100,7 +100,8 @@ public class TradeController {
      * @throws TradeNotFoundException
      */
     @GetMapping("/trade/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateForm(@PathVariable("id") final Integer id,
+            final Model model) {
         TradeFullDTO tradeFullDTO;
         LOGGER.info("NEW HTML GET REQUEST on /trade/update/{}", id);
         try {
@@ -149,7 +150,8 @@ public class TradeController {
      * @throws TradeNotFoundException
      */
     @GetMapping("/trade/delete/{id}")
-    public String deleteTrade(@PathVariable("id") Integer id, Model model) {
+    public String deleteTrade(@PathVariable("id") final Integer id,
+            final Model model) {
         LOGGER.info("NEW HTML DELETE REQUEST on /trade/delete/{}", id);
 
         try {

@@ -53,7 +53,7 @@ public class TradeServiceImpl implements TradeService {
      * {@inheritDoc}
      */
     @Override
-    public TradeDTO save(TradeDTO tradeDTO) {
+    public TradeDTO save(final TradeDTO tradeDTO) {
         Trade trade = tradeMapping.mapDTOToEntity(tradeDTO);
         Trade savedTrade = tradeRepository.save(trade);
         TradeDTO savedTradeDTO = tradeMapping.mapEntityToDTO(savedTrade);
@@ -74,11 +74,9 @@ public class TradeServiceImpl implements TradeService {
 
     /**
      * {@inheritDoc}
-     * 
-     * @throws TradeNotFoundException
      */
     @Override
-    public TradeDTO delete(int id) throws TradeNotFoundException {
+    public TradeDTO delete(final int id) throws TradeNotFoundException {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> new TradeNotFoundException(
                         "No RuleName record exist for given id"));
@@ -91,10 +89,9 @@ public class TradeServiceImpl implements TradeService {
 
     /**
      * {@inheritDoc}
-     * @throws TradeNotFoundException 
      */
     @Override
-    public TradeDTO getById(int id) throws TradeNotFoundException {
+    public TradeFullDTO getById(final int id) throws TradeNotFoundException {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> new TradeNotFoundException(
                         "No RuleName record exist for given id"));

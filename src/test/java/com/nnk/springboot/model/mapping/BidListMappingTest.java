@@ -102,4 +102,18 @@ public class BidListMappingTest {
 
     }
 
+    @Test
+    public void givenABidListFullDTO_whenMapToEntity_thenReturnsBidList() {
+        // GIVEN
+        given(userRetrieve.getLoggedUser()).willReturn("Testeur");
+        // WHEN
+        BidList result = bidListMapping.mapFullDTOToEntity(bidListDTO);
+        // THEN
+        result.setCreationDate(null);
+        result.setRevisionDate(null);
+        assertThat(result.toString())
+                .isEqualTo(listOfBidList.get(1).toString());
+
+    }
+
 }

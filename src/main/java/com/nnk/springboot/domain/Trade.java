@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 import com.nnk.springboot.constants.Constants;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +27,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Trade {
 
@@ -59,8 +57,7 @@ public class Trade {
     private BigDecimal buyQuantity;
 
     /**
-     /**
-     * The trade sell quantity.
+     * /** The trade sell quantity.
      */
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
@@ -79,15 +76,11 @@ public class Trade {
     @Column(columnDefinition = "DECIMAL(" + Constants.N16_DIGITS + ", "
             + Constants.N4_DIGITS + ")")
     private BigDecimal sellPrice;
-    
-    
 
     /**
      * Date of the Trade.
      */
     private LocalDateTime tradeDate;
-    /**
-    
     /**
      * Security String variable.
      */
@@ -163,6 +156,5 @@ public class Trade {
      */
     @Column(length = Constants.LENGTH_125)
     private String side;
-    
 
 }

@@ -2,16 +2,16 @@ package com.nnk.springboot.services;
 
 import java.util.List;
 
+import com.nnk.springboot.dto.TradeDTO;
+import com.nnk.springboot.dto.TradeFullDTO;
+import com.nnk.springboot.exceptions.TradeNotFoundException;
+
 /**
  * This TradeService interface defines five methods in charge of driving the
  * Trade CRUD operations using DatTransferObject.
  *
  * @author Thierry Schreiner
  */
-import com.nnk.springboot.dto.TradeDTO;
-import com.nnk.springboot.dto.TradeFullDTO;
-import com.nnk.springboot.exceptions.TradeNotFoundException;
-
 public interface TradeService {
 
     /**
@@ -33,7 +33,7 @@ public interface TradeService {
     /**
      * Used to persist a Poseidon Trade after update in DataBase.
      *
-     * @param bidListDTO
+     * @param tradeDTO
      * @return a TradeFullDTO object
      */
     TradeFullDTO saveFullDTO(TradeFullDTO tradeDTO);
@@ -54,6 +54,6 @@ public interface TradeService {
      * @return a TradeDTO
      * @throws TradeNotFoundException
      */
-    TradeDTO getById(int id) throws TradeNotFoundException;
+    TradeFullDTO getById(int id) throws TradeNotFoundException;
 
 }

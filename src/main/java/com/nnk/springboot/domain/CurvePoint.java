@@ -1,6 +1,5 @@
 package com.nnk.springboot.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +27,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "curve_point")
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class CurvePoint {
     /**

@@ -29,9 +29,9 @@ public class TradeFullDTO extends TradeDTO {
      * Date of the Trade.
      */
     private LocalDateTime tradeDate;
+
     /**
-     * 
-     * /** Security String variable.
+     * Security String variable.
      */
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     private String security;

@@ -117,8 +117,8 @@ public class BidListMapping {
     }
 
     /**
-     * This method is in charge of the mapping of a BidList entity to a
-     * BidListFullDTO.
+     * This method is in charge of the mapping of a BidListFullDTO to a BidList
+     * entity.
      *
      * @param bidListDTO
      * @return a BidList
