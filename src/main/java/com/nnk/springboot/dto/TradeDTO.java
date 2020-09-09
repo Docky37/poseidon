@@ -3,6 +3,7 @@ package com.nnk.springboot.dto;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
@@ -36,12 +37,14 @@ public class TradeDTO {
     /**
      * The trade account.
      */
+    @NotBlank
     @Size(max = Constants.LENGTH_30, message = "Max length = 30!")
     private String account;
 
     /**
      * The trade type.
      */
+    @NotBlank
     @Size(max = Constants.LENGTH_30, message = "Max length = 30!")
     private String type;
 
