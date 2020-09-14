@@ -8,6 +8,7 @@ import static org.mockito.BDDMockito.given;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,23 +102,21 @@ public class BidListServiceTest {
     public void whenGetById_thenReturnsExpectedBidList()
             throws BidListNotFoundException {
         // GIVEN
-        given(bidListRepository.findByBidListId(2))
-                .willReturn(listOfBidList.get(1));
+        given(bidListRepository.findById(2))
+                .willReturn(Optional.of(listOfBidList.get(1)));
         given(bidListMapping.mapEntityToFullDTO(any(BidList.class)))
                 .willReturn(bidListFullDTO);
         // WHEN
         BidListDTO result = bidListService.getById(2);
         // THEN
         System.out.println(result);
-        assertThat(result.toString())
-                .isEqualTo(bidListFullDTO.toString());
+        assertThat(result.toString()).isEqualTo(bidListFullDTO.toString());
     }
 
     @Test
     public void givenAnUnknownId_whenGetById_thenBidListNotFoundException()
             throws BidListNotFoundException {
         // GIVEN
-        given(bidListRepository.findByBidListId(3)).willReturn(null);
         // WHEN
         // THEN
         assertThrows(BidListNotFoundException.class, () -> {
@@ -139,8 +138,8 @@ public class BidListServiceTest {
         listOfBidList.get(2).setAccount("Account3");
         listOfBidList.get(2).setType("Type3");
         listOfBidList.get(2).setBidQuantity(new BigDecimal("3"));
-        given(bidListRepository.findByBidListId(3))
-                .willReturn(listOfBidList.get(2));
+        given(bidListRepository.findById(3))
+                .willReturn(Optional.of(listOfBidList.get(2)));
         given(bidListMapping.mapEntityToDTO(any(BidList.class)))
                 .willReturn(listOfBidListDTO.get(2));
         // WHEN

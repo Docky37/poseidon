@@ -82,12 +82,10 @@ public class BidListServiceImpl implements BidListService {
      */
     @Override
     public BidListDTO delete(final Integer id) throws BidListNotFoundException {
-        BidList bidList = bidListRepository.findByBidListId(id);
-        if (bidList != null) {
-            bidListRepository.deleteById(id);
-            return bidListMapping.mapEntityToDTO(bidList);
-        }
-        return null;
+        BidList bidList = bidListRepository.findById(id)
+                .orElseThrow(() -> new BidListNotFoundException(
+                        "No BidList record exist for given id"));
+        return bidListMapping.mapEntityToDTO(bidList);
     }
 
     /**

@@ -16,14 +16,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface BidListRepository extends JpaRepository<BidList, Integer> {
 
     /**
-     * This method is used to get the bidList that has the given id.
-     *
-     * @param id
-     * @return a BidList
-     */
-    BidList findByBidListId(Integer id);
-
-    /**
      * Truncate method used in integration tests.
      */
     @Transactional
