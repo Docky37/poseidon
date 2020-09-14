@@ -96,16 +96,11 @@ public class BidListServiceImpl implements BidListService {
     @Override
     public BidListFullDTO getById(final Integer id)
             throws BidListNotFoundException {
-        BidList bidList = bidListRepository.findByBidListId(id);
-        BidListFullDTO bidListDTO;
-        if (bidList != null) {
-            bidListDTO = bidListMapping.mapEntityToFullDTO(bidList);
-        } else {
-            throw new BidListNotFoundException(
-                    "No BidList record exist for given id");
-        }
+        BidList bidList = bidListRepository.findById(id)
+                .orElseThrow(() -> new BidListNotFoundException(
+                        "No BidList record exist for given id"));
 
-        return bidListDTO;
+        return bidListMapping.mapEntityToFullDTO(bidList);
     }
 
 }

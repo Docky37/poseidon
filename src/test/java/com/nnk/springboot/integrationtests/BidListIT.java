@@ -24,7 +24,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -43,11 +42,10 @@ import com.nnk.springboot.util.UserRetrieve;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class BidListIT {
 
-    static final Logger LOGGER = LoggerFactory
-            .getLogger(BidListIT.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(BidListIT.class);
 
     @LocalServerPort
     private int port;
@@ -63,7 +61,7 @@ public class BidListIT {
 
     @MockBean
     private UserRetrieve userRetrieve;
-    
+
     @Autowired
     private BidListService bidListService;
 
@@ -90,8 +88,8 @@ public class BidListIT {
 
     @BeforeEach
     public void setup() {
-        
-        bidListDTO = new BidListDTO(1, "account1", "type1",
+
+        bidListDTO = new BidListDTO(0, "account1", "type1",
                 new BigDecimal("1"));
         bidListFullDTO = new BidListFullDTO();
         bidListFullDTO.setBidListId(1);
@@ -101,32 +99,29 @@ public class BidListIT {
         bidListFullDTO.setAskQuantity(new BigDecimal("161.0000"));
         bidListFullDTO.setRevisionName("user");
 
-        
         mvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
     @AfterEach
     public void tearDrop() {
-        System.out.println("TEAR DROP");
-        System.out.println(bidListRepository.count());
-        //bidListRepository.truncate();
-        System.out.println(bidListRepository.count());
+        bidListRepository.truncate();
+    }
+
+    @Test // POST VALIDATE
+    public void givenExistingRecords_whenFindAll_thenListed() throws Exception {
+        // GIVEN
+        given(userRetrieve.getLoggedUser()).willReturn("Testeur");
+        // WHEN
+        bidListService.save(listOfBidListDTO.get(0));
+        bidListService.save(listOfBidListDTO.get(1));
+        List<BidListDTO> resultList = bidListService.findAll();
+        // THEN
+        assertThat(resultList.toString())
+                .isEqualTo(listOfBidListDTO.toString());
     }
 
     @Test // POST VALIDATE
     public void givenAValidNewBidListDTO_whenPost_thenSaved() throws Exception {
-        // GIVEN
-        given(userRetrieve.getLoggedUser()).willReturn("Testeur");
-        // WHEN
-        bidListService.save(listOfBidListDTO.get(0));        
-        bidListService.save(listOfBidListDTO.get(1));        
-        List<BidListDTO> resultList = bidListService.findAll();
-        // THEN
-        assertThat(resultList.toString()).isEqualTo(listOfBidListDTO.toString());
-    }
-
-    @Test // POST VALIDATE
-    public void givenAValidNewBidListDTO_when_thenSaved() throws Exception {
         // GIVEN
         given(userRetrieve.getLoggedUser()).willReturn("Testeur");
         // WHEN
@@ -148,26 +143,28 @@ public class BidListIT {
             e.printStackTrace();
         }
         // THEN
-        assertThat(bidListDTOResult.getAccount()).isEqualTo(bidListDTO.getAccount());
-        assertThat(bidListDTOResult.getCreationDate().getDayOfMonth()).isEqualTo(LocalDate.now().getDayOfMonth());
+        assertThat(bidListDTOResult.getAccount())
+                .isEqualTo(bidListDTO.getAccount());
+        assertThat(bidListDTOResult.getCreationDate().getDayOfMonth())
+                .isEqualTo(LocalDate.now().getDayOfMonth());
         assertThat(bidListDTOResult.getCreationName()).isEqualTo("Testeur");
     }
 
-     @Test // POST UPDATE
+    @Test // POST UPDATE
     public void givenAValidBidListDTOToUpdate_whenPost_thenSaved()
             throws Exception {
         // GIVEN
-         given(userRetrieve.getLoggedUser()).willReturn("Testeur");
-       // WHEN
+        given(userRetrieve.getLoggedUser()).willReturn("Testeur");
+        // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/bidList/update/1")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .sessionAttr("bidListFullDTO", bidListFullDTO)
                 .param("bidListId", bidListFullDTO.getBidListId().toString())
                 .param("account", "account1")
                 .param("type", bidListFullDTO.getType())
-                .param("bidQuantity", bidListFullDTO.getBidQuantity().toString())
-                .param("askQuantity", "161.0000"))
-                .andDo(print())
+                .param("bidQuantity",
+                        bidListFullDTO.getBidQuantity().toString())
+                .param("askQuantity", "161.0000")).andDo(print())
                 .andExpect(MockMvcResultMatchers.model().hasNoErrors())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/bidList/list"))
                 .andReturn();
@@ -178,31 +175,37 @@ public class BidListIT {
             e.printStackTrace();
         }
         // THEN
-        assertThat(bidListDTOResult.getAccount()).isEqualTo(bidListFullDTO.getAccount());
-        assertThat(bidListDTOResult.getRevisionDate().getDayOfMonth()).isEqualTo(LocalDate.now().getDayOfMonth());
+        assertThat(bidListDTOResult.getAccount())
+                .isEqualTo(bidListFullDTO.getAccount());
+        assertThat(bidListDTOResult.getRevisionDate().getDayOfMonth())
+                .isEqualTo(LocalDate.now().getDayOfMonth());
         assertThat(bidListDTOResult.getRevisionName()).isEqualTo("Testeur");
         // THEN
     }
-
 
     @Test // DELETE
     public void givenAValidId_whenDelete_thenDeleted()
             throws Exception, BidListNotFoundException {
         // GIVEN
         given(userRetrieve.getLoggedUser()).willReturn("Testeur");
-        bidListService.save(listOfBidListDTO.get(0));
+        BidListDTO existingBidListDTO = bidListService
+                .save(listOfBidListDTO.get(0));
         // WHEN
         BidListDTO deletedBidListDTO = null;
         try {
-            deletedBidListDTO = bidListService.delete(1);
-         } catch (BidListNotFoundException e) {
-            LOGGER.error(" => No BidList record exist for id={}!", 1);
+            deletedBidListDTO = bidListService
+                    .delete(existingBidListDTO.getBidListId());
+        } catch (BidListNotFoundException e) {
+            LOGGER.error(" => No BidList record exist for id={}!",
+                    existingBidListDTO.getBidListId());
         }
-       
+
         // THEN
-        assertThat(deletedBidListDTO.toString()).isEqualTo(listOfBidListDTO.get(0).toString());
+        assertThat(deletedBidListDTO.toString())
+                .isEqualTo(existingBidListDTO.toString());
         assertThrows(BidListNotFoundException.class, () -> {
-            bidListService.getById(1);});
+            bidListService.getById(1);
+        });
     }
 
 }
