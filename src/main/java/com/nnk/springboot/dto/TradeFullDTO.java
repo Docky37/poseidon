@@ -2,8 +2,10 @@ package com.nnk.springboot.dto;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.constants.Constants;
@@ -28,6 +30,8 @@ public class TradeFullDTO extends TradeDTO {
     /**
      * Date of the Trade.
      */
+    @Past(message = "Must be past!")
+    @DateTimeFormat(pattern = "dd/MM/yyyy' 'HH:mm")
     private LocalDateTime tradeDate;
 
     /**

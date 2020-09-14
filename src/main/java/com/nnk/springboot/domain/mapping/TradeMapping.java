@@ -44,8 +44,7 @@ public class TradeMapping {
     }
 
     /**
-     * This method is in charge of the mapping of a TradeDTO to a
-     * Trade Entity.
+     * This method is in charge of the mapping of a TradeDTO to a Trade Entity.
      *
      * @param tradeDTO
      * @return a Trade object
@@ -57,6 +56,9 @@ public class TradeMapping {
         trade.setAccount(tradeDTO.getAccount());
         trade.setType(tradeDTO.getType());
         trade.setBuyQuantity(tradeDTO.getBuyQuantity());
+        trade.setSellQuantity(tradeDTO.getSellQuantity());
+        trade.setBuyPrice(tradeDTO.getBuyPrice());
+        trade.setSellPrice(tradeDTO.getSellPrice());
         trade.setCreationName(connectedUser);
         trade.setCreationDate(LocalDateTime.now());
         trade.setRevisionName(connectedUser);
@@ -76,6 +78,10 @@ public class TradeMapping {
         tradeDTO.setAccount(trade.getAccount());
         tradeDTO.setType(trade.getType());
         tradeDTO.setBuyQuantity(trade.getBuyQuantity());
+        tradeDTO.setSellQuantity(trade.getSellQuantity());
+        tradeDTO.setBuyPrice(trade.getBuyPrice());
+        tradeDTO.setSellPrice(trade.getSellPrice());
+
         return tradeDTO;
     }
 
@@ -135,7 +141,7 @@ public class TradeMapping {
         trade.setTrader(tradeDTO.getTrader());
         trade.setStatus(tradeDTO.getStatus());
         trade.setBenchmark(tradeDTO.getBenchmark());
-        trade.setBook(trade.getBook());
+        trade.setBook(tradeDTO.getBook());
         trade.setCreationName(tradeDTO.getCreationName());
         trade.setCreationDate(tradeDTO.getCreationDate());
         trade.setRevisionName(connectedUser);

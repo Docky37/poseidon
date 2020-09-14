@@ -37,14 +37,14 @@ public class TradeDTO {
     /**
      * The trade account.
      */
-    @NotBlank
+    @NotBlank(message = "Account is mandatory!")
     @Size(max = Constants.LENGTH_30, message = "Max length = 30!")
     private String account;
 
     /**
      * The trade type.
      */
-    @NotBlank
+    @NotBlank(message = "Type is mandatory!")
     @Size(max = Constants.LENGTH_30, message = "Max length = 30!")
     private String type;
 

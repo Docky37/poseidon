@@ -14,10 +14,48 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/trade/validate}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
-			 -->
+		<form action="#" th:action="@{/trade/validate}" 
+		th:object="${tradeDTO}" method="post" class="form-horizontal" style="width: 100%">
+				<p>
+					Account:<br /> <input type="text" th:field="*{account}" /><br />
+					<span style="color: red;" th:if="${#fields.hasErrors('account')}"
+						th:errors="*{account}">Account is mandatory!</span>
+				</p>
+
+				<p>
+					Type:<br /> <input type="text" th:field="*{type}" class="medium" /><br />
+					<span style="color: red;" th:if="${#fields.hasErrors('type')}"
+						th:errors="*{type}">Type is mandatory! </span>
+				</p>
+				<p>
+					Buy quantity: <br /> <input type="text" th:field="*{buyQuantity}" /><br />
+					<span style="color: red;"
+						th:if="${#fields.hasErrors('buyQuantity')}"
+						th:errors="*{buyQuantity}">Invalid number, 999999 max with 4 fractional digits max</span>
+				</p>
+				<p>
+					Sell quantity: <br /> <input type="text" th:field="*{sellQuantity}" /><br />
+					<span style="color: red;"
+						th:if="${#fields.hasErrors('sellQuantity')}"
+						th:errors="*{sellQuantity}">Invalid number, 999999 max with 4 fractional digits max</span>
+				</p>
+				<p>
+					Buy price: <br /> <input type="text" th:field="*{buyPrice}" /><br />
+					<span style="color: red;"
+						th:if="${#fields.hasErrors('buyPrice')}"
+						th:errors="*{buyPrice}">Invalid number, 999999 max with 4 fractional digits max</span>
+				</p>
+				<p>
+					Sell price: <br /> <input type="text" th:field="*{sellPrice}" /><br />
+					<span style="color: red;"
+						th:if="${#fields.hasErrors('sellPrice')}"
+						th:errors="*{sellPrice}">Invalid number, 999999 max with 4 fractional digits max</span>
+				</p>
+				<p>
+					<a href="/trade/list" class="btn btn-danger btn-sm">Cancel</a>
+					<button type="submit" class="btn btn-primary btn-sm">Add
+						Trade</button>
+				</p>
 
 		</form>
 	</div>

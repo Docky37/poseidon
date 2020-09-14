@@ -94,17 +94,9 @@ public class TradeServiceImpl implements TradeService {
     public TradeFullDTO getById(final int id) throws TradeNotFoundException {
         Trade trade = tradeRepository.findById(id)
                 .orElseThrow(() -> new TradeNotFoundException(
-                        "No RuleName record exist for given id"));
+                        "No Trade record exist for given id"));
 
-        TradeFullDTO tradeDTO;
-        if (trade != null) {
-            tradeDTO = tradeMapping.mapEntityToFullDTO(trade);
-        } else {
-            throw new TradeNotFoundException(
-                    "No Trade record exist for given id");
-        }
-
-        return tradeDTO;
+        return tradeMapping.mapEntityToFullDTO(trade);
     }
 
 }
