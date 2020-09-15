@@ -31,10 +31,9 @@ public class RuleNameMapping {
         for (RuleName ruleName : listOfRuleName) {
             RuleNameDTO ruleNameDTO = mapEntityToDTO(ruleName);
             listRuleNameDTO.add(ruleNameDTO);
-            // TODO Auto-generated method stub
         }
-        return listRuleNameDTO;
 
+        return listRuleNameDTO;
     }
 
     /**

@@ -31,7 +31,7 @@ public interface UserService {
 
     /**
      * Use to get the Poseidon RuleName identified by the given id.
-     * 
+     *
      * @param id
      * @return a UserDTO object
      * @throws UserNotFoundException
@@ -43,7 +43,7 @@ public interface UserService {
      *
      * @param id
      * @return a UserDTO object
-     * @throws UserNotFoundException 
+     * @throws UserNotFoundException
      */
     UserDTO delete(int id) throws UserNotFoundException;
 

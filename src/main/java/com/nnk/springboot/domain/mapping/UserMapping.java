@@ -24,7 +24,7 @@ public class UserMapping {
      * @param listOfUser
      * @return a List<UserDTO> object
      */
-    public List<UserDTO> mapAListOfUser(List<User> listOfUser) {
+    public List<UserDTO> mapAListOfUser(final List<User> listOfUser) {
         List<UserDTO> listUserDTO = new ArrayList<>();
         for (User user : listOfUser) {
             UserDTO userDTO = mapEntityToDTO(user);
@@ -40,7 +40,7 @@ public class UserMapping {
      * @param user
      * @return a UserDTO object
      */
-    public UserDTO mapEntityToDTO(User user) {
+    public UserDTO mapEntityToDTO(final User user) {
         final UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setFullname(user.getFullname());
@@ -57,7 +57,7 @@ public class UserMapping {
      * @param userDTO
      * @return a User object
      */
-    public User mapDTOToEntity(UserDTO userDTO) {
+    public User mapDTOToEntity(final UserDTO userDTO) {
         final User user = new User();
         user.setId(userDTO.getId());
         user.setFullname(userDTO.getFullname());

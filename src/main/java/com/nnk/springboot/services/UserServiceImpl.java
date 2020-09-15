@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public UserDTO save(UserDTO userDTO) {
+    public UserDTO save(final UserDTO userDTO) {
         User user = userMapping.mapDTOToEntity(userDTO);
         System.out.println(user.toString());
         User savedUser = userRepository.save(user);
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public UserDTO getById(int id) throws UserNotFoundException {
+    public UserDTO getById(final int id) throws UserNotFoundException {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(
                         "No User record exist for given id"));
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public UserDTO delete(int id) throws UserNotFoundException {
+    public UserDTO delete(final int id) throws UserNotFoundException {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(
                         "No User record exist for given id"));
