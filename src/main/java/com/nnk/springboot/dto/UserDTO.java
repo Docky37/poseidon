@@ -22,13 +22,13 @@ public class UserDTO {
     /**
      * Username (mandatory to log in before using Poseidon).
      */
-    @NotBlank(message = "Username is mandatory")
+    @NotBlank(message = "Username is mandatory!")
     private String username;
 
     /**
      * User's password (mandatory to log in before using Poseidon).
      */
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank(message = "Password is mandatory!")
     private String password;
 
     /**
@@ -40,7 +40,7 @@ public class UserDTO {
     /**
      * User's role.
      */
-    @NotBlank(message = "Role is mandatory")
+    @NotBlank(message = "Role is mandatory!")
     private String role;
 
 }

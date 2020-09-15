@@ -18,6 +18,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+/**
+ * Controller class use to manage RuleName entity CRUD methods.
+ *
+ * @author Thierry Schreiner
+ */
 @Controller
 public class RuleNameController {
 

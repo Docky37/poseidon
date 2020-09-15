@@ -1,19 +1,12 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.User;
-import com.nnk.springboot.dto.UserDTO;
-import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.exceptions.UserNotFoundException;
-import com.nnk.springboot.exceptions.UserNotFoundException;
-import com.nnk.springboot.dto.UserDTO;
-import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -79,7 +72,7 @@ public class UserController {
      * Post HTML request used to validate data and save the new User.
      *
      * @param model
-     * @param user
+     * @param userDTO
      * @param result
      * @return a String(list.html redirection address if valid data else
      *         add.html address)
@@ -125,7 +118,7 @@ public class UserController {
      * Post HTML request used to validate data and save the updated BidList.
      *
      * @param id
-     * @param user
+     * @param userDTO
      * @param result
      * @param model
      * @return a String(list.html redirection address if valid data else
