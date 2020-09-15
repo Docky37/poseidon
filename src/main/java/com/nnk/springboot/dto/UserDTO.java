@@ -3,10 +3,14 @@ package com.nnk.springboot.dto;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class UserDTO {
     /**
      * Id of the userDTO.

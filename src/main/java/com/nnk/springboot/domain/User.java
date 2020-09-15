@@ -8,12 +8,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class User {
     /**
      * Id of the user (Primary Key).
