@@ -1,4 +1,4 @@
-package com.nnk.springboot.services;
+package com.nnk.springboot.domain.mapping;
 
 import java.util.List;
 

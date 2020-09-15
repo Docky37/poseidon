@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.nnk.springboot.domain.User;
+import com.nnk.springboot.domain.mapping.UserMapping;
 import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.exceptions.UserNotFoundException;
 import com.nnk.springboot.repositories.UserRepository;
@@ -77,7 +78,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void givenAUserDTO_whenSave_thenReturnsSavedObject() {
+    public void givenAUserDTO_whenSave_thenReturnsSavedUser() {
         // GIVEN
         given(userMapping.mapDTOToEntity(listOfUserDTO.get(0)))
                 .willReturn(listOfUser.get(0));
