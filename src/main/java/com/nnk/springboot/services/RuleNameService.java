@@ -30,7 +30,7 @@ public interface RuleNameService {
     RuleNameDTO save(RuleNameDTO ruleNameDTO);
 
     /**
-     * Allows user to delete a Poseidon RuleName of the DataBase.
+     * Use to get the Poseidon RuleName identified by the given id.
      *
      * @param id
      * @return a RuleNameDTO
@@ -39,7 +39,7 @@ public interface RuleNameService {
     RuleNameDTO getById(int id) throws RuleNameNotFoundException;
 
     /**
-     * Use to get the Poseidon RuleName identified by the given id.
+     * Allows user to delete a Poseidon RuleName of the DataBase.
      *
      * @param id
      * @return a RuleNameDTO

@@ -42,10 +42,7 @@ public class RuleNameServiceImpl implements RuleNameService {
         List<RuleName> listRuleName = new ArrayList<>();
         listRuleName = ruleNameRepository.findAll();
 
-        List<RuleNameDTO> listRuleNameDTO = ruleNameMapping
-                .mapAListOfRuleName(listRuleName);
-
-        return listRuleNameDTO;
+        return ruleNameMapping.mapAListOfRuleName(listRuleName);
     }
 
     /**
@@ -56,17 +53,12 @@ public class RuleNameServiceImpl implements RuleNameService {
         RuleName ruleName = ruleNameMapping.mapDTOToEntity(ruleNameDTO);
         System.out.println(ruleName.toString());
         RuleName savedRuleName = ruleNameRepository.save(ruleName);
-        System.out.println(savedRuleName.toString());
-        RuleNameDTO savedBidListDTO = ruleNameMapping
-                .mapEntityToDTO(savedRuleName);
-        System.out.println(savedBidListDTO.toString());
-        return savedBidListDTO;
+
+        return ruleNameMapping.mapEntityToDTO(savedRuleName);
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @throws RuleNameNotFoundException
      */
     @Override
     public RuleNameDTO getById(final int id) throws RuleNameNotFoundException {
@@ -79,8 +71,6 @@ public class RuleNameServiceImpl implements RuleNameService {
 
     /**
      * {@inheritDoc}
-     *
-     * @throws RuleNameNotFoundException
      */
     @Override
     public RuleNameDTO delete(final int id) throws RuleNameNotFoundException {
