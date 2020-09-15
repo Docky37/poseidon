@@ -1,7 +1,14 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
+import com.nnk.springboot.dto.UserDTO;
+import com.nnk.springboot.dto.UserDTO;
+import com.nnk.springboot.dto.UserDTO;
+import com.nnk.springboot.exceptions.UserNotFoundException;
+import com.nnk.springboot.exceptions.UserNotFoundException;
+import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.services.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -35,7 +44,7 @@ public class UserController {
      * UserRepository bean injected by Spring when controller is created.
      */
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     /**
      * Get HTML request used to display the list.html front page that lists all
@@ -46,7 +55,9 @@ public class UserController {
      */
     @RequestMapping("/user/list")
     public String home(final Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        LOGGER.info("NEW HTML GET REQUEST on /user/list");
+        List<UserDTO> users = userService.findAll();
+        model.addAttribute("users", users);
         return "user/list";
     }
 
@@ -59,6 +70,8 @@ public class UserController {
      */
     @GetMapping("/user/add")
     public String addUser(final Model model) {
+        LOGGER.info("NEW HTML GET REQUEST on /user/add");
+        model.addAttribute("userDTO", new UserDTO());
         return "user/add";
     }
 
@@ -72,16 +85,17 @@ public class UserController {
      *         add.html address)
      */
     @PostMapping("/user/validate")
-    public String validate(@Valid final User user, final BindingResult result,
-            final Model model) {
-        if (!result.hasErrors()) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            user.setPassword(encoder.encode(user.getPassword()));
-            userRepository.save(user);
-            model.addAttribute("users", userRepository.findAll());
-            return "redirect:/user/list";
+    public String validate(@Valid final UserDTO userDTO,
+            final BindingResult result, final Model model) {
+        LOGGER.info("NEW HTML POST REQUEST on /user/validate: {}",
+                userDTO.toString());
+        if (result.hasErrors()) {
+            LOGGER.error("ERROR(S): {}", result);
+            return "user/add";
         }
-        return "user/add";
+        UserDTO savedUserDTO = userService.save(userDTO);
+        LOGGER.info(" => New User saved in DB: {}", savedUserDTO.toString());
+        return "redirect:/user/list";
     }
 
     /**
@@ -95,11 +109,16 @@ public class UserController {
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Invalid user Id:" + id));
-        user.setPassword("");
-        model.addAttribute("user", user);
-        return "user/update";
+        LOGGER.info("NEW HTML GET REQUEST on /user/update/{}", id);
+        UserDTO userDTO;
+        try {
+            userDTO = userService.getById(id);
+            model.addAttribute("userDTO", userDTO);
+            return "user/update";
+        } catch (UserNotFoundException e) {
+            LOGGER.error(" => No User record exist for id={}!", id);
+            return "redirect:/user/list";
+        }
     }
 
     /**
@@ -114,22 +133,23 @@ public class UserController {
      */
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") final Integer id,
-            @Valid final User user, final BindingResult result,
+            @Valid final UserDTO userDTO, final BindingResult result,
             final Model model) {
+        userDTO.setId(id);
+        LOGGER.info("NEW HTML POST REQUEST on /user/update/{}", id);
+        LOGGER.info("   => {}", userDTO.toString());
         if (result.hasErrors()) {
+            LOGGER.error("ERROR(S): {}", result);
             return "user/update";
         }
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setId(id);
-        userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
+        UserDTO savedUserDTO = userService.save(userDTO);
+        LOGGER.info(" => Updated User saved in DB: {}",
+                savedUserDTO.toString());
         return "redirect:/user/list";
     }
 
     /**
-     * Get HTML request used to delete a BidList by its id.
+     * Get HTML request used to delete a User by its id.
      *
      * @param id
      * @param model
@@ -138,10 +158,18 @@ public class UserController {
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") final Integer id,
             final Model model) {
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("Invalid user Id:" + id));
-        userRepository.delete(user);
-        model.addAttribute("users", userRepository.findAll());
+        LOGGER.info("NEW HTML DELETE REQUEST on /user/delete/{}", id);
+
+        try {
+            UserDTO deletedUserDTO = userService.delete(id);
+            LOGGER.info(" => User removed from DB: {}",
+                    deletedUserDTO.toString());
+        } catch (UserNotFoundException e) {
+            LOGGER.error(" => No User record exist for id={}!", id);
+            List<UserDTO> users = userService.findAll();
+            model.addAttribute("users", users);
+        }
+
         return "redirect:/user/list";
     }
 }
