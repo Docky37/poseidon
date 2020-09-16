@@ -1,4 +1,4 @@
-# Poseidon v0.6 - 15/09/2020
+# Poseidon v0.7 - 16/09/2020
 
 ## Technical:
 
@@ -11,10 +11,8 @@
 
 
 ## Content:
-- The v0.6 version adds the CRUD functionalities of the Trade class,
-- fixes Checkstyle issues,
-- improves unit tests 
-- provides Integration tests.
+- The v0.7 version adds the CRUD functionalities of the User class with its
+ Integration tests.
 
 Previously:
 - The first version only contains the CRUD functionalities of the BidList class.
@@ -23,3 +21,5 @@ Previously:
 - Version 0.4 adds the CRUD functionalities of the Rating class and improve
 fields validation for the 3 entities.
 - Version 0.5 adds the CRUD functionalities of the RuleName class.
+- The v0.6 version adds the CRUD functionalities of the Trade class, fixes 
+Checkstyle issues, improves unit tests and provides Integration tests.
