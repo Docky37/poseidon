@@ -22,4 +22,14 @@ public interface UserRepository
             + " hibernate_sequence RESTART WITH 1;", nativeQuery = true)
     void truncate();
 
+    /**
+     * This method is used to retrieve a registered user by his username.
+     *
+     * @param login
+     * @return a User object
+     */
+    @Query(value = "SELECT users.* FROM users WHERE username = :username",
+            nativeQuery = true)
+    User findByUsername(@Param("username") String login);
+
 }
