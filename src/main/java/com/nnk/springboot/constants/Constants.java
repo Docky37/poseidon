@@ -43,6 +43,26 @@ public class Constants {
     public static final int MAX_POSITIVE_INTEGER = 2147483647;
 
     /**
+     * The minimum number of characters of a username.
+     */
+    public static final int USERNAME_MIN_SIZE = 7;
+
+    /**
+     * The maximum number of characters of a username.
+     */
+    public static final int USERNAME_MAX_SIZE = 20;
+
+    /**
+     * The minimum number of characters of fullname.
+     */
+    public static final int FULLNAME_MIN_SIZE = 8;
+
+    /**
+     * The maximum number of characters of a username.
+     */
+    public static final int FULLNAME_MAX_SIZE = 30;
+
+    /**
      * Empty constructor.
      */
     protected Constants() {
