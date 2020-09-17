@@ -16,7 +16,7 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.mapping.BidListMapping;
 import com.nnk.springboot.dto.BidListDTO;
 import com.nnk.springboot.dto.BidListFullDTO;
-import com.nnk.springboot.util.UserRetrieve;
+import com.nnk.springboot.security.util.UserRetrieve;
 
 @SpringJUnitConfig(value = BidListMapping.class)
 public class BidListMappingTest {

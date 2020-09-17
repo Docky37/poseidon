@@ -33,8 +33,8 @@ import com.nnk.springboot.domain.User;
 import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.exceptions.UserNotFoundException;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.UserService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

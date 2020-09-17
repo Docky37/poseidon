@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.TradeDTO;
 import com.nnk.springboot.dto.TradeFullDTO;
-import com.nnk.springboot.util.UserRetrieve;
+import com.nnk.springboot.security.util.UserRetrieve;
 
 /**
  * This class is used to perform bidirectional mapping between a Trade entity

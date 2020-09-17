@@ -32,8 +32,8 @@ import org.springframework.web.servlet.View;
 import com.nnk.springboot.dto.RatingDTO;
 import com.nnk.springboot.exceptions.RatingNotFoundException;
 import com.nnk.springboot.repositories.RatingRepository;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.RatingService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

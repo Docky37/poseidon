@@ -36,8 +36,8 @@ import com.nnk.springboot.dto.TradeDTO;
 import com.nnk.springboot.dto.TradeFullDTO;
 import com.nnk.springboot.exceptions.TradeNotFoundException;
 import com.nnk.springboot.repositories.TradeRepository;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.TradeService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

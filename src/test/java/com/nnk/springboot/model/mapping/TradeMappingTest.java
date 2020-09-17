@@ -16,7 +16,7 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.domain.mapping.TradeMapping;
 import com.nnk.springboot.dto.TradeDTO;
 import com.nnk.springboot.dto.TradeFullDTO;
-import com.nnk.springboot.util.UserRetrieve;
+import com.nnk.springboot.security.util.UserRetrieve;
 
 @SpringJUnitConfig(value = TradeMapping.class)
 public class TradeMappingTest {

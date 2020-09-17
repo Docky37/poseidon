@@ -1,4 +1,4 @@
-package com.nnk.springboot.util;
+package com.nnk.springboot.security.util;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

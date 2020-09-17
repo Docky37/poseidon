@@ -32,8 +32,8 @@ import org.springframework.web.servlet.View;
 
 import com.nnk.springboot.dto.CurvePointDTO;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.CurvePointService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

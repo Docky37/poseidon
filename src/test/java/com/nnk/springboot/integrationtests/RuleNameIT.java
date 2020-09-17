@@ -32,8 +32,8 @@ import org.springframework.web.servlet.View;
 import com.nnk.springboot.dto.RuleNameDTO;
 import com.nnk.springboot.exceptions.RuleNameNotFoundException;
 import com.nnk.springboot.repositories.RuleNameRepository;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.RuleNameService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc

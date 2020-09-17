@@ -36,8 +36,8 @@ import com.nnk.springboot.dto.BidListDTO;
 import com.nnk.springboot.dto.BidListFullDTO;
 import com.nnk.springboot.exceptions.BidListNotFoundException;
 import com.nnk.springboot.repositories.BidListRepository;
+import com.nnk.springboot.security.util.UserRetrieve;
 import com.nnk.springboot.services.BidListService;
-import com.nnk.springboot.util.UserRetrieve;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
