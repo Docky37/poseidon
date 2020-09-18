@@ -2,16 +2,17 @@ package com.nnk.springboot.repositories;
 
 import com.nnk.springboot.domain.User;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository
-        extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
+        extends JpaRepository<User, Integer> {
 
     /**
      * Truncate method used in integration tests.
@@ -30,6 +31,6 @@ public interface UserRepository
      */
     @Query(value = "SELECT users.* FROM users WHERE username = :username",
             nativeQuery = true)
-    User findByUsername(@Param("username") String login);
+    Optional<User> findByUsername(@Param("username") String login);
 
 }

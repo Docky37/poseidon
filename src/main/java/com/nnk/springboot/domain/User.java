@@ -1,11 +1,18 @@
 package com.nnk.springboot.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +25,13 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class User {
+public class User implements UserDetails{
+
+    /**
+     * Generated serial version ID
+     */
+    private static final long serialVersionUID = 7561369736068013423L;
+
     /**
      * Id of the user (Primary Key).
      */
@@ -49,5 +62,36 @@ public class User {
      */
     @NotBlank(message = "Role is mandatory")
     private String role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<String> listRole = new ArrayList<>();
+        listRole.add(role);
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
 }
