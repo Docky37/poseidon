@@ -25,10 +25,10 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     /**
-     * Generated serial version ID
+     * Generated serial version ID.
      */
     private static final long serialVersionUID = 7561369736068013423L;
 
@@ -63,6 +63,9 @@ public class User implements UserDetails{
     @NotBlank(message = "Role is mandatory")
     private String role;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<String> listRole = new ArrayList<>();
@@ -70,24 +73,36 @@ public class User implements UserDetails{
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isAccountNonExpired() {
         // TODO Auto-generated method stub
         return true;
     }
 
-    @Override
+     /**
+     * {@inheritDoc}
+     */
+   @Override
     public boolean isAccountNonLocked() {
         // TODO Auto-generated method stub
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         // TODO Auto-generated method stub
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEnabled() {
         // TODO Auto-generated method stub

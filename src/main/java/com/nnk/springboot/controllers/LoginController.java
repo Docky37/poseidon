@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * This controller class is in charge of html request methods of registration
- * and login.
+ * This controller class is in charge of html request methods of login.
  *
  * @author Thierry SCHREINER
  */
@@ -36,14 +35,17 @@ public class LoginController {
     static final Logger LOGGER = LoggerFactory
             .getLogger(BidListController.class);
 
-    @Autowired
-    private UserRepository userRepository;
-
     /**
      * Instance of UserDetailsService declaration.
      */
     @Autowired
     private UserDetailsService userDetailsService;
+
+    /**
+     * UserRepository instance used to deal with database.
+     */
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * Instance of Json Web Token utility class declaration.
@@ -57,8 +59,17 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /**
+     * HTML GET request used to display the login form for jwt authenticate.
+     *
+     * @param model
+     * @param error
+     * @param logout
+     * @return a String
+     */
     @GetMapping("/login")
-    public String login(final Model model, final String error, final String logout) {
+    public String login(final Model model, final String error,
+            final String logout) {
         System.out.println("LoginController.login()");
         if (error != null) {
             model.addAttribute("error",
@@ -68,7 +79,8 @@ public class LoginController {
             model.addAttribute("message",
                     "You have been logged out successfully.");
         }
-        model.addAttribute("authenticationRequest", new AuthenticationRequest());
+        model.addAttribute("authenticationRequest",
+                new AuthenticationRequest());
         return "login";
     }
 
@@ -98,6 +110,11 @@ public class LoginController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
+    /**
+     * HTML GET request that lists all registred users.
+     *
+     * @return a ModelAndView
+     */
     @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
@@ -106,6 +123,11 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * HTML GET request that returns custom 403 error page.
+     *
+     * @return a ModelAndView
+     */
     @GetMapping("error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();

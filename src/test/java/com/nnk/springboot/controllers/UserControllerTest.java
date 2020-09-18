@@ -65,8 +65,8 @@ public class UserControllerTest {
         given(userService.findAll()).willReturn(list);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.get("/user/list")).andDo(print())
-                .andExpect(MockMvcResultMatchers.model().attribute("users",
-                        list))
+                .andExpect(
+                        MockMvcResultMatchers.model().attribute("users", list))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
         // THEN
         verify(userService).findAll();
@@ -87,8 +87,7 @@ public class UserControllerTest {
     @Test // POST VALIDATE
     public void givenAValidUserDTO_whenPost_thenSaved() throws Exception {
         // GIVEN
-        given(userService.save(any(UserDTO.class)))
-                .willReturn(userDTO);
+        given(userService.save(any(UserDTO.class))).willReturn(userDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/user/validate")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -99,8 +98,7 @@ public class UserControllerTest {
                 .param("fullname", userDTO.getFullname())
                 .param("role", userDTO.getRole())).andDo(print())
                 .andExpect(MockMvcResultMatchers.model().hasNoErrors())
-                .andExpect(
-                        MockMvcResultMatchers.redirectedUrl("/user/list"))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"))
                 .andReturn();
         // THEN
         verify(userService).save(any(UserDTO.class));
@@ -112,8 +110,7 @@ public class UserControllerTest {
         // GIVEN
         given(userService.getById(1)).willReturn(userDTO);
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.get("/user/update/1"))
-                .andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/user/update/1")).andDo(print())
                 .andExpect(MockMvcResultMatchers.model()
                         .attributeExists("userDTO"))
                 .andExpect(MockMvcResultMatchers.view().name("user/update"))
@@ -125,11 +122,9 @@ public class UserControllerTest {
     public void givenAnUnknownId_whenGetUpdatePage_thenRedirectToListPage()
             throws Exception, UserNotFoundException {
         // GIVEN
-        given(userService.getById(7))
-                .willThrow(UserNotFoundException.class);
+        given(userService.getById(7)).willThrow(UserNotFoundException.class);
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.get("/user/update/7"))
-                .andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/user/update/7")).andDo(print())
                 .andExpect(MockMvcResultMatchers.view()
                         .name("redirect:/user/list"))
                 .andExpect(MockMvcResultMatchers.status().is(302)).andReturn();
@@ -140,8 +135,7 @@ public class UserControllerTest {
     public void givenAValidUserDTOToUpdate_whenPost_thenSaved()
             throws Exception {
         // GIVEN
-        given(userService.save(any(UserDTO.class)))
-                .willReturn(userDTO);
+        given(userService.save(any(UserDTO.class))).willReturn(userDTO);
         // WHEN
         mvc.perform(MockMvcRequestBuilders.post("/user/update/1")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -152,8 +146,7 @@ public class UserControllerTest {
                 .param("fullname", userDTO.getFullname())
                 .param("role", userDTO.getRole())).andDo(print())
                 .andExpect(MockMvcResultMatchers.model().hasNoErrors())
-                .andExpect(
-                        MockMvcResultMatchers.redirectedUrl("/user/list"))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"))
                 .andReturn();
         // THEN
         verify(userService).save(any(UserDTO.class));
@@ -165,10 +158,8 @@ public class UserControllerTest {
         // GIVEN
         given(userService.delete(1)).willReturn(userDTO);
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.get("/user/delete/1"))
-                .andDo(print())
-                .andExpect(
-                        MockMvcResultMatchers.redirectedUrl("/user/list"))
+        mvc.perform(MockMvcRequestBuilders.get("/user/delete/1")).andDo(print())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"))
                 .andReturn();
         // THEN
         verify(userService).delete(1);
@@ -178,11 +169,9 @@ public class UserControllerTest {
     public void givenUnknownId_whenDelete_thenRedirectToListPage()
             throws Exception, UserNotFoundException {
         // GIVEN
-        given(userService.delete(7))
-                .willThrow(UserNotFoundException.class);
+        given(userService.delete(7)).willThrow(UserNotFoundException.class);
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.get("/user/delete/7"))
-                .andDo(print())
+        mvc.perform(MockMvcRequestBuilders.get("/user/delete/7")).andDo(print())
                 .andExpect(MockMvcResultMatchers.view()
                         .name("redirect:/user/list"))
                 .andExpect(MockMvcResultMatchers.status().is(302)).andReturn();
