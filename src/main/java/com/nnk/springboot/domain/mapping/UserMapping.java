@@ -3,6 +3,8 @@ package com.nnk.springboot.domain.mapping;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.nnk.springboot.domain.User;
@@ -16,6 +18,12 @@ import com.nnk.springboot.dto.UserDTO;
  */
 @Component
 public class UserMapping {
+
+    /**
+     * A PasswordEncoder implementation using BCrypt to protect the password.
+     */
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * This method is in charge of the mapping of a list of User entities to a
@@ -62,7 +70,7 @@ public class UserMapping {
         user.setId(userDTO.getId());
         user.setFullname(userDTO.getFullname());
         user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         user.setRole(userDTO.getRole());
 
         return user;
