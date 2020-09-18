@@ -5,19 +5,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.domain.mapping.UserMapping;
 import com.nnk.springboot.dto.UserDTO;
 
-@SpringJUnitConfig(value = UserMapping.class)
+//@SpringJUnitConfig(value = UserMapping.class)
+@SpringBootTest
 public class UserMappingTest {
 
     @Autowired
     UserMapping userMapping;
+
+    @Autowired
 
     static List<User> listOfUser = new ArrayList<>();
     static List<UserDTO> listOfUserDTO = new ArrayList<>();
@@ -48,6 +52,11 @@ public class UserMappingTest {
         listOfUserDTO.get(1).setPassword("1231231");
         listOfUserDTO.get(1).setRole("USER");
     }
+    
+    @BeforeEach
+    public void setup() {
+        listOfUser.get(0).setPassword("1231231");
+    }
 
     @Test
     public void givenAListOfUser_whenMapToDTO_thenReturnsAListOfUserDTO() {
@@ -68,6 +77,7 @@ public class UserMappingTest {
         User result = userMapping
                 .mapDTOToEntity(listOfUserDTO.get(0));
         // THEN
+        listOfUser.get(0).setPassword(result.getPassword());
         assertThat(result.toString())
                 .isEqualTo(listOfUser.get(0).toString());
 
