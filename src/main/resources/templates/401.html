@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>401 error page</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h3>Custom 401 error page</h3>
+		</div>
+		<div class="row">
+			<h1>Unauthorized!</h1>
+		</div>
+		<div>
+			<p>Sorry, You have to be authenticate and authorized to do that!</p>
+
+			<form th:action="@{/bidList/list}" method="GET">
+				<button type="submit" class="btn btn-primary btn-sm">Home</button>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

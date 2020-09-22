@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>403 error page</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h3>Custom 403 error page</h3>
+		</div>
+		<div class="row">
+			<h1>Access Denied Exception</h1>
+		</div>
+
+		<div>
+			<p>
+				Logged in user: <b th:inline="text" class="user">
+					[[${#httpServletRequest.remoteUser}]] </b>
+			</p>
+
+			<form th:action="@{/app-logout}" method="POST">
+				<button type="submit" class="btn btn-primary btn-sm">Logout</button>
+				<a href="/login" class="btn btn-primary btn-sm">Login</a>
+				<a href="/bidList/list" class="btn btn-primary btn-sm">BidList</a> 
+			</form>
+		</div>
+		<p class="error" th:text="${errorMsg}">Error</p>
+	</div>
+</body>
+</html>
