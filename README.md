@@ -1,4 +1,4 @@
-# Poseidon v0.7 - 16/09/2020
+# Poseidon v1.0 - 22/09/2020
 
 ## Technical:
 
@@ -11,8 +11,7 @@
 
 
 ## Content:
-- The v0.7 version adds the CRUD functionalities of the User class with its
- Integration tests.
+- This v1.0 version provides a security login layer with jwt authentication.
 
 Previously:
 - The first version only contains the CRUD functionalities of the BidList class.
@@ -23,3 +22,5 @@ fields validation for the 3 entities.
 - Version 0.5 adds the CRUD functionalities of the RuleName class.
 - The v0.6 version adds the CRUD functionalities of the Trade class, fixes 
 Checkstyle issues, improves unit tests and provides Integration tests.
+- The v0.7 version adds the CRUD functionalities of the User class with its
+ Integration tests.
