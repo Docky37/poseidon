@@ -67,14 +67,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**",
-                        "/ruleName/**", "/trade/**","/user/**").authenticated()
-                .anyRequest().permitAll()
-                .and()
-                .logout().deleteCookies("Token")
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .and().sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                        "/ruleName/**", "/trade/**")
+                .authenticated().antMatchers("/user/**").hasAuthority("ADMIN")
+                .anyRequest().permitAll().and().logout().deleteCookies("Token")
+                .logoutUrl("/logout").logoutSuccessUrl("/login").and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter,
                 UsernamePasswordAuthenticationFilter.class);
     }
@@ -109,7 +107,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider authProvider =
+                new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
