@@ -1,11 +1,10 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.constants.Constants;
 import com.nnk.springboot.security.model.AuthenticationRequest;
 import com.nnk.springboot.security.util.JwtUtil;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * This controller class is in charge of html request methods of login.
@@ -43,12 +41,6 @@ public class LoginController {
     private UserDetailsService userDetailsService;
 
     /**
-     * UserRepository instance used to deal with database.
-     */
-    @Autowired
-    private UserRepository userRepository;
-
-    /**
      * Instance of Json Web Token utility class declaration.
      */
     @Autowired
@@ -65,7 +57,6 @@ public class LoginController {
      *
      * @param model
      * @param error
-     * @param logout
      * @return a String
      */
     @GetMapping("/login")
@@ -81,6 +72,7 @@ public class LoginController {
      * POST html request used to authenticate and provide a Token.
      *
      * @param authenticationRequest
+     * @param response
      * @return a ResponseEntity<Object>
      * @throws Exception
      */
@@ -95,10 +87,8 @@ public class LoginController {
                             authenticationRequest.getUsername(),
                             authenticationRequest.getPassword()));
         } catch (BadCredentialsException e) {
-            response.addHeader("message", "401");
             LOGGER.error("Incorrect username or password! " + e);
-            return "redirect:/error/401";
-            //throw new BadCredentialsException("Incorrect username or password", e);
+            throw e;
         }
         LOGGER.info("OK - Valid Credentials");
         final UserDetails userDetails = userDetailsService
@@ -107,7 +97,7 @@ public class LoginController {
         LOGGER.info("Token = " + jwt);
         Cookie cookie = new Cookie("Token", jwt);
         cookie.setHttpOnly(true);
-        cookie.setMaxAge(3600);
+        cookie.setMaxAge(Constants.COOKIE_VALIDITY_IN_SECONDS);
         response.addCookie(cookie);
         LOGGER.info("Cookie = " + cookie.getValue());
         return "redirect:/bidList/list";
@@ -116,58 +106,12 @@ public class LoginController {
     /**
      * HTML POST request use to redirect to Spring default logout.
      * SecurityConfig delete the Token cookie.
-     * 
+     *
      * @return a String
      */
     @PostMapping("/app-logout")
     public String appLogout() {
         return "redirect:/logout";
-    }
-
-    /**
-     * HTML GET request that lists all registred users.
-     *
-     * @return a ModelAndView
-     */
-    @GetMapping("secure/article-details")
-    public ModelAndView getAllUserArticles() {
-        LOGGER.info("HTML GET Request on secure/article-details");
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("users", userRepository.findAll());
-        mav.setViewName("user/list");
-        return mav;
-    }
-
-    /**
-     * HTML GET request that returns custom error page.
-     *
-     * @return a ModelAndView
-     */
-    @GetMapping("/error")
-    public String error(final HttpServletRequest request) {
-        String errorNumber = request.getHeader("message");
-        LOGGER.error("Error " + errorNumber);
-        //ModelAndView mav = new ModelAndView();
-        String errorMessage = "";
-        if (errorNumber==null) {
-            errorNumber="403";
-        }
-        switch (errorNumber) {
-        case "401":
-            errorMessage = "Incorrect username or password!";
-            break;
-        case "403":
-            errorMessage = "You are not authorized for the requested data!";
-            break;
-        case "404":
-            errorMessage = "Sorry but there is no result for your request!";
-            break;
-        default:
-            errorMessage = "Error " + errorNumber;
-        }
-        //mav.addObject("errorMsg", errorMessage);
-        //mav.setViewName(errorNumber);
-        return "redirect:/error/" + errorNumber;
     }
 
 }
