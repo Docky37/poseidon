@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Thierry SCHREINER
  */
 @Controller
-//@RequestMapping("app")
 public class LoginController {
 
     /**
