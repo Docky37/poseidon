@@ -2,7 +2,9 @@ package com.nnk.springboot.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * This home controller manages Poseidon hompage access.
@@ -18,7 +20,8 @@ public class HomeController {
      * @param model
      * @return a String
      */
-    @RequestMapping("/")
+    @ApiOperation(value = "Return to Home page")
+    @GetMapping("/")
     public String home(final Model model) {
         return "home";
     }
@@ -29,7 +32,8 @@ public class HomeController {
      * @param model
      * @return a String
      */
-    @RequestMapping("/admin/home")
+    @ApiOperation(value = "Return to bidList/list page")
+    @GetMapping("/admin/home")
     public String adminHome(final Model model) {
         return "redirect:/bidList/list";
     }

@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class UserController {
      * @param model
      * @return a String(the address of list.html page)
      */
-    @RequestMapping("/user/list")
+    @GetMapping("/user/list")
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /user/list");
         List<UserDTO> users = userService.findAll();
