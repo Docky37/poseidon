@@ -151,6 +151,7 @@ public class UserIT {
             e.printStackTrace();
         }
         // THEN
+        userDTOResult.setPassword(existingUserDTO.getPassword());
         assertThat(userDTOResult.toString())
                 .isEqualTo(existingUserDTO.toString());
     }
