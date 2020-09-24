@@ -9,6 +9,12 @@ import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.nnk.springboot.dto.BidListFullDTO;
+import com.nnk.springboot.dto.CurvePointDTO;
+import com.nnk.springboot.dto.RatingDTO;
+import com.nnk.springboot.dto.RuleNameDTO;
+import com.nnk.springboot.dto.TradeDTO;
+import com.nnk.springboot.dto.TradeFullDTO;
+import com.nnk.springboot.dto.UserDTO;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,8 +32,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class PoseidonApplication {
 
+    /**
+     * TypeResolver object used for resolving generic type information of a
+     * class that it is accessible using simple API.
+     */
     @Autowired
     private TypeResolver typeResolver;
+
     /**
      * Main method, entry point of the Poseidon application.
      *
@@ -43,25 +54,32 @@ public class PoseidonApplication {
     protected PoseidonApplication() {
     }
 
+    /**
+     * Customize Swagger2 documentation, skipping ErrorController and adding
+     * model classes.
+     *
+     * @return a Docket object
+     */
     @Bean
     public Docket swaggerConfiguration() {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .paths(PathSelectors.regex("(?!/error.*).*"))
                 .apis(RequestHandlerSelectors.basePackage("com.nnk.springboot"))
-                .build()
-                .apiInfo(infoDetails())
-                .additionalModels(typeResolver.resolve(BidListFullDTO.class));
+                .build().apiInfo(infoDetails())
+                .additionalModels(typeResolver.resolve(BidListFullDTO.class))
+                .additionalModels(typeResolver.resolve(CurvePointDTO.class))
+                .additionalModels(typeResolver.resolve(RatingDTO.class))
+                .additionalModels(typeResolver.resolve(RuleNameDTO.class))
+                .additionalModels(typeResolver.resolve(TradeDTO.class))
+                .additionalModels(typeResolver.resolve(TradeFullDTO.class))
+                .additionalModels(typeResolver.resolve(UserDTO.class));
     }
 
     private ApiInfo infoDetails() {
-        return new ApiInfo(
-        "Poseidon Inc. application",
-        "Financial Market Tools",
-        "v1.1",
-        "Free to use",
-        new springfox.documentation.service.Contact("Thierry Schreiner", "http://doc.poseidon.com", "doc@poseidon.com"),
-        "API License",
-        "http://nkk.com",
-        Collections.emptyList());
+        return new ApiInfo("Poseidon Inc. application",
+                "Financial Market Tools", "v1.1", "Free to use",
+                new springfox.documentation.service.Contact("Thierry Schreiner",
+                        "http://doc.poseidon.com", "doc@poseidon.com"),
+                "API License", "http://nkk.com", Collections.emptyList());
     }
 }

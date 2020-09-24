@@ -31,19 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@ApiModel(description="Important details of A BidList.")
+@ApiModel(description = "Important details of A BidList.")
 public class BidListDTO {
 
     /**
      * Id of the BidListDTO.
      */
-    @ApiModelProperty(hidden=true)
+    @ApiModelProperty(hidden = true)
     private Integer bidListId;
 
     /**
      * The BidListDTO account name.
      */
-    @ApiModelProperty(notes="The BidListDTO account name.", required = true)
+    @ApiModelProperty(notes = "The BidListDTO account name.", required = true)
     @NotBlank(message = "Account is mandatory")
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     private String account;
@@ -51,7 +51,7 @@ public class BidListDTO {
     /**
      * The BidListDTO type.
      */
-    @ApiModelProperty(notes="The BidListDTO account type.", required = true)
+    @ApiModelProperty(notes = "The BidListDTO account type.", required = true)
     @NotBlank(message = "Type is mandatory")
     @Size(max = Constants.LENGTH_125, message = "Max length = 125!")
     private String type;
@@ -59,7 +59,7 @@ public class BidListDTO {
     /**
      * The number of bid for sale.
      */
-    @ApiModelProperty(notes="The number of bid for sale.", required = true)
+    @ApiModelProperty(notes = "The number of bid for sale.", required = true)
     @NotNull(message = "Bid quantity is mandatory")
     @Digits(fraction = Constants.N4_DIGITS, integer = Constants.N12_DIGITS,
     message = "Must be a number < 1,000,000,000,000 with"
