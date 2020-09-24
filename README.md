@@ -1,4 +1,4 @@
-# Poseidon v1.1 - 23/09/2020
+# Poseidon v1.2 - 24/09/2020
 
 ## Technical:
 
@@ -11,7 +11,7 @@
 
 
 ## Content:
-- This v1.1 version provides SWAGGER2 Documentation.
+- This v1.2 version customizes SWAGGER2 Documentation and provide a LoginControllerTest.
 
 Previously:
 - The first version only contains the CRUD functionalities of the BidList class.
@@ -25,3 +25,4 @@ Checkstyle issues, improves unit tests and provides Integration tests.
 - The v0.7 version adds the CRUD functionalities of the User class with its
  Integration tests.
 - The v1.0 version provides a security login layer with jwt authentication.
+- The v1.1 version provides SWAGGER2 Documentation.
