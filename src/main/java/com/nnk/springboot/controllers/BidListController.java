@@ -51,7 +51,7 @@ public class BidListController {
     @GetMapping("/bidList/list")
     @ApiOperation(value = "List all BidList", notes = "Display the list.html"
             + " front page that lists all bidLists saved in Database.",
-            response = BidListDTO[].class )
+            response = BidListDTO[].class)
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /bidList/list");
         List<BidListDTO> bidLists = bidListService.findAll();
@@ -67,9 +67,10 @@ public class BidListController {
      * @return a String(the address of add.html page)
      */
     @GetMapping("/bidList/add")
-    @ApiOperation(value = "Display the BidList Add form", notes = "Get the add.html"
+    @ApiOperation(value = "Display the BidList Add form",
+            notes = "Get the add.html"
             + " front page that allows user to add a new BidList.",
-            response = String.class )
+            response = String.class)
     public String addBidForm(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /bidList/add");
         model.addAttribute("bidListDTO", new BidListDTO());
@@ -88,8 +89,7 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     @ApiOperation(value = "Add a new BidList", notes = "Check data of BidList"
             + " add.html form and save them in DataBase."
-            + " Then redirect to the BidList/list",
-            response = String.class )
+            + " Then redirect to the BidList/list", response = String.class)
     public String validate(final Model model,
             @Valid final BidListDTO bidListDTO, final BindingResult result) {
         LOGGER.info("NEW HTML POST REQUEST on /bidList/validate: {}",
@@ -116,7 +116,7 @@ public class BidListController {
     @GetMapping("/bidList/update/{id}")
     @ApiOperation(value = "Display the BidList Update form", notes = "Get the"
             + " update.html front page that allows user to update a BidList.",
-            response = String.class )
+            response = String.class)
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /bidList/update/{}", id);
@@ -143,8 +143,7 @@ public class BidListController {
      */
     @ApiOperation(value = "Update a BidList", notes = "Check data of BidList"
             + "update.html form and save them in DataBase."
-            + "Then redirect to the BidList/list",
-            response = String.class )
+            + "Then redirect to the BidList/list", response = String.class)
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") final Integer id,
             @Valid final BidListFullDTO bidListDTO, final BindingResult result,
@@ -173,8 +172,7 @@ public class BidListController {
     @GetMapping("/bidList/delete/{id}")
     @ApiOperation(value = "Delete a BidList by id", notes = "Find a BidList"
             + " by its id and drop it from database."
-            + " Then redirect to the BidList/list",
-            response = String.class )
+            + " Then redirect to the BidList/list", response = String.class)
     public String deleteBid(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML DELETE REQUEST on /bidList/delete/{}", id);

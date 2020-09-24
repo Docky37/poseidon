@@ -4,6 +4,8 @@ import com.nnk.springboot.dto.UserDTO;
 import com.nnk.springboot.exceptions.UserNotFoundException;
 import com.nnk.springboot.services.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,9 @@ public class UserController {
      * @param model
      * @return a String(the address of list.html page)
      */
+    @ApiOperation(value = "List all User", notes = "Display the list.html"
+            + " front page that lists all bidLists saved in Database.",
+            response = UserDTO[].class)
     @GetMapping("/user/list")
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /user/list");
@@ -60,6 +65,9 @@ public class UserController {
      * @param model
      * @return a String(the address of add.html page)
      */
+    @ApiOperation(value = "Display the User Add form", notes = "Get the"
+            + " add.html front page that allows user to add a new User.",
+            response = String.class)
     @GetMapping("/user/add")
     public String addUser(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /user/add");
@@ -76,6 +84,10 @@ public class UserController {
      * @return a String(list.html redirection address if valid data else
      *         add.html address)
      */
+    @ApiOperation(value = "Add a new User", notes = "Check data of"
+            + " User add.html form and save them in DataBase."
+            + " Then redirect to the User/list",
+            response = String.class)
     @PostMapping("/user/validate")
     public String validate(@Valid final UserDTO userDTO,
             final BindingResult result, final Model model) {
@@ -98,6 +110,9 @@ public class UserController {
      * @param model
      * @return a String(the address of update.html page)
      */
+    @ApiOperation(value = "Display the User Update form", notes = "Get"
+            + " the update.html front page that allows user to update a"
+            + " User.", response = String.class)
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
@@ -123,6 +138,10 @@ public class UserController {
      * @return a String(list.html redirection address if valid data else
      *         update.html address)
      */
+    @ApiOperation(value = "Update a User", notes = "Check data of"
+            + " User update.html form and save them in DataBase."
+            + "Then redirect to the User/list",
+            response = String.class)
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") final Integer id,
             @Valid final UserDTO userDTO, final BindingResult result,
@@ -147,6 +166,10 @@ public class UserController {
      * @param model
      * @return a String(the address of update.html page)
      */
+    @ApiOperation(value = "Delete a User by id", notes = "Find a"
+            + " User by its id and drop it from database."
+            + " Then redirect to the User/list",
+            response = String.class)
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") final Integer id,
             final Model model) {

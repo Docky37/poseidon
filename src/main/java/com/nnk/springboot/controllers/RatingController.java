@@ -4,6 +4,8 @@ import com.nnk.springboot.dto.RatingDTO;
 import com.nnk.springboot.exceptions.RatingNotFoundException;
 import com.nnk.springboot.services.RatingService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,9 @@ public class RatingController {
      * @return a String(the address of list.html page)
      */
     @GetMapping("/rating/list")
+    @ApiOperation(value = "List all Rating", notes = "Display the list.html"
+            + " front page that lists all bidLists saved in Database.",
+            response = RatingDTO[].class)
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /rating/list");
         List<RatingDTO> ratings = ratingService.findAll();
@@ -56,6 +61,9 @@ public class RatingController {
      * @return a String(the address of add.html page)
      */
     @GetMapping("/rating/add")
+    @ApiOperation(value = "Display the Rating Add form", notes = "Get the"
+            + " add.html front page that allows user to add a new Rating.",
+            response = String.class)
     public String addRatingForm(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /rating/add");
         model.addAttribute("ratingDTO", new RatingDTO());
@@ -72,6 +80,10 @@ public class RatingController {
      *         add.html address)
      */
     @PostMapping("/rating/validate")
+    @ApiOperation(value = "Add a new Rating", notes = "Check data of Rating"
+            + " add.html form and save them in DataBase."
+            + " Then redirect to the Rating/list",
+            response = String.class)
     public String validate(@Valid final RatingDTO ratingDTO,
             final BindingResult result, final Model model) {
         LOGGER.info("NEW HTML POST REQUEST on /rating/validate: {}",
@@ -95,6 +107,9 @@ public class RatingController {
      * @return a String(the address of update.html page)
      */
     @GetMapping("/rating/update/{id}")
+    @ApiOperation(value = "Display the Rating Update form", notes = "Get the"
+            + " update.html front page that allows user to update a Rating.",
+            response = String.class)
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /rating/update/{}", id);
@@ -120,6 +135,10 @@ public class RatingController {
      *         update.html address)
      */
     @PostMapping("/rating/update/{id}")
+    @ApiOperation(value = "Update a Rating", notes = "Check data of Rating"
+            + "update.html form and save them in DataBase."
+            + "Then redirect to the Rating/list",
+            response = String.class)
     public String updateRating(@PathVariable("id") final Integer id,
             @Valid final RatingDTO ratingDTO, final BindingResult result,
             final Model model) {
@@ -144,6 +163,10 @@ public class RatingController {
      * @return a String(list.html redirection address)
      */
     @GetMapping("/rating/delete/{id}")
+    @ApiOperation(value = "Delete a Rating by id", notes = "Find a Rating"
+            + " by its id and drop it from database."
+            + " Then redirect to the Rating/list",
+            response = String.class)
     public String deleteRating(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML DELETE REQUEST on /rating/delete/{}", id);

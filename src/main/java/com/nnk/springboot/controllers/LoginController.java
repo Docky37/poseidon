@@ -4,6 +4,8 @@ import com.nnk.springboot.constants.Constants;
 import com.nnk.springboot.security.model.AuthenticationRequest;
 import com.nnk.springboot.security.util.JwtUtil;
 
+import io.swagger.annotations.ApiOperation;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,6 +61,9 @@ public class LoginController {
      * @return a String
      */
     @GetMapping("/login")
+    @ApiOperation(value = "Login form", notes = "Display the login form"
+            + " front page.",
+            response = String.class)
     public String login(final Model model, final String error) {
         LOGGER.info("NEW HTML GET REQUEST on /login");
         model.addAttribute("authenticationRequest",
@@ -76,6 +81,10 @@ public class LoginController {
      * @throws Exception
      */
     @PostMapping("/authenticate")
+    @ApiOperation(value = "Authentication request", notes = "Check data of"
+            + " AuthenticationRequest. If credentials are valid then create a"
+            + " Json Web Token and redirect to /bidList/list with a JWT cookie",
+            response = String.class)
     public String createAuthenticationToken(
             final AuthenticationRequest authenticationRequest,
             final HttpServletResponse response) throws Exception {
@@ -108,6 +117,9 @@ public class LoginController {
      *
      * @return a String
      */
+    @ApiOperation(value = "Logout request", notes = "Redirect to Spring"
+             + " default logout. SecurityConfig delete the Token cookie.",
+            response = String.class)
     @PostMapping("/app-logout")
     public String appLogout() {
         return "redirect:/logout";

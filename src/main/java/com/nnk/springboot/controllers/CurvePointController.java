@@ -4,6 +4,8 @@ import com.nnk.springboot.dto.CurvePointDTO;
 import com.nnk.springboot.exceptions.CurvePointNotFoundException;
 import com.nnk.springboot.services.CurvePointService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,9 @@ public class CurvePointController {
      * @return a String(the address of list.html page)
      */
     @GetMapping("/curvePoint/list")
+    @ApiOperation(value = "List all CurvePoint", notes = "Display the list.html"
+            + " front page that lists all bidLists saved in Database.",
+            response = CurvePointDTO[].class)
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /curvePoint/list");
         List<CurvePointDTO> curvePoints = curvePointService.findAll();
@@ -56,6 +61,9 @@ public class CurvePointController {
      * @return a String(the address of add.html page)
      */
     @GetMapping("/curvePoint/add")
+    @ApiOperation(value = "Display the CurvePoint Add form", notes = "Get the"
+            + " add.html front page that allows user to add a new CurvePoint.",
+            response = String.class)
     public String addCurvePointForm(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /curvePoint/add");
         model.addAttribute("curvePointDTO", new CurvePointDTO());
@@ -72,6 +80,10 @@ public class CurvePointController {
      *         add.html address)
      */
     @PostMapping("/curvePoint/validate")
+    @ApiOperation(value = "Add a new CurvePoint", notes = "Check data of"
+            + " CurvePoint add.html form and save them in DataBase."
+            + " Then redirect to the CurvePoint/list",
+            response = String.class)
     public String validate(@Valid final CurvePointDTO curvePointDTO,
             final BindingResult result, final Model model) {
         LOGGER.info("NEW HTML POST REQUEST on /curvePoint/validate: {}",
@@ -97,6 +109,9 @@ public class CurvePointController {
      * @throws CurvePointNotFoundException
      */
     @GetMapping("/curvePoint/update/{id}")
+    @ApiOperation(value = "Display the CurvePoint Update form", notes = "Get"
+            + " the update.html front page that allows user to update a"
+            + " CurvePoint.", response = String.class)
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /curvePoint/update/{}", id);
@@ -122,6 +137,10 @@ public class CurvePointController {
      *         update.html address)
      */
     @PostMapping("/curvePoint/update/{id}")
+    @ApiOperation(value = "Update a CurvePoint", notes = "Check data of"
+            + " CurvePoint update.html form and save them in DataBase."
+            + "Then redirect to the CurvePoint/list",
+            response = String.class)
     public String updateCurvePoint(@PathVariable("id") final Integer id,
             @Valid final CurvePointDTO curvePointDTO,
             final BindingResult result, final Model model) {
@@ -147,6 +166,10 @@ public class CurvePointController {
      * @return a String(list.html redirection address)
      */
     @GetMapping("/curvePoint/delete/{id}")
+    @ApiOperation(value = "Delete a CurvePoint by id", notes = "Find a"
+            + " CurvePoint by its id and drop it from database."
+            + " Then redirect to the CurvePoint/list",
+            response = String.class)
     public String deleteCurvePoint(@PathVariable("id") final Integer id,
             final Model model) {
         LOGGER.info("NEW HTML DELETE REQUEST on /curvePoint/delete/{}", id);

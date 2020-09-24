@@ -4,6 +4,8 @@ import com.nnk.springboot.dto.RuleNameDTO;
 import com.nnk.springboot.exceptions.RuleNameNotFoundException;
 import com.nnk.springboot.services.RuleNameService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,9 @@ public class RuleNameController {
      * @return a String(the address of list.html page)
      */
     @GetMapping("/ruleName/list")
+    @ApiOperation(value = "List all RuleName", notes = "Display the list.html"
+            + " front page that lists all bidLists saved in Database.",
+            response = RuleNameDTO[].class)
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /ruleName/list");
         List<RuleNameDTO> ruleNames = ruleNameService.findAll();
@@ -61,6 +66,9 @@ public class RuleNameController {
      * @return a String(the address of add.html page)
      */
     @GetMapping("/ruleName/add")
+    @ApiOperation(value = "Display the RuleName Add form", notes = "Get the "
+            + "add.html front page that allows user to add a new RuleName.",
+            response = String.class)
     public String addRuleForm(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /ruleName/add");
         model.addAttribute("ruleNameDTO", new RuleNameDTO());
@@ -76,6 +84,10 @@ public class RuleNameController {
      * @return a String(list.html redirection address if valid data else
      *         add.html address)
      */
+    @ApiOperation(value = "Add a new RuleName", notes = "Check data of RuleName"
+            + " add.html form and save them in DataBase."
+            + " Then redirect to the RuleName/list",
+            response = String.class)
     @PostMapping("/ruleName/validate")
     public String validate(@Valid final RuleNameDTO ruleNameDTO,
             final BindingResult result, final Model model) {
@@ -99,6 +111,9 @@ public class RuleNameController {
      * @param model
      * @return a String(the address of update.html page)
      */
+    @ApiOperation(value = "Display the RuleName Update form", notes = "Get the"
+            + " update.html front page that allows user to update a RuleName.",
+            response = String.class)
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
@@ -124,6 +139,10 @@ public class RuleNameController {
      * @return a String(list.html redirection address if valid data else
      *         update.html address)
      */
+    @ApiOperation(value = "Update a RuleName", notes = "Check data of RuleName"
+            + "update.html form and save them in DataBase."
+            + "Then redirect to the RuleName/list",
+            response = String.class)
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") final Integer id,
             @Valid final RuleNameDTO ruleNameDTO, final BindingResult result,
@@ -148,6 +167,10 @@ public class RuleNameController {
      * @param model
      * @return a String(list.html redirection address)
      */
+    @ApiOperation(value = "Delete a RuleName by id", notes = "Find a RuleName"
+            + " by its id and drop it from database."
+            + " Then redirect to the RuleName/list",
+            response = String.class)
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") final Integer id,
             final Model model) {

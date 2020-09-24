@@ -5,6 +5,8 @@ import com.nnk.springboot.dto.TradeFullDTO;
 import com.nnk.springboot.exceptions.TradeNotFoundException;
 import com.nnk.springboot.services.TradeService;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,9 @@ public class TradeController {
      * @param model
      * @return a String(the address of list.html page)
      */
+    @ApiOperation(value = "List all Trade", notes = "Display the list.html"
+            + " front page that lists all bidLists saved in Database.",
+            response = TradeDTO[].class)
     @GetMapping("/trade/list")
     public String home(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /trade/list");
@@ -60,6 +65,10 @@ public class TradeController {
      * @param model
      * @return a String(the address of add.html page)
      */
+    @ApiOperation(value = "Display the Trade Add form",
+            notes = "Get the add.html"
+            + " front page that allows user to add a new Trade.",
+            response = String.class)
     @GetMapping("/trade/add")
     public String addUser(final Model model) {
         LOGGER.info("NEW HTML GET REQUEST on /trade/add");
@@ -76,6 +85,10 @@ public class TradeController {
      * @return a String(list.html redirection address if valid data else
      *         add.html address)
      */
+    @ApiOperation(value = "Add a new Trade", notes = "Check data of Trade"
+            + " add.html form and save them in DataBase."
+            + " Then redirect to the Trade/list",
+            response = String.class)
     @PostMapping("/trade/validate")
     public String validate(@Valid final TradeDTO tradeDTO,
             final BindingResult result, final Model model) {
@@ -99,6 +112,9 @@ public class TradeController {
      * @return a String(the address of update.html page)
      * @throws TradeNotFoundException
      */
+    @ApiOperation(value = "Display the Trade Update form", notes = "Get the"
+            + " update.html front page that allows user to update a Trade.",
+            response = String.class)
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") final Integer id,
             final Model model) {
@@ -124,6 +140,10 @@ public class TradeController {
      * @return a String(list.html redirection address if valid data else
      *         update.html address)
      */
+    @ApiOperation(value = "Update a Trade", notes = "Check data of Trade"
+            + "update.html form and save them in DataBase."
+            + "Then redirect to the Trade/list",
+            response = String.class)
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") final Integer id,
             @Valid final TradeFullDTO tradeDTO, final BindingResult result,
@@ -149,6 +169,10 @@ public class TradeController {
      * @return a String(the address of update.html page)
      * @throws TradeNotFoundException
      */
+    @ApiOperation(value = "Delete a Trade by id", notes = "Find a Trade"
+            + " by its id and drop it from database."
+            + " Then redirect to the Trade/list",
+            response = String.class)
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") final Integer id,
             final Model model) {
