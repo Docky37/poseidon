@@ -1,4 +1,4 @@
-# Poseidon v1.2 - 24/09/2020
+# Poseidon v1.3 - 25/09/2020
 
 ## Technical:
 
@@ -6,12 +6,18 @@
 2. Java 8
 3. Thymeleaf
 4. Bootstrap v.4.3.1
-5. MySQL 8.0 (bdd: poseidon with credentials: root / rootroot)
+5. MySQL 8.0 
 6. H2 Database for Integration tests.
 
+## Database
+bdd: poseidon with credentials stored in system environment variables:
+ ${DB_USER} = "poseidon_user" and  ${DB_PWD} = "Tadm-123"
+ 
+SQL script named shema.sql available in poseidon/doc folder.
+The script insert 2 users: admin & user both using "Tadm-123" password.
 
 ## Content:
-- This v1.2 version customizes SWAGGER2 Documentation and provide a LoginControllerTest.
+- This v1.3 version hide database credentials in system environment variables and update SQL script (in Poseidon/doc folder).
 
 Previously:
 - The first version only contains the CRUD functionalities of the BidList class.
@@ -26,3 +32,4 @@ Checkstyle issues, improves unit tests and provides Integration tests.
  Integration tests.
 - The v1.0 version provides a security login layer with jwt authentication.
 - The v1.1 version provides SWAGGER2 Documentation.
+- The v1.2 version customizes SWAGGER2 Documentation and provides a LoginControllerTest.

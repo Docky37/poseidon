@@ -107,7 +107,7 @@ public class BidListIT {
         bidListRepository.truncate();
     }
 
-    @Test // POST VALIDATE
+    @Test // List
     public void givenExistingRecords_whenFindAll_thenListed() throws Exception {
         // GIVEN
         given(userRetrieve.getLoggedUser()).willReturn("Testeur");
