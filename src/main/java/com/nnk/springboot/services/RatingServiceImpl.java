@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +37,9 @@ public class RatingServiceImpl implements RatingService {
      */
     @Override
     public List<RatingDTO> findAll() {
-        List<Rating> listRating = new ArrayList<>();
-        listRating = ratingRepository.findAll();
 
-        List<RatingDTO> listRatingDTO = ratingMapping
-                .mapAListOfRating(listRating);
-
-        return listRatingDTO;
+        return ratingMapping
+                .mapAListOfRating(ratingRepository.findAll());
     }
 
     /**

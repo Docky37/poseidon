@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,12 +40,8 @@ public class TradeServiceImpl implements TradeService {
      */
     @Override
     public List<TradeDTO> findAll() {
-        List<Trade> listTrade = new ArrayList<>();
-        listTrade = tradeRepository.findAll();
 
-        List<TradeDTO> listTradeDTO = tradeMapping.mapAListOfTrade(listTrade);
-
-        return listTradeDTO;
+        return tradeMapping.mapAListOfTrade(tradeRepository.findAll());
     }
 
     /**

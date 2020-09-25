@@ -6,7 +6,7 @@ package com.nnk.springboot.exceptions;
  *
  * @author Thierry Schreiner
  */
-public class BidListNotFoundException extends Throwable {
+public class BidListNotFoundException extends Exception {
 
     /**
      * Class constructor.

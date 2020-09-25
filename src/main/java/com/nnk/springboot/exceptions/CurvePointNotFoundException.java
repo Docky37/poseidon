@@ -6,7 +6,7 @@ package com.nnk.springboot.exceptions;
  *
  * @author Thierry Schreiner
  */
-public class CurvePointNotFoundException extends Throwable {
+public class CurvePointNotFoundException extends Exception {
 
     /**
      * Generated serial version ID.

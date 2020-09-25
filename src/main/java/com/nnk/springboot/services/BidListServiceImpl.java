@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,13 +40,9 @@ public class BidListServiceImpl implements BidListService {
      */
     @Override
     public List<BidListDTO> findAll() {
-        List<BidList> listBidList = new ArrayList<>();
-        listBidList = bidListRepository.findAll();
 
-        List<BidListDTO> listBidListDTO = bidListMapping
-                .mapAListOfBidList(listBidList);
-
-        return listBidListDTO;
+        return bidListMapping
+                .mapAListOfBidList(bidListRepository.findAll());
     }
 
     /**

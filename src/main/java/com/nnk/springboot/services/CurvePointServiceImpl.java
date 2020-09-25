@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,13 +39,9 @@ public class CurvePointServiceImpl implements CurvePointService {
      */
     @Override
     public List<CurvePointDTO> findAll() {
-        List<CurvePoint> listCurvePoint = new ArrayList<>();
-        listCurvePoint = curvePointRepository.findAll();
 
-        List<CurvePointDTO> listCurvePointDTO = curvePointMapping
-                .mapAListOfCurvePoint(listCurvePoint);
-
-        return listCurvePointDTO;
+        return curvePointMapping
+                .mapAListOfCurvePoint(curvePointRepository.findAll());
     }
 
     /**

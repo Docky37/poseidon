@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +38,8 @@ public class RuleNameServiceImpl implements RuleNameService {
      */
     @Override
     public List<RuleNameDTO> findAll() {
-        List<RuleName> listRuleName = new ArrayList<>();
-        listRuleName = ruleNameRepository.findAll();
 
-        return ruleNameMapping.mapAListOfRuleName(listRuleName);
+        return ruleNameMapping.mapAListOfRuleName(ruleNameRepository.findAll());
     }
 
     /**

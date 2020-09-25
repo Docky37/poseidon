@@ -1,6 +1,5 @@
 package com.nnk.springboot.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<UserDTO> findAll() {
-        List<User> listUser = new ArrayList<>();
-        listUser = userRepository.findAll();
 
-        return userMapping.mapAListOfUser(listUser);
+        return userMapping.mapAListOfUser(userRepository.findAll());
     }
 
     /**
@@ -50,12 +47,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO save(final UserDTO userDTO) {
         User user = userMapping.mapDTOToEntity(userDTO);
-        System.out.println(user.toString());
         User savedUser = userRepository.save(user);
-        System.out.println(savedUser.toString());
-        UserDTO savedBidListDTO = userMapping
-                .mapEntityToDTO(savedUser);
-        System.out.println(savedBidListDTO.toString());
+        UserDTO savedBidListDTO = userMapping.mapEntityToDTO(savedUser);
         return savedBidListDTO;
     }
 
@@ -69,7 +62,7 @@ public class UserServiceImpl implements UserService {
                         "No User record exist for given id"));
 
         return userMapping.mapEntityToDTO(user);
-     }
+    }
 
     /**
      * {@inheritDoc}
