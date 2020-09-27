@@ -77,7 +77,7 @@ public class PoseidonApplication {
 
     private ApiInfo infoDetails() {
         return new ApiInfo("Poseidon Inc. application",
-                "Financial Market Tools", "v1.2", "Free to use",
+                "Financial Market Tools", "v1.4", "Free to use",
                 new springfox.documentation.service.Contact("Thierry Schreiner",
                         "http://doc.poseidon.com", "doc@poseidon.com"),
                 "API License", "http://nkk.com", Collections.emptyList());

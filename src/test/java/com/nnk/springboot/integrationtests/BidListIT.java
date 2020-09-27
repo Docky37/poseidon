@@ -120,7 +120,7 @@ public class BidListIT {
                 .isEqualTo(listOfBidListDTO.toString());
     }
 
-    @Test // POST VALIDATE
+    @Test // LIST
     public void givenAValidNewBidListDTO_whenPost_thenSaved() throws Exception {
         // GIVEN
         given(userRetrieve.getLoggedUser()).willReturn("Testeur");
