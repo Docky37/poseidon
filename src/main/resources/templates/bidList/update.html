@@ -56,7 +56,7 @@
 									Ask price: <br /> <input type="text" th:field="*{ask}" /><br />
 										<span style="color: red;" th:if="${#fields.hasErrors('ask')}"
 										th:errors="*{ask}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br /> 
-									BidList date:<br /> <input type="datetime-local" th:field="*{bidListDate}" /><br />
+									BidList date:<br /> <input type="text" th:field="*{bidListDate}" /><br />
 										<span style="color: red;" th:if="${#fields.hasErrors('bidListDate')}"
 										th:errors="*{bidListDate}">Invalid number, 1000000000000 max with 4 fractional digits max</span><br /> 
 									Security:<br /> <input type="text" th:field="*{security}" /><br />
@@ -74,16 +74,16 @@
 								</td>
 								<td>
 									Creation Date: <br /> 
-										<input type="datetime-local" th:field="*{creationDate}" hidden="hidden" />
-										<input type="datetime-local" th:field="*{creationDate}" disabled="disabled" /><br />
+										<input type="text" th:field="*{creationDate}" hidden="hidden" />
+										<input type="text" th:field="*{creationDate}" disabled="disabled" /><br />
 										<br />
 									Creation Name: <br /> 
 										<input type="text" th:field="*{creationName}" hidden="hidden" />
 										<input type="text" th:field="*{creationName}" disabled="disabled" /><br />
 										<br /> 
 									Revision Date: <br /> 
-										<input type="datetime-local" th:field="*{revisionDate}" hidden="hidden" />
-										<input type="datetime-local" th:field="*{revisionDate}" disabled="disabled" /><br />
+										<input type="text" th:field="*{revisionDate}" hidden="hidden" />
+										<input type="text" th:field="*{revisionDate}" disabled="disabled" /><br />
 										<br /> 
 									Revision Name: <br /> 
 										<input type="text" th:field="*{revisionName}" hidden="hidden" />

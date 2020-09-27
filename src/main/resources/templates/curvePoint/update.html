@@ -23,7 +23,7 @@
 			</p>
 
 			<p>
-				As of date:<br /> <input type="datetime-local" th:field="*{asOfDate}" /><br />
+				As of date:<br /> <input type="text" th:field="*{asOfDate}" /><br />
 				<span style="color: red;"
 					th:if="${#fields.hasErrors('asOfDate')}"
 					th:errors="*{asOfDate}">Invalid date!</span>
@@ -44,8 +44,8 @@
 			</p>
 
 			<p>
-				Creation date:<br /> <input type="datetime-local" th:field="*{creationDate}" hidden="hidden" />
-				<input type="datetime-local" th:field="*{creationDate}" disabled="disabled" /><br />
+				Creation date:<br /> <input type="text" th:field="*{creationDate}" hidden="hidden" />
+				<input type="text" th:field="*{creationDate}" disabled="disabled" /><br />
 			</p>
 
 			<p>
