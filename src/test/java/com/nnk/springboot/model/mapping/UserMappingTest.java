@@ -14,14 +14,11 @@ import com.nnk.springboot.domain.User;
 import com.nnk.springboot.domain.mapping.UserMapping;
 import com.nnk.springboot.dto.UserDTO;
 
-//@SpringJUnitConfig(value = UserMapping.class)
 @SpringBootTest
 public class UserMappingTest {
 
     @Autowired
     UserMapping userMapping;
-
-    @Autowired
 
     static List<User> listOfUser = new ArrayList<>();
     static List<UserDTO> listOfUserDTO = new ArrayList<>();
@@ -33,7 +30,7 @@ public class UserMappingTest {
         listOfUser.get(0).setPassword("1231231");
         listOfUser.get(0).setRole("ADMIN");
         listOfUser.add(new User());
-        listOfUser.get(1).setId(1);
+        listOfUser.get(1).setId(2);
         listOfUser.get(1).setFullname("Testeur USER");
         listOfUser.get(1).setUsername("testeur.user");
         listOfUser.get(1).setPassword("1231231");
@@ -46,7 +43,7 @@ public class UserMappingTest {
         listOfUserDTO.get(0).setPassword("1231231");
         listOfUserDTO.get(0).setRole("ADMIN");
         listOfUserDTO.add(new UserDTO());
-        listOfUserDTO.get(1).setId(1);
+        listOfUserDTO.get(1).setId(2);
         listOfUserDTO.get(1).setFullname("Testeur USER");
         listOfUserDTO.get(1).setUsername("testeur.user");
         listOfUserDTO.get(1).setPassword("1231231");

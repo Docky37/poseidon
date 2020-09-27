@@ -31,7 +31,7 @@ public class RuleNameMappingTest {
         listOfRuleName.get(0).setSqlStr("sqlStr 1");
         listOfRuleName.get(0).setSqlPart("sqlPart 1");
         listOfRuleName.add(new RuleName());
-        listOfRuleName.get(1).setId(1);
+        listOfRuleName.get(1).setId(2);
         listOfRuleName.get(1).setName("Name 1");
         listOfRuleName.get(1).setDescription("Description 1");
         listOfRuleName.get(1).setJson("json 1");
@@ -48,7 +48,7 @@ public class RuleNameMappingTest {
         listOfRuleNameDTO.get(0).setSqlStr("sqlStr 1");
         listOfRuleNameDTO.get(0).setSqlPart("sqlPart 1");
         listOfRuleNameDTO.add(new RuleNameDTO());
-        listOfRuleNameDTO.get(1).setId(1);
+        listOfRuleNameDTO.get(1).setId(2);
         listOfRuleNameDTO.get(1).setName("Name 1");
         listOfRuleNameDTO.get(1).setDescription("Description 1");
         listOfRuleNameDTO.get(1).setJson("json 1");
