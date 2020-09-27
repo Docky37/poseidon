@@ -1,6 +1,7 @@
 package com.nnk.springboot.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -77,10 +78,14 @@ public class BidListServiceImpl implements BidListService {
      */
     @Override
     public BidListDTO delete(final Integer id) throws BidListNotFoundException {
-        BidList bidList = bidListRepository.findById(id)
-                .orElseThrow(() -> new BidListNotFoundException(
-                        "No BidList record exist for given id"));
-        return bidListMapping.mapEntityToDTO(bidList);
+        Optional<BidList> bidList = bidListRepository.findById(id);
+        if (bidList.isPresent()) {
+            bidListRepository.deleteById(id);
+            return bidListMapping.mapEntityToDTO(bidList.get());
+        } else {
+            throw (new BidListNotFoundException(
+                    "No BidList record exist for given id"));
+        }
     }
 
     /**
