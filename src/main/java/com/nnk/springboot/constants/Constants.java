@@ -67,7 +67,13 @@ public class Constants {
      */
     public static final int COOKIE_VALIDITY_IN_SECONDS = 3600;
 
-    /**
+     /**
+     * Constant used to set the maximum age of the cookie in seconds.
+     */
+    public static final String PASSWORD_REGEXP = "^(?=.*[0-9])(?=.*[a-z])"
+            + "(?=.*[A-Z])(?=.*[!@#$%^&*-])(?=[a-zA-Z0-9!@#$%^&*-]+$).{8,20}$";
+
+   /**
      * Empty constructor.
      */
     protected Constants() {

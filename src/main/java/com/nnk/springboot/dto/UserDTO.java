@@ -44,8 +44,7 @@ public class UserDTO {
             + " 1 lower case letter, 1 special character !@#$%^&* and no space",
             required = true)
     @NotBlank(message = "Password is mandatory!")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-])"
-            + "(?=[a-zA-Z0-9!@#$%^&*-]+$).{8,20}$",
+    @Pattern(regexp = Constants.PASSWORD_REGEXP,
             message = " 8 to 20 characters, at least 1 number, 1 upper case &"
                     + " 1 lower case letter, 1 special character !@#$%^&*"
                     + " and no space")
